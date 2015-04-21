@@ -1,0 +1,57 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="bases2proyecto.Master" %>
+
+<!DOCTYPE html>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>BlueSpace</title>
+<meta http-equiv="Content-Language" content="English" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+</head>
+<body>
+
+    <form id="form1" runat="server">
+
+<div id="wrap">
+
+<div id="header">
+<h1><a href="#">Seguritos S.A.</a></h1>
+<h2>Bases de Datos 2</h2>
+</div>
+
+<div id="intro"> 
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder4" runat="server"></asp:ContentPlaceHolder>
+</div>
+
+<div id="content">
+<div class="left"> 
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server"></asp:ContentPlaceHolder>
+<div class="articles">
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+</div>
+
+<div class="left"> 
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server"></asp:ContentPlaceHolder>
+
+</div>
+<div style="clear: both;"> 
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder5" runat="server">
+    </asp:ContentPlaceHolder>
+    </div>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<div id="footer">
+Designed by <a href="http://www.free-css-templates.com/">Free CSS Templates</a>, Thanks to <a href="http://www.openwebdesign.org/">Custom Web Design ReDesign by RGB</a>
+</div>
+</div>
+
+    </form>
+
+</body>
+</html>
