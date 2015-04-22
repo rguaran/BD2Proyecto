@@ -1,0 +1,5 @@
+C:\Users\Masters\Documents\GitHub\BD2Proyecto\bases2proyecto\bases2proyecto\bin\bases2proyecto.dll
+C:\Users\Masters\Documents\GitHub\BD2Proyecto\bases2proyecto\bases2proyecto\bin\bases2proyecto.pdb
+C:\Users\Masters\Documents\GitHub\BD2Proyecto\bases2proyecto\bases2proyecto\obj\Debug\bases2proyecto.csprojResolveAssemblyReference.cache
+C:\Users\Masters\Documents\GitHub\BD2Proyecto\bases2proyecto\bases2proyecto\obj\Debug\bases2proyecto.dll
+C:\Users\Masters\Documents\GitHub\BD2Proyecto\bases2proyecto\bases2proyecto\obj\Debug\bases2proyecto.pdb
