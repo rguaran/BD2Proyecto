@@ -1,4 +1,7 @@
---- INSERCIONES ---
+
+---------------------------------------------------------------------------------------
+-------------------------------------- INSERCIONES ------------------------------------
+---------------------------------------------------------------------------------------
 
 CREATE OR REPLACE FUNCTION insertarPais(_nombre varchar(50))
 RETURNS void AS $$
@@ -63,9 +66,31 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql
 
---- RECUPERACIONES ---
+CREATE OR REPLACE FUNCTION insertarOficina(_id varchar(5),_nombre varchar(50), _departamento varchar(50))
+RETURNS void AS $$
+DECLARE idDepto INTEGER;
+BEGIN
+	SELECT getIdDepartamento(_departamento) INTO idDepto;
+	INSERT INTO Oficina (id_oficina, nombre, Departamento_id_dep) VALUES (_id, _nombre, idDepto);
+END;
+$$  LANGUAGE plpgsql
 
-CREATE OR REPLACE FUNCTION obtenerPais(_nombre varchar(50))
+CREATE OR REPLACE FUNCTION insertarEmpleado(_nombre varchar(50), _telefono varchar(20), _tipo varchar(30), _oficina varchar(30))
+RETURNS void AS $$
+DECLARE idTE INTEGER;
+DECLARE idOficina INTEGER;
+BEGIN
+	SELECT getIdTipoEmpleado (_tipo) INTO idTE;
+	SELECT getIdOficina (_oficina) INTO idOficina;
+	INSERT INTO Empleado (nombre, telefono, Tipo_Empleado_id_te, Oficina_id_oficina) VALUES (_nombre, _telefono, idTE, idOficina);
+END;
+$$  LANGUAGE plpgsql
+
+------------------------------------------------------------------------------------------
+-------------------------------------- RECUPERACIONES ------------------------------------
+------------------------------------------------------------------------------------------
+
+CREATE OR REPLACE FUNCTION getIdPais(_nombre varchar(50))
 RETURNS INTEGER AS $$
 DECLARE idPais INTEGER;
 BEGIN
@@ -74,7 +99,7 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql
 
-CREATE OR REPLACE FUNCTION obtenerTipoEmpleado(_tipo varchar(50))
+CREATE OR REPLACE FUNCTION getIdTipoEmpleado(_tipo varchar(50))
 RETURNS INTEGER AS $$
 DECLARE idTipoEmp INTEGER;
 BEGIN
@@ -82,6 +107,26 @@ BEGIN
 	RETURN idTipoEmp;
 END;
 $$  LANGUAGE plpgsql
+
+CREATE OR REPLACE FUNCTION getIdDepartamento(_nombre varchar(50))
+RETURNS INTEGER AS $$
+DECLARE idDepto INTEGER;
+BEGIN
+	SELECT id_dep INTO idDepto FROM Departamento WHERE nombre = _nombre;
+	RETURN idDepto;
+END;
+$$  LANGUAGE plpgsql
+
+CREATE OR REPLACE FUNCTION getIdOficina(_nombre varchar(50))
+RETURNS TEXT AS $$
+DECLARE idOficina TEXT;
+BEGIN
+	SELECT id_oficina INTO idOficina FROM Oficina WHERE nombre = _nombre;
+	RETURN idOficina;
+END;
+$$  LANGUAGE plpgsql
+
+
 
 
 
