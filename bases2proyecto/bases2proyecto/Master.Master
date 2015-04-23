@@ -17,39 +17,55 @@
 <div id="wrap">
 
 <div id="header">
-<h1><a href="#">Seguritas S.A.</a></h1>
+<h1><a href="#">Seguritos S.A.</a></h1>
 <h2>Bases de Datos 2</h2>
 </div>
 
 <div id="intro"> 
-    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+     <!-- Nav start -->
+      <div class="right">
+        <div class="nav">
+            <div class="nav-in">
+              <ul>
+                <li class="last"><a href="index.aspx">Home</a></li>
+                <li><a ID= "poliza" runat="server" href="poliza.aspx">Poliza</a></li>
+                <li><a ID= "A2" runat="server" href="#">Empleados</a></li>
+                <li><a ID= "A3" runat="server" href="#">Clientes</a></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+      <div class="leftintro">
+          <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+      </div>
+  <!-- Nav end -->
 </div>
 
 <div id="content">
 <div class="left"> 
+    <div class="articles">
     <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server"></asp:ContentPlaceHolder>
-<div class="articles">
     <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server"></asp:ContentPlaceHolder>
-</div>
-
-<div class="left"> 
     <asp:ContentPlaceHolder ID="ContentPlaceHolder4" runat="server"></asp:ContentPlaceHolder>
-
-</div>
-<div style="clear: both;"> 
-    <asp:ContentPlaceHolder ID="ContentPlaceHolder5" runat="server">
-    </asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder5" runat="server"></asp:ContentPlaceHolder>
     </div>
+<div style="clear: both;"> </div>
 </div>
 
-<br />
-<br />
-<br />
-<br />
-<div id="footer">
-    FIUSAC - Bases de datos 2&nbsp; - <a href="http://www.openwebdesign.org/">ReDesign by RGB</a>
+
+
 </div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<!--div id="footer">
+Designed by <a href="http://www.free-css-templates.com/">Free CSS Templates</a>, Thanks to <a href="http://www.openwebdesign.org/">Custom Web Design</a>  ReDesign by RGB
+</div-->
 </div>
+
 
     </form>
 

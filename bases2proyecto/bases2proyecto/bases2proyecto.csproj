@@ -64,7 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.aspx" />
+    <Content Include="modificarpoliza.aspx" />
+    <Content Include="nuevapoliza.aspx" />
     <Content Include="poliza.aspx" />
+    <Content Include="style.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -88,6 +91,20 @@
     </Compile>
     <Compile Include="Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="modificarpoliza.aspx.cs">
+      <DependentUpon>modificarpoliza.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modificarpoliza.aspx.designer.cs">
+      <DependentUpon>modificarpoliza.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="nuevapoliza.aspx.cs">
+      <DependentUpon>nuevapoliza.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="nuevapoliza.aspx.designer.cs">
+      <DependentUpon>nuevapoliza.aspx</DependentUpon>
     </Compile>
     <Compile Include="poliza.aspx.cs">
       <DependentUpon>poliza.aspx</DependentUpon>
