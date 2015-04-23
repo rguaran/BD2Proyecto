@@ -10,17 +10,13 @@ CREATE
   TABLE Archivos
   (
     id_archivo                  SERIAL NOT NULL ,
-    archivo                     BINARY NOT NULL ,
+    archivo                     BYTEA NOT NULL ,
     Poliza_Tipo_de_seguro_id_ts VARCHAR (5) NOT NULL ,
     Poliza_id_poliza            INTEGER NOT NULL ,
     CONSTRAINT Archivos_PK PRIMARY KEY  (id_archivo)
-WITH
-  (ALLOW_PAGE_LOCKS = ON ,ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+)
+  
+;
 
 CREATE
   TABLE Beneficiario
@@ -31,15 +27,7 @@ CREATE
     Poliza_Tipo_de_seguro_id_ts VARCHAR (5) NOT NULL ,
     Poliza_id_poliza            INTEGER NOT NULL ,
     CONSTRAINT Beneficiario_PK PRIMARY KEY  (id_beneficiario)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Bien
@@ -50,15 +38,7 @@ CREATE
     Poliza_Tipo_de_seguro_id_ts VARCHAR (5) NOT NULL ,
     Poliza_id_poliza            INTEGER NOT NULL ,
     CONSTRAINT Bien_PK PRIMARY KEY  (id_bien)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Cliente
@@ -69,15 +49,7 @@ CREATE
     Tipo_Cliente_id INTEGER NOT NULL ,
     Pais_id_pais    INTEGER NOT NULL ,
     CONSTRAINT Cliente_PK PRIMARY KEY  (id)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Cobertura
@@ -88,15 +60,7 @@ CREATE
     Poliza_Tipo_de_seguro_id_ts VARCHAR (5) NOT NULL ,
     Poliza_id_poliza            INTEGER NOT NULL ,
     CONSTRAINT Cobertura_PK PRIMARY KEY  (id_cobertura)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Condiciones
@@ -105,15 +69,7 @@ CREATE
     condicion TEXT NOT NULL ,
     Tipo_de_seguro_id_ts VARCHAR (5) NOT NULL ,
     CONSTRAINT Condiciones_PK PRIMARY KEY  (id_cond)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Condiciones_Generales
@@ -121,15 +77,7 @@ CREATE
     id_cg SERIAL NOT NULL ,
     condicion TEXT NOT NULL ,
     CONSTRAINT Condiciones_Generales_PK PRIMARY KEY  (id_cg)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Condiciones_Particulares
@@ -137,15 +85,7 @@ CREATE
     id_cp SERIAL NOT NULL ,
     condicion TEXT NOT NULL ,
     CONSTRAINT Condiciones_Particulares_PK PRIMARY KEY  (id_cp)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Departamento
@@ -153,15 +93,7 @@ CREATE
     id_dep SERIAL NOT NULL ,
     nombre VARCHAR (50) NOT NULL ,
     CONSTRAINT Departamento_PK PRIMARY KEY  (id_dep)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Detalle_Pago
@@ -171,15 +103,7 @@ CREATE
     numero_cuota          INTEGER NOT NULL ,
     Plan_de_Pagos_id_plan INTEGER NOT NULL ,
     CONSTRAINT Detalle_Pago_PK PRIMARY KEY  (id_detalle)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Empleado
@@ -190,15 +114,7 @@ CREATE
     Tipo_Empleado_id_te INTEGER NOT NULL ,
     Oficina_id_oficina  VARCHAR (5) NOT NULL ,
     CONSTRAINT Empleado_PK PRIMARY KEY  (id_emp)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Estado_Poliza
@@ -206,15 +122,7 @@ CREATE
     id_estado SERIAL NOT NULL ,
     estado    VARCHAR (25) NOT NULL ,
     CONSTRAINT Estado_Poliza_PK PRIMARY KEY  (id_estado)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Fotografia
@@ -223,15 +131,7 @@ CREATE
     nombre TEXT NOT NULL ,
     Bien_id_bien INTEGER NOT NULL ,
     CONSTRAINT Fotografia_PK PRIMARY KEY  (id_foto)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Inspeccion
@@ -244,15 +144,7 @@ CREATE
     Poliza_Tipo_de_seguro_id_ts VARCHAR (5) NOT NULL ,
     Poliza_id_poliza            INTEGER NOT NULL ,
     CONSTRAINT Inspeccion_PK PRIMARY KEY  (id_inspeccion)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Moneda
@@ -260,15 +152,7 @@ CREATE
     id_moneda SERIAL NOT NULL ,
     moneda TEXT ,
     CONSTRAINT Moneda_PK PRIMARY KEY  (id_moneda)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Oficina
@@ -277,15 +161,7 @@ CREATE
     nombre              VARCHAR (50) ,
     Departamento_id_dep INTEGER NOT NULL ,
     CONSTRAINT Oficina_PK PRIMARY KEY  (id_oficina)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Pais
@@ -293,15 +169,7 @@ CREATE
     id_pais SERIAL NOT NULL ,
     pais TEXT NOT NULL ,
     CONSTRAINT Pais_PK PRIMARY KEY  (id_pais)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Plan_de_Pagos
@@ -316,23 +184,13 @@ CREATE
     Poliza_Tipo_de_seguro_id_ts VARCHAR (5) NOT NULL ,
     Poliza_id_poliza            INTEGER NOT NULL ,
     CONSTRAINT Plan_de_Pagos_PK PRIMARY KEY  (id_plan)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
-CREATE UNIQUE NONCLUSTERED INDEX
+);
+CREATE UNIQUE INDEX
 Plan_de_Pagos__IDX ON Plan_de_Pagos
 (
   Poliza_Tipo_de_seguro_id_ts ,
   Poliza_id_poliza
-)
-ON "default"
-GO
+);
 
 CREATE
   TABLE Poliza
@@ -354,15 +212,7 @@ CREATE
     status           VARCHAR (15) NOT NULL ,
     CONSTRAINT Poliza_PK PRIMARY KEY  (Tipo_de_seguro_id_ts, id_poliza
     )
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE "Poliza_-_Condicion"
@@ -373,15 +223,7 @@ CREATE
     Poliza_id_poliza            INTEGER NOT NULL ,
     CONSTRAINT "Poliza_-_Condicion_PK" PRIMARY KEY  (
     Condiciones_Generales_id_cg, Poliza_Tipo_de_seguro_id_ts, Poliza_id_poliza)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Tipo_Cliente
@@ -389,15 +231,7 @@ CREATE
     id   SERIAL NOT NULL ,
     tipo VARCHAR (25) NOT NULL ,
     CONSTRAINT Tipo_Cliente_PK PRIMARY KEY  (id)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Tipo_Empleado
@@ -405,15 +239,7 @@ CREATE
     id_te SERIAL NOT NULL ,
     tipo TEXT ,
     CONSTRAINT Tipo_Empleado_PK PRIMARY KEY  (id_te)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Tipo_de_cambio
@@ -423,15 +249,7 @@ CREATE
     Moneda_id_moneda INTEGER NOT NULL ,
     CONSTRAINT Tipo_de_cambio_PK PRIMARY KEY  (fecha, Moneda_id_moneda
     )
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 CREATE
   TABLE Tipo_de_seguro
@@ -439,15 +257,7 @@ CREATE
     id_ts VARCHAR (5) NOT NULL ,
     tipo TEXT NOT NULL ,
     CONSTRAINT Tipo_de_seguro_PK PRIMARY KEY  (id_ts)
-WITH
-  (
-    ALLOW_PAGE_LOCKS = ON ,
-    ALLOW_ROW_LOCKS  = ON
-  )
-  ON "default"
-  )
-  ON "default"
-GO
+);
 
 ALTER TABLE Archivos
 ADD CONSTRAINT Archivos_Poliza_FK FOREIGN KEY
@@ -464,7 +274,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Beneficiario
 ADD CONSTRAINT Beneficiario_Poliza_FK FOREIGN KEY
@@ -481,7 +291,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Bien
 ADD CONSTRAINT Bien_Poliza_FK FOREIGN KEY
@@ -498,7 +308,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Cliente
 ADD CONSTRAINT Cliente_Pais_FK FOREIGN KEY
@@ -513,7 +323,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Cliente
 ADD CONSTRAINT Cliente_Tipo_Cliente_FK FOREIGN KEY
@@ -528,7 +338,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Cobertura
 ADD CONSTRAINT Cobertura_Poliza_FK FOREIGN KEY
@@ -545,7 +355,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Condiciones
 ADD CONSTRAINT Condiciones_Tipo_de_seguro_FK FOREIGN KEY
@@ -560,7 +370,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Detalle_Pago
 ADD CONSTRAINT Detalle_Pago_Plan_de_Pagos_FK FOREIGN KEY
@@ -575,7 +385,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Empleado
 ADD CONSTRAINT Empleado_Oficina_FK FOREIGN KEY
@@ -590,7 +400,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Empleado
 ADD CONSTRAINT Empleado_Tipo_Empleado_FK FOREIGN KEY
@@ -605,7 +415,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Fotografia
 ADD CONSTRAINT Fotografia_Bien_FK FOREIGN KEY
@@ -620,7 +430,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Inspeccion
 ADD CONSTRAINT Inspeccion_Bien_FK FOREIGN KEY
@@ -635,7 +445,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Inspeccion
 ADD CONSTRAINT Inspeccion_Empleado_FK FOREIGN KEY
@@ -650,7 +460,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Inspeccion
 ADD CONSTRAINT Inspeccion_Poliza_FK FOREIGN KEY
@@ -667,7 +477,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Oficina
 ADD CONSTRAINT Oficina_Departamento_FK FOREIGN KEY
@@ -682,7 +492,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Plan_de_Pagos
 ADD CONSTRAINT Plan_de_Pagos_Moneda_FK FOREIGN KEY
@@ -697,7 +507,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Plan_de_Pagos
 ADD CONSTRAINT Plan_de_Pagos_Poliza_FK FOREIGN KEY
@@ -714,7 +524,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE "Poliza_-_Condicion"
 ADD CONSTRAINT "Poliza_-_Condicion_Condiciones_Generales_FK" FOREIGN KEY
@@ -729,7 +539,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE "Poliza_-_Condicion"
 ADD CONSTRAINT "Poliza_-_Condicion_Poliza_FK" FOREIGN KEY
@@ -746,7 +556,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Poliza
 ADD CONSTRAINT Poliza_Cliente_FK FOREIGN KEY
@@ -761,7 +571,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Poliza
 ADD CONSTRAINT Poliza_Condiciones_Particulares_FK FOREIGN KEY
@@ -776,7 +586,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Poliza
 ADD CONSTRAINT Poliza_Empleado_FK FOREIGN KEY
@@ -791,7 +601,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Poliza
 ADD CONSTRAINT Poliza_Empleado_FKv1 FOREIGN KEY
@@ -806,7 +616,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Poliza
 ADD CONSTRAINT Poliza_Empleado_FKv3 FOREIGN KEY
@@ -821,7 +631,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Poliza
 ADD CONSTRAINT Poliza_Estado_Poliza_FK FOREIGN KEY
@@ -836,7 +646,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Poliza
 ADD CONSTRAINT Poliza_Tipo_de_seguro_FK FOREIGN KEY
@@ -851,7 +661,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 ALTER TABLE Tipo_de_cambio
 ADD CONSTRAINT Tipo_de_cambio_Moneda_FK FOREIGN KEY
@@ -866,7 +676,7 @@ ON
 DELETE
   NO ACTION ON
 UPDATE NO ACTION
-GO
+;
 
 
 -- Oracle SQL Developer Data Modeler Summary Report: 
