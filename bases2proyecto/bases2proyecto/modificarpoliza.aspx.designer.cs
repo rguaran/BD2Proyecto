@@ -11,7 +11,7 @@ namespace bases2proyecto
 {
 
 
-    public partial class index
+    public partial class modificarpoliza
     {
     }
 }

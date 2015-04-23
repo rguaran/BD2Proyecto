@@ -1,6 +1,6 @@
 * {
     padding: 0;
-    margin: 0;
+    margin: 0 0 0px 0;
 } 
 
 body {
@@ -8,7 +8,7 @@ background: #fff url(images/bg.jpg) repeat-x;
 font-family: Verdana, Arial, Helvetica, sans-serif;
 font-size: 11px;
 line-height: 18px;
-color: #333333;;
+color: #333333;
 }
 
 img { border: none; }
@@ -51,6 +51,7 @@ line-height: 12px;
 background: #fff url(images/intro.jpg) no-repeat;
 height: 90px;
 padding: 30px;
+    width: 738px;
 }
 
 #content {
@@ -58,10 +59,17 @@ padding: 10px 20px;
 }
 
 .left {
-width: 757px;
+width: 766px;
 float: left;
 text-align: justify;
 }
+
+.leftintro {
+width: 560px;
+float: left;
+text-align: justify;
+}
+
 .left h2 {
 color: #FF4800;
 font-size: 24px;
@@ -76,6 +84,7 @@ float: right;
 padding: 10px;
 border-left: 1px solid #bbb;
 font-size: 12px;
+    height: 87px;
 }
 .right ul {
 list-style-type: square;
@@ -98,3 +107,5 @@ font-size: 11px;
 padding: 0 0 10px 0;
 margin-top: 20px;
 }
+
+

@@ -7,17 +7,19 @@ using System.Web.UI.WebControls;
 
 namespace bases2proyecto
 {
-    public partial class poliza : System.Web.UI.Page
+    public partial class nuevapoliza : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("nuevapoliza.aspx", true);
+            DateTime fechainicio = Convert.ToDateTime(txtfechainicio.Text);
+
+            Label1.Text = fechainicio.ToString("dd/MM/yyyy");
         }
+		
     }
 }
