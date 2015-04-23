@@ -19,5 +19,20 @@ namespace bases2proyecto
         {
             Response.Redirect("nuevapoliza.aspx", true);
         }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            GridView1.EditIndex = e.NewEditIndex;
+            int a = e.NewEditIndex;
+            GridView1.DataBind();
+        }
+
+
+
     }
 }

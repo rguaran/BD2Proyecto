@@ -65,8 +65,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="index.aspx" />
+    <Content Include="mantenimiento.aspx" />
     <Content Include="modificarpoliza.aspx" />
     <Content Include="nuevapoliza.aspx" />
+    <Content Include="pagos.aspx" />
     <Content Include="poliza.aspx" />
     <Content Include="style.css" />
     <Content Include="Web.config">
@@ -81,6 +83,13 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mantenimiento.aspx.cs">
+      <DependentUpon>mantenimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mantenimiento.aspx.designer.cs">
+      <DependentUpon>mantenimiento.aspx</DependentUpon>
     </Compile>
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
@@ -102,6 +111,13 @@
     </Compile>
     <Compile Include="nuevapoliza.aspx.designer.cs">
       <DependentUpon>nuevapoliza.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pagos.aspx.cs">
+      <DependentUpon>pagos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pagos.aspx.designer.cs">
+      <DependentUpon>pagos.aspx</DependentUpon>
     </Compile>
     <Compile Include="poliza.aspx.cs">
       <DependentUpon>poliza.aspx</DependentUpon>
