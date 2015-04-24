@@ -78,7 +78,6 @@
     <Content Include="tipocliente.aspx" />
     <Content Include="tipoDeCambio.aspx" />
     <Content Include="tipoempleado.aspx" />
-    <Content Include="tiposeguro.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -202,6 +201,8 @@
     <Compile Include="tipoempleado.aspx.designer.cs">
       <DependentUpon>tipoempleado.aspx</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+=======
     <Compile Include="tiposeguro.aspx.cs">
       <DependentUpon>tiposeguro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -216,6 +217,7 @@
     <Compile Include="suprimir.aspx.designer.cs">
       <DependentUpon>suprimir.aspx</DependentUpon>
     </Compile>
+>>>>>>> origin/master
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />
