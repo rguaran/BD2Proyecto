@@ -63,7 +63,7 @@ namespace bases2proyecto
         {
             if (((LinkButton)GridView1.Rows[0].Cells[0].Controls[0]).Text == "Insert")
             {
-                string query = "Insert Into " + (string)Session["Item"] + " Values( ";
+                string query = "Select insertar_" + (string)Session["Item"] + "( ";
                 string[] valores = new string[e.NewValues.Count];
                 e.NewValues.Values.CopyTo(valores, 0);
                 Titulos = (ArrayList)Session["Titulos"];

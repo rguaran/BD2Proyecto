@@ -24,20 +24,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
 
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" AutoGenerateEditButton="True" DataKeyNames="fecha,moneda_id_moneda" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowEditing="GridView1_RowEditing">
-        <Columns>
-            <asp:BoundField DataField="fecha" HeaderText="fecha" SortExpression="fecha" />
-            <asp:BoundField DataField="cambio" HeaderText="cambio" SortExpression="cambio" />
-            <asp:BoundField DataField="moneda_id_moneda" HeaderText="moneda_id_moneda" ReadOnly="True" SortExpression="moneda_id_moneda" Visible="False" />
-            <asp:BoundField DataField="moneda" HeaderText="moneda" SortExpression="moneda" />
-            <asp:TemplateField HeaderText="moneda2" SortExpression="moneda"></asp:TemplateField>
-        </Columns>
-    </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:proyectoBD2ConnectionString2 %>" ProviderName="<%$ ConnectionStrings:proyectoBD2ConnectionString2.ProviderName %>" SelectCommand="select tm.fecha, tm.cambio, tm.moneda_id_moneda,  m.moneda
-from tipo_de_cambio tm, moneda m
-where tm.moneda_id_moneda =  m.id_moneda"></asp:SqlDataSource>
-
-</asp:Content>
+    </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder4" runat="server">
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder5" runat="server">

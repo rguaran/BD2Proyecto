@@ -30,6 +30,7 @@
                     <asp:ListItem Value="tipo_cliente">Tipo de cliente</asp:ListItem>
                     <asp:ListItem Value="pais">Pais</asp:ListItem>
                     <asp:ListItem Value="condiciones_particulares">Condiciones Particulares</asp:ListItem>
+                    <asp:ListItem Value="estado_poliza">Estado Poliza</asp:ListItem>
                 </asp:DropDownList>
                 &nbsp;
 

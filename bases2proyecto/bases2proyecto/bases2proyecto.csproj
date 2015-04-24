@@ -73,13 +73,11 @@
     <Content Include="modificarpoliza.aspx" />
     <Content Include="nuevapoliza.aspx" />
     <Content Include="oficina.aspx" />
-    <Content Include="pagos.aspx" />
     <Content Include="pais.aspx" />
     <Content Include="poliza.aspx" />
     <Content Include="style.css" />
     <Content Include="tipocliente.aspx" />
     <Content Include="tipoempleado.aspx" />
-    <Content Include="tiposeguro.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -156,13 +154,6 @@
     <Compile Include="oficina.aspx.designer.cs">
       <DependentUpon>oficina.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pagos.aspx.cs">
-      <DependentUpon>pagos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pagos.aspx.designer.cs">
-      <DependentUpon>pagos.aspx</DependentUpon>
-    </Compile>
     <Compile Include="pais.aspx.cs">
       <DependentUpon>pais.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -191,13 +182,6 @@
     </Compile>
     <Compile Include="tipoempleado.aspx.designer.cs">
       <DependentUpon>tipoempleado.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="tiposeguro.aspx.cs">
-      <DependentUpon>tiposeguro.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="tiposeguro.aspx.designer.cs">
-      <DependentUpon>tiposeguro.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
