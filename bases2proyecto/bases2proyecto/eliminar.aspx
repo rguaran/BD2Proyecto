@@ -1,14 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="eliminar.aspx.cs" Inherits="bases2proyecto.WebForm3" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin.Master" AutoEventWireup="true" CodeBehind="eliminar.aspx.cs" Inherits="BD1Proyecto1.WebForm7" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
-    <strong style="text-align: center">Elimine los datos que necesite y luego presione en guardar</strong> 
-</asp:Content>
-<asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder4" runat="server">
     <table style="width:100%;" align="left">
-        
+        <tr>
+            <td class="style1">
+                Elimine los datos que necesite y luego presione en guardar</td>
+
+        </tr>
         <tr>
             <td class="style1">
                <asp:GridView ID="GridView1" runat="server" BackColor="White" 
@@ -25,15 +26,14 @@
                    <SortedAscendingHeaderStyle BackColor="#007DBB" />
                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
                    <SortedDescendingHeaderStyle BackColor="#00547E" />
-                </asp:GridView>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
-            </td>
+                </asp:GridView></td>
 
         </tr>
-        
+        <tr>
+            <td class="style1">
+                <asp:Button ID="BtnGuardar" runat="server" Text="Guardar" Height="25px" 
+        Width="80px" onclick="BtnGuardar_Click" /></td>
+        </tr>
     </table>
-</asp:Content>
-<asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder5" runat="server">
-    <asp:Button ID="BtnGuardar" runat="server" Text="Guardar" Height="25px" 
-        Width="80px" onclick="BtnGuardar_Click" style="text-align: center" />
+    
 </asp:Content>

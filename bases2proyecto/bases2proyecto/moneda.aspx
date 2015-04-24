@@ -13,19 +13,24 @@
 
         &nbsp;
 
-        <asp:Button ID="btnEditar" runat="server" OnClick="btnAgregar_Click" Text="Editar" />
+        <asp:Button ID="btnEditar" runat="server" OnClick="btnEditar_Click" Text="Editar" />
 
         &nbsp;
 
-        <asp:Button ID="btnEliminar" runat="server" OnClick="btnAgregar_Click" Text="Eliminar" />
+        <asp:Button ID="btnEliminar" runat="server" OnClick="btnEliminar_Click" Text="Eliminar" />
     </p>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder4" runat="server">
     <p>
         <div style="text-align: center">
         
-        <asp:GridView ID="GridView1" runat="server">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="id_moneda" DataSourceID="dsMoneda">
+            <Columns>
+                <asp:BoundField DataField="id_moneda" HeaderText="ID" ReadOnly="True" SortExpression="id_moneda" />
+                <asp:BoundField DataField="moneda" HeaderText="Moneda" SortExpression="moneda" />
+            </Columns>
         </asp:GridView>
+            <asp:SqlDataSource ID="dsMoneda" runat="server" ConnectionString="<%$ ConnectionStrings:proyectoBD2ConnectionString %>" ProviderName="<%$ ConnectionStrings:proyectoBD2ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM MONEDA;"></asp:SqlDataSource>
             </div>
     </p>
     </asp:Content>

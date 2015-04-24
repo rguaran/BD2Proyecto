@@ -30,8 +30,16 @@
                 <li class="last"><a href="index.aspx">Home</a></li>
                 <li><a ID= "poliza" runat="server" href="poliza.aspx">Poliza</a></li>
                 <li><a ID= "A2" runat="server" href="#">Empleados</a></li>
+<<<<<<< HEAD
                 <li><a ID= "A3" runat="server" href="mantenimiento.aspx">Mantenimiento</a></li>
                 <li><a ID= "A4" runat="server" href="#">Clientes</a></li>
+=======
+
+                <li><a ID= "A3" runat="server" href="mantenimiento.aspx">Mantenimiento</a></li>
+
+                <li><a ID= "A4" runat="server" href="pagos.aspx">Pagos</a></li>
+
+>>>>>>> origin/master
               </ul>
             </div>
           </div>

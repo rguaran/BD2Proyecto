@@ -11,40 +11,36 @@ namespace bases2proyecto
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
-        private ConexionBD con;
-        private DataSet Ds;
-        private ArrayList Titulos;
-        protected void Page_Load(object sender, EventArgs e)
+       
+
+        private void setSession(int iniciar, int final)
         {
-
+            Session["insert"] = "insertarMoneda";
+            Session["select"] = "seleccionarMoneda()";
+            Session["update"] = "actualizarMoneda";
+            Session["delete"] = "eliminarMoneda";
+            Session["origen"] = "moneda";
+            Session["titulo"] = "Monedas";
+            Session["iniciar"] = iniciar;
+            Session["final"] = final;
         }
-
-        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            GridView1.EditIndex = e.NewEditIndex;
-            GridView1.DataBind();
-        }
-
+        
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            /*string strCommand = "SELECT moneda.* FROM moneda";
-            con = new ConexionBD();
-            Ds = con.consulta(strCommand);
-            DataTable Dt = Ds.Tables[0];
-            Titulos = new ArrayList();
-            for (int i = 0; i < Dt.Columns.Count; i++)
-            {
-                Titulos.Add(Dt.Columns[i].ColumnName);
-            }
-            Session["Titulos"] = Titulos;
-            DataRow dr = Dt.NewRow();
-            Dt.Rows.InsertAt(dr, 0);
-            GridView1.EditIndex = 0;
-            GridView1.DataSource = Dt;
-            //GridView1.DataBind();
-            //Changing the Text for Inserting a New Record
-            ((LinkButton)GridView1.Rows[0].Cells[0].Controls[0]).Text = "Insert";
-            GridView1.HorizontalAlign = HorizontalAlign.Center;*/
+            setSession(1, 3);            
+            Response.Redirect("editar.aspx", true);
+        }
+
+        protected void btnEditar_Click(object sender, EventArgs e)
+        {
+            setSession(0, 3);
+            Response.Redirect("editar.aspx", true);
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            setSession(0, 1);
+            Response.Redirect("suprimir.aspx", true);
         }
     }
 }

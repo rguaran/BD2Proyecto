@@ -1,0 +1,6 @@
+C:\Users\Chaz\Documents\Visual Studio 2012\Projects\BD2Proyecto\bases2proyecto\bases2proyecto\bin\bases2proyecto.dll
+C:\Users\Chaz\Documents\Visual Studio 2012\Projects\BD2Proyecto\bases2proyecto\bases2proyecto\bin\bases2proyecto.pdb
+C:\Users\Chaz\Documents\Visual Studio 2012\Projects\BD2Proyecto\bases2proyecto\bases2proyecto\bin\Mono.Security.dll
+C:\Users\Chaz\Documents\Visual Studio 2012\Projects\BD2Proyecto\bases2proyecto\bases2proyecto\bin\Npgsql.dll
+C:\Users\Chaz\Documents\Visual Studio 2012\Projects\BD2Proyecto\bases2proyecto\bases2proyecto\obj\Release\bases2proyecto.dll
+C:\Users\Chaz\Documents\Visual Studio 2012\Projects\BD2Proyecto\bases2proyecto\bases2proyecto\obj\Release\bases2proyecto.pdb

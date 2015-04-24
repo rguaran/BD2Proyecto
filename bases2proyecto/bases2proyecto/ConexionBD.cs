@@ -83,6 +83,7 @@ namespace bases2proyecto
                 dbcmd.CommandText = SqlStr;
                 dbcmd.ExecuteNonQuery();
                 con.Close();
+
             }
             catch (Exception e)
             {
@@ -90,12 +91,14 @@ namespace bases2proyecto
             }
         }
 
+
         public void abrirConexion()
         {
             if(con.State != ConnectionState.Open){
                 con.Open();
             }
         }
+
 
 
 

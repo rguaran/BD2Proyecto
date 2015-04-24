@@ -7,18 +7,17 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Collections;
 
-namespace bases2proyecto
+namespace BD1Proyecto1
 {
-    public partial class WebForm3 : System.Web.UI.Page
+    public partial class WebForm7 : System.Web.UI.Page
     {
-
-        private ConexionBD con;
+        private conPostgresql con;
         private DataSet Ds;
         private ArrayList Titulos;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            con = new ConexionBD();
+            con = new conPostgresql();
             if (!IsPostBack)
             {
                 BindData();
@@ -71,28 +70,28 @@ namespace bases2proyecto
             e.Values.Values.CopyTo(valores, 0);
             Titulos = (ArrayList)Session["Titulos"];
             string query = "Delete From " + (string)Session["Item"];
-
-            if (((string)Session["Item"]).Equals("asignacion_recurso"))
-            {
-                query += " where (" + Titulos[2] + " = '" + valores[2] + "' and " + Titulos[3] + " = '" + valores[3] + "' and " + Titulos[4] + " = '" + valores[4] + "')";
-            }
-            else if (((string)Session["Item"]).Equals("asignacion_tarea"))
-            {
-                query += " where (" + Titulos[2] + " = '" + valores[2] + "' and " + Titulos[3] + " = '" + valores[3] + "' and " + Titulos[4] + " = '" + valores[4] + "' and " + Titulos[5] + " = '" + valores[5] + "')";
-            }
-            else if (((string)Session["Item"]).Equals("plaza_empleado"))
-            {
-                query += " where (" + Titulos[2] + " = '" + valores[2] + "' and " + Titulos[3] + " = '" + valores[3] + "')";
-            }
-            else if (((string)Session["Item"]).Equals("pais_idioma"))
-            {
-                query += " where (" + Titulos[0] + " = '" + valores[0] + "' and " + Titulos[1] + " = '" + valores[1] + "')";
-            }
-            else
-            {
-                query += " where " + Titulos[0] + " = '" + valores[0] + "'";
-            }
-
+            
+            if(((string)Session["Item"]).Equals("asignacion_recurso"))
+                {
+                    query += " where (" + Titulos[2] + " = '" + valores[2] + "' and " + Titulos[3] + " = '" + valores[3] + "' and " + Titulos[4] + " = '" + valores[4] + "')";
+                }
+                else if (((string)Session["Item"]).Equals("asignacion_tarea"))
+                {
+                    query += " where (" + Titulos[2] + " = '" + valores[2] + "' and " + Titulos[3] + " = '" + valores[3] + "' and " + Titulos[4] + " = '" + valores[4] + "' and " + Titulos[5] + " = '" + valores[5] + "')";
+                }
+                else if (((string)Session["Item"]).Equals("plaza_empleado"))
+                {
+                    query += " where (" + Titulos[2] + " = '" + valores[2] + "' and " + Titulos[3] + " = '" + valores[3] + "')";
+                }
+                else if (((string)Session["Item"]).Equals("pais_idioma"))
+                {
+                    query += " where (" + Titulos[0] + " = '" + valores[0] + "' and " + Titulos[1] + " = '" + valores[1] + "')";
+                }
+                else
+                {
+                    query += " where " + Titulos[0] + " = '" + valores[0] + "'";
+                }
+            
             con.Query(query);
             BindData();
 
@@ -100,13 +99,8 @@ namespace bases2proyecto
 
         protected void BtnGuardar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("mantenimiento.aspx", true);
+            Response.Redirect("Mantenimiento.aspx", true);
         }
-
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        
     }
 }
