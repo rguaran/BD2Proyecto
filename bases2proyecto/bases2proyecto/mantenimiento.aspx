@@ -26,12 +26,10 @@
                         ToolTip="Eliminar Registros" />
                 &nbsp;&nbsp;&nbsp;
                 <asp:DropDownList ID="CmbItems" runat="server">
-                    <asp:ListItem Selected="True" Value="region">Región</asp:ListItem>
-                    <asp:ListItem Value="pais">País</asp:ListItem>
-                    <asp:ListItem Value="empresa">Empresa</asp:ListItem>
-                    <asp:ListItem Value="sucursal">Sucursal</asp:ListItem>
-                    <asp:ListItem Value="departamento">Departamento</asp:ListItem>
-                    <asp:ListItem Value="idioma">Idioma</asp:ListItem>
+                    <asp:ListItem Selected="True" Value="tipo_de_seguro">Tipo de seguro</asp:ListItem>
+                    <asp:ListItem Value="tipo_cliente">Tipo de cliente</asp:ListItem>
+                    <asp:ListItem Value="pais">Pais</asp:ListItem>
+                    <asp:ListItem Value="condiciones_particulares">Condiciones Particulares</asp:ListItem>
                 </asp:DropDownList>
                 &nbsp;
 

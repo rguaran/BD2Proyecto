@@ -208,7 +208,7 @@ CREATE
     clausulas TEXT ,
     id           INTEGER NOT NULL ,
     id_ts        VARCHAR (5) NOT NULL ,
-    poliza_vieja VARCHAR NOT NULL ,
+    poliza_vieja VARCHAR,
     meses        INTEGER NOT NULL ,
     producto_descripcion TEXT ,
     status        VARCHAR (15) NOT NULL ,

@@ -69,6 +69,7 @@
     <Content Include="empleado.aspx" />
     <Content Include="index.aspx" />
     <Content Include="mantenimiento.aspx" />
+    <Content Include="modificar.aspx" />
     <Content Include="modificarpoliza.aspx" />
     <Content Include="nuevapoliza.aspx" />
     <Content Include="oficina.aspx" />
@@ -126,6 +127,13 @@
     </Compile>
     <Compile Include="Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="modificar.aspx.cs">
+      <DependentUpon>modificar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modificar.aspx.designer.cs">
+      <DependentUpon>modificar.aspx</DependentUpon>
     </Compile>
     <Compile Include="modificarpoliza.aspx.cs">
       <DependentUpon>modificarpoliza.aspx</DependentUpon>
