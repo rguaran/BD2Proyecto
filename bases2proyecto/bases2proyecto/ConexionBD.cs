@@ -41,5 +41,39 @@ namespace bases2proyecto
             miConexionBase.Close();
         }
 
+        public DataSet consulta(string consulta)
+        {
+            try
+            {
+                inicia();
+                NpgsqlDataAdapter ada = new NpgsqlDataAdapter(consulta, miConexionBase);
+                DataSet ds = new DataSet();
+                ada.Fill(ds);
+                miConexionBase.Close();
+                return ds;
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.Message);
+            }
+            return null;
+        }
+
+        public void query(string SqlStr)
+        {
+            try
+            {
+                inicia();
+                NpgsqlCommand dbcmd = miConexionBase.CreateCommand();
+                dbcmd.CommandText = SqlStr;
+                dbcmd.ExecuteNonQuery();
+                miConexionBase.Close();
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.Message);
+            }
+        }
+
     }
 }

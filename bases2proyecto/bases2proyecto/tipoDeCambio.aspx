@@ -8,7 +8,7 @@
         <strong style="text-align: center">Seleccione la opción que desee realizar sobre los datos de las tipos de cambio ingresados.</strong></p>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
-    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="fecha,moneda_id_moneda" DataSourceID="SqlDataSource1" OnRowUpdating="GridView1_RowUpdating">
+    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="fecha,moneda_id_moneda" DataSourceID="SqlDataSource1">
         <Columns>
             <asp:CommandField ShowEditButton="True" />
             <asp:BoundField DataField="fecha" HeaderText="fecha" SortExpression="fecha" />

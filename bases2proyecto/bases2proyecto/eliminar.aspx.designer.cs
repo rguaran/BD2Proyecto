@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace bases2proyecto {
+namespace BD1Proyecto1 {
     
     
-    public partial class WebForm3 {
+    public partial class WebForm7 {
         
         /// <summary>
         /// GridView1 control.
