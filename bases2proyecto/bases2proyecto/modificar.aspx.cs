@@ -156,5 +156,10 @@ namespace bases2proyecto
             ((LinkButton)GridView1.Rows[0].Cells[0].Controls[0]).Text = "Insert";
             GridView1.HorizontalAlign = HorizontalAlign.Center;
         }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -5,10 +5,3 @@ C:\Users\Masters\Documents\GitHub\BD2Proyecto\bases2proyecto\bases2proyecto\obj\
 C:\Users\Masters\Documents\GitHub\BD2Proyecto\bases2proyecto\bases2proyecto\obj\Debug\bases2proyecto.pdb
 C:\Users\Masters\Documents\GitHub\BD2Proyecto\bases2proyecto\bases2proyecto\bin\Mono.Security.dll
 C:\Users\Masters\Documents\GitHub\BD2Proyecto\bases2proyecto\bases2proyecto\bin\Npgsql.dll
-C:\Users\Chaz\Documents\Visual Studio 2012\Projects\BD2Proyecto\bases2proyecto\bases2proyecto\bin\bases2proyecto.dll
-C:\Users\Chaz\Documents\Visual Studio 2012\Projects\BD2Proyecto\bases2proyecto\bases2proyecto\bin\bases2proyecto.pdb
-C:\Users\Chaz\Documents\Visual Studio 2012\Projects\BD2Proyecto\bases2proyecto\bases2proyecto\bin\Mono.Security.dll
-C:\Users\Chaz\Documents\Visual Studio 2012\Projects\BD2Proyecto\bases2proyecto\bases2proyecto\bin\Npgsql.dll
-C:\Users\Chaz\Documents\Visual Studio 2012\Projects\BD2Proyecto\bases2proyecto\bases2proyecto\obj\Debug\bases2proyecto.csprojResolveAssemblyReference.cache
-C:\Users\Chaz\Documents\Visual Studio 2012\Projects\BD2Proyecto\bases2proyecto\bases2proyecto\obj\Debug\bases2proyecto.dll
-C:\Users\Chaz\Documents\Visual Studio 2012\Projects\BD2Proyecto\bases2proyecto\bases2proyecto\obj\Debug\bases2proyecto.pdb

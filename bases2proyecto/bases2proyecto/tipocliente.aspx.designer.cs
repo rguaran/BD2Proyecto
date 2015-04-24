@@ -10,16 +10,7 @@
 namespace bases2proyecto {
     
     
-    public partial class WebForm2 {
-        
-        /// <summary>
-        /// BtnAgregar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnAgregar;
+    public partial class tipocliente {
         
         /// <summary>
         /// GridView1 control.
@@ -29,14 +20,5 @@ namespace bases2proyecto {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView1;
-        
-        /// <summary>
-        /// BtnGuardar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnGuardar;
     }
 }

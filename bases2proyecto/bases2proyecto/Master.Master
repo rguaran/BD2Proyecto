@@ -31,6 +31,7 @@
                 <li><a ID= "poliza" runat="server" href="poliza.aspx">Poliza</a></li>
                 <li><a ID= "A2" runat="server" href="#">Empleados</a></li>
                 <li><a ID= "A3" runat="server" href="#">Clientes</a></li>
+                <li><a ID= "A4" runat="server" href="pagos.aspx">Pagos</a></li>
               </ul>
             </div>
           </div>

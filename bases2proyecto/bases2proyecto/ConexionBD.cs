@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Npgsql;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace bases2proyecto
 {
@@ -12,7 +14,7 @@ namespace bases2proyecto
         NpgsqlCommand miComandoSQL;
         NpgsqlConnection miConexionBase;
         NpgsqlDataAdapter adaptadorDatos;
-
+        
         public ConexionBD() { 
         }
 
@@ -31,8 +33,13 @@ namespace bases2proyecto
             miConexionBase.Close();
         }
 
-
-
+        public void executeQuery(String query)
+        {
+            inicia();
+            miComandoSQL = new NpgsqlCommand(query, miConexionBase);
+            miComandoSQL.ExecuteNonQuery();
+            miConexionBase.Close();
+        }
 
     }
 }

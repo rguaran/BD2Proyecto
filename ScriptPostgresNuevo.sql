@@ -208,7 +208,11 @@ CREATE
     clausulas TEXT ,
     id           INTEGER NOT NULL ,
     id_ts        VARCHAR (5) NOT NULL ,
+<<<<<<< HEAD
     poliza_vieja VARCHAR ,
+=======
+    poliza_vieja VARCHAR NOT NULL ,
+>>>>>>> 5729ec4789ae23063d564685df6de5cc5cd63c2f
     meses        INTEGER NOT NULL ,
     producto_descripcion TEXT ,
     status        VARCHAR (15) NOT NULL ,
@@ -604,7 +608,11 @@ ALTER TABLE Poliza
 ADD CONSTRAINT Poliza_Empleado_FK FOREIGN KEY
 (
 id_negociador,
+<<<<<<< HEAD
 id_cargaN
+=======
+id_cargaV
+>>>>>>> 5729ec4789ae23063d564685df6de5cc5cd63c2f
 )
 REFERENCES Empleado
 (
@@ -638,7 +646,11 @@ ALTER TABLE Poliza
 ADD CONSTRAINT Poliza_Empleado_FKv2 FOREIGN KEY
 (
 id_vendedor,
+<<<<<<< HEAD
 id_cargaV
+=======
+id_cargaN
+>>>>>>> 5729ec4789ae23063d564685df6de5cc5cd63c2f
 )
 REFERENCES Empleado
 (
