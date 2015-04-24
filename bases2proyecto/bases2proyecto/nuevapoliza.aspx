@@ -163,6 +163,31 @@
             <td>&nbsp;</td>
         </tr>
         <tr>
+            <td>Archivo</td>
+            <td>
+                <asp:FileUpload ID="FileUpload1" runat="server" />
+            </td>
+            <td>
+                <asp:Button ID="btncargar" runat="server" Text="Cargar" />
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="height: 20px"></td>
+            <td style="height: 20px"></td>
+            <td style="height: 20px"></td>
+            <td style="height: 20px"></td>
+            <td style="height: 20px"></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
