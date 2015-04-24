@@ -27,7 +27,7 @@ namespace bases2proyecto
         private void BindData()
         {
             string item = (string)Session["Item"];
-            string strCommand = "SELECT " + item + ".* FROM " + item;
+            string strCommand = "SELECT * FROM consultar_" + item + "()";
             Ds = con.consulta(strCommand);
             DataTable Dt = Ds.Tables[0];
             Titulos = new ArrayList();
@@ -138,7 +138,7 @@ namespace bases2proyecto
         protected void BtnAgregar_Click(object sender, EventArgs e)
         {
             string item = (string)Session["Item"];
-            string strCommand = "SELECT " + item + ".* FROM " + item;
+            string strCommand = "SELECT * FROM consultar_" + item + "()";
             Ds = con.consulta(strCommand);
             DataTable Dt = Ds.Tables[0];
             Titulos = new ArrayList();

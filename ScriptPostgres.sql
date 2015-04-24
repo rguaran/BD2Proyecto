@@ -108,12 +108,13 @@ CREATE
 CREATE
   TABLE Empleado
   (
-    id_emp SERIAL NOT NULL ,
+    id_emp SERIAL UNIQUE NOT NULL ,
     nombre TEXT ,
     telefono TEXT ,
     Tipo_Empleado_id_te INTEGER NOT NULL ,
-    Oficina_id_oficina  VARCHAR (5) NOT NULL ,
-    CONSTRAINT Empleado_PK PRIMARY KEY  (id_emp)
+    Oficina_id_oficina UNIQUE  VARCHAR (5) NOT NULL ,
+	Oficina_Departamento_id_dep INTEGER NOT NULL ,
+    CONSTRAINT Empleado_PK PRIMARY KEY  (id_emp, Oficina_id_oficina)
 );
 
 CREATE
@@ -160,7 +161,7 @@ CREATE
     id_oficina          VARCHAR (5) NOT NULL ,
     nombre              VARCHAR (50) ,
     Departamento_id_dep INTEGER NOT NULL ,
-    CONSTRAINT Oficina_PK PRIMARY KEY  (id_oficina)
+    CONSTRAINT Oficina_PK PRIMARY KEY  (id_oficina, Departamento_id_dep)
 );
 
 CREATE
@@ -390,11 +391,13 @@ UPDATE NO ACTION
 ALTER TABLE Empleado
 ADD CONSTRAINT Empleado_Oficina_FK FOREIGN KEY
 (
-Oficina_id_oficina
+Oficina_id_oficina,
+Oficina_Departamento_id_dep
 )
 REFERENCES Oficina
 (
-id_oficina
+id_oficina,
+Departamento_id_dep
 )
 ON
 DELETE
@@ -678,6 +681,7 @@ DELETE
 UPDATE NO ACTION
 ;
 
+ALTER SEQUENCE empleado_id_emp_seq RESTART WITH 10000 INCREMENT BY 1;
 
 -- Oracle SQL Developer Data Modeler Summary Report: 
 -- 
