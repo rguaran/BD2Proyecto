@@ -80,7 +80,7 @@ namespace bases2proyecto
             }
             query += ")";
             GridView1.EditIndex = -1;
-            con.query(query);
+            con.Query(query);
             BindData();
         }
 

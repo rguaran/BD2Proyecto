@@ -68,35 +68,6 @@ namespace bases2proyecto
             con.Close();
         }
 
-<<<<<<< HEAD
-        public DataSet consulta(string consulta)
-        {
-            try
-            {
-                inicia();
-                NpgsqlDataAdapter ada = new NpgsqlDataAdapter(consulta, miConexionBase);
-                DataSet ds = new DataSet();
-                ada.Fill(ds);
-                miConexionBase.Close();
-                return ds;
-            }
-            catch (Exception e)
-            {
-                Console.Write(e.Message);
-            }
-            return null;
-        }
-
-        public void query(string SqlStr)
-        {
-            try
-            {
-                inicia();
-                NpgsqlCommand dbcmd = miConexionBase.CreateCommand();
-                dbcmd.CommandText = SqlStr;
-                dbcmd.ExecuteNonQuery();
-                miConexionBase.Close();
-=======
         public void rollback()
         {
             tran.Rollback();
@@ -112,7 +83,7 @@ namespace bases2proyecto
                 dbcmd.CommandText = SqlStr;
                 dbcmd.ExecuteNonQuery();
                 con.Close();
->>>>>>> origin/master
+
             }
             catch (Exception e)
             {
@@ -120,8 +91,7 @@ namespace bases2proyecto
             }
         }
 
-<<<<<<< HEAD
-=======
+
         public void abrirConexion()
         {
             if(con.State != ConnectionState.Open){
@@ -131,6 +101,6 @@ namespace bases2proyecto
 
 
 
->>>>>>> origin/master
+
     }
 }

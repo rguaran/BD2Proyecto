@@ -74,7 +74,7 @@ namespace bases2proyecto
             }
             query = query + ")";
 
-            con.query(query);
+            con.Query(query);
             BindData();
 
         }
