@@ -108,5 +108,7 @@ namespace bases2proyecto
             GridView1.HorizontalAlign = HorizontalAlign.Center;
         }
 
+        
+
     }
 }
