@@ -102,5 +102,11 @@ namespace bases2proyecto
         {
             Response.Redirect("mantenimiento.aspx", true);
         }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
