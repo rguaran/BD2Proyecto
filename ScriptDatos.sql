@@ -42,7 +42,7 @@ CREATE TABLE Datos (
 
 SET datestyle TO "ISO, MDY";
 
-COPY datos FROM E'C:\\datos1.csv' DELIMITER '|' CSV;
+COPY datos FROM E'C:\\datos.csv' DELIMITER '|' CSV;
 
 UPDATE Datos SET cob1=0 WHERE cob1 IS NULL;
 UPDATE Datos SET cob2=0 WHERE cob2 IS NULL;
