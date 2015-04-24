@@ -208,7 +208,7 @@ CREATE
     clausulas TEXT ,
     id           INTEGER NOT NULL ,
     id_ts        VARCHAR (5) NOT NULL ,
-    poliza_vieja VARCHAR NOT NULL ,
+    poliza_vieja VARCHAR ,
     meses        INTEGER NOT NULL ,
     producto_descripcion TEXT ,
     status        VARCHAR (15) NOT NULL ,
@@ -604,7 +604,7 @@ ALTER TABLE Poliza
 ADD CONSTRAINT Poliza_Empleado_FK FOREIGN KEY
 (
 id_negociador,
-id_cargaV
+id_cargaN
 )
 REFERENCES Empleado
 (
@@ -638,7 +638,7 @@ ALTER TABLE Poliza
 ADD CONSTRAINT Poliza_Empleado_FKv2 FOREIGN KEY
 (
 id_vendedor,
-id_cargaN
+id_cargaV
 )
 REFERENCES Empleado
 (

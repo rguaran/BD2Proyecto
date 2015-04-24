@@ -10,87 +10,78 @@
 namespace bases2proyecto {
     
     
-    public partial class Master {
+    public partial class nuevapoliza {
         
         /// <summary>
-        /// form1 control.
+        /// txtfechainicio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.TextBox txtfechainicio;
         
         /// <summary>
-        /// poliza control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor poliza;
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// A2 control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor A2;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// A3 control.
+        /// txtfechafinal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor A3;
+        protected global::System.Web.UI.WebControls.TextBox txtfechafinal;
         
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// txtmeses control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.TextBox txtmeses;
         
         /// <summary>
-        /// ContentPlaceHolder2 control.
+        /// txtdescripcion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder2;
+        protected global::System.Web.UI.WebControls.TextBox txtdescripcion;
         
         /// <summary>
-        /// ContentPlaceHolder3 control.
+        /// cmbtiposeguro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder3;
+        protected global::System.Web.UI.WebControls.DropDownList cmbtiposeguro;
         
         /// <summary>
-        /// ContentPlaceHolder4 control.
+        /// cmbestado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder4;
-        
-        /// <summary>
-        /// ContentPlaceHolder5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder5;
+        protected global::System.Web.UI.WebControls.DropDownList cmbestado;
     }
 }

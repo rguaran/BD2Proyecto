@@ -88,6 +88,8 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql
 
+
+
 ------------------------------------------------------------------------------------------
 -------------------------------------- RECUPERACIONES ------------------------------------
 ------------------------------------------------------------------------------------------
@@ -137,107 +139,82 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION getIdEstado(_estado varchar(50))
+RETURNS INTEGER AS $$
+DECLARE idEstado INTEGER;
+BEGIN
+	SELECT id_estado INTO idEstado FROM Estado_Poliza WHERE estado = _estado;
+	RETURN idEstado;
+END;
+$$  LANGUAGE plpgsql;
 
-------------------------------------------------------------------------------------------
--------------------------------------- CARGA DE DATOS ------------------------------------
-------------------------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION getIdCliente(_nombre varchar(50), _pais varchar(50))
+RETURNS INTEGER AS $$
+DECLARE idCliente INTEGER;
+BEGIN
+	SELECT id INTO idCliente FROM Cliente WHERE nombre = _nombre AND getIdPais(_pais) = (SELECT id_pais FROM Pais WHERE pais=_pais);
+	RETURN idCliente;
+END;
+$$  LANGUAGE plpgsql;
 
-INSERT INTO Pais (pais) 
-SELECT DISTINCT pais
-FROM datos
-ORDER BY pais ASC;
+CREATE OR REPLACE FUNCTION getIdTS(_tipo varchar(20))
+RETURNS TEXT AS $$
+DECLARE idTipo TEXT;
+BEGIN
+	SELECT id_ts INTO idTipo FROM Tipo_De_Seguro WHERE tipo = _tipo;
+	RETURN idTipo;
+END;
+$$  LANGUAGE plpgsql;
 
-INSERT INTO Estado_Poliza (estado)
-SELECT DISTINCT estado
-FROM datos
-ORDER BY estado ASC;
-
-INSERT INTO Moneda (moneda)
-SELECT DISTINCT moneda
-FROM datos
-ORDER BY moneda ASC;
-
--------------------------------------- Tipos de seguro ------------------------------------
-INSERT INTO Tipo_De_Seguro (id_ts, tipo) VALUES ('AUTO','Automovil');
-INSERT INTO Tipo_De_Seguro (id_ts, tipo) VALUES ('BIEN','Bienes');
-INSERT INTO Tipo_De_Seguro (id_ts, tipo) VALUES ('CONF','Confidencial');
-INSERT INTO Tipo_De_Seguro (id_ts, tipo) VALUES ('ELEC','Electronico');
-INSERT INTO Tipo_De_Seguro (id_ts, tipo) VALUES ('EVEN','Evento');
-INSERT INTO Tipo_De_Seguro (id_ts, tipo) VALUES ('GARAN','Garantia');
-INSERT INTO Tipo_De_Seguro (id_ts, tipo) VALUES ('HOGAR','Hogar');
-INSERT INTO Tipo_De_Seguro (id_ts, tipo) VALUES ('IMPOR','Importacion');
-INSERT INTO Tipo_De_Seguro (id_ts, tipo) VALUES ('MEDIC','Medico');
-INSERT INTO Tipo_De_Seguro (id_ts, tipo) VALUES ('MERCA','Mercaderia');
-INSERT INTO Tipo_De_Seguro (id_ts, tipo) VALUES ('TRANS','Transporte');
-INSERT INTO Tipo_De_Seguro (id_ts, tipo) VALUES ('VIAJE','Viaje');
-INSERT INTO Tipo_De_Seguro (id_ts, tipo) VALUES ('VIDA','Vida');
-
-INSERT INTO Tipo_Cliente (tipo) VALUES ('Persona individual');
-INSERT INTO Tipo_Cliente (tipo) VALUES ('Empresa');
-
--------------------------------------- Clientes Empresas ------------------------------------
-INSERT INTO cliente   (nombre, domicilio, id1, id_pais)
-	SELECT C.cliente, 'Ciudad', getIdTipoCliente('Empresa'), getIdPais(C.pais)
-	FROM (
-		SELECT DISTINCT cliente, COUNT(*) cantidad, pais
-		FROM Datos 
-		GROUP BY cliente, pais
-	) C
-	WHERE C.cantidad >= 14;
-
-	-------------------------------------- Clientes Personas ------------------------------------
-INSERT INTO cliente (nombre, domicilio, id1, id_pais)
-	SELECT C.cliente, 'Ciudad', getIdTipoCliente('Persona individual'), getIdPais(C.pais)
-	FROM (
-		SELECT DISTINCT cliente, COUNT(*) cantidad, pais
-		FROM Datos 
-		GROUP BY cliente, pais
-	) C	
-	WHERE C.cantidad < 14;
-	
-INSERT INTO Departamento (nombre)
-SELECT DISTINCT depto
-FROM datos
-ORDER BY depto ASC;
-
-INSERT INTO Oficina  (id_oficina, nombre, id_dep)
-SELECT C.codigo_oficina, CONCAT('Oficina ', C.codigo_oficina), getIdDepartamento(C.depto)
-FROM (
-	SELECT DISTINCT codigo_oficina, depto
-	FROM Datos
-) C;
-
--------------------------------------- Tipos de empleado ------------------------------------
-INSERT INTO Tipo_Empleado (tipo) VALUES ('Inspector');
-INSERT INTO Tipo_Empleado (tipo) VALUES ('Corredor');
-INSERT INTO Tipo_Empleado (tipo) VALUES ('Vendedor');
-INSERT INTO Tipo_Empleado (tipo) VALUES ('Asesor');
-INSERT INTO Tipo_Empleado (tipo) VALUES ('Operador');
-INSERT INTO Tipo_Empleado (tipo) VALUES ('Negociador');
+CREATE OR REPLACE FUNCTION getIdEmp(_tipo varchar(10), _codigo integer, _oficina varchar(4), _depto integer)
+RETURNS INTEGER AS $$
+DECLARE idEmp INTEGER;
+BEGIN
+	IF _tipo = 'Vendedor' THEN
+		SELECT id_emp INTO idEmp FROM Empleado WHERE id_carga = _codigo AND id_oficina = _oficina AND id_dep = _depto;		
+	ELSE 
+		SELECT id_emp INTO idEmp FROM Empleado WHERE id_carga = _codigo AND id_oficina = _oficina AND id_dep = _depto;
+	END IF;
+	RETURN idEmp;
+END;
+$$  LANGUAGE plpgsql;
 
 
+CREATE OR REPLACE FUNCTION getIdNegociador(_nombre varchar(30))
+RETURNS INTEGER AS $$
+DECLARE idEmp INTEGER;
+BEGIN
+	SELECT id_emp INTO idEmp FROM Empleado WHERE nombre = _nombre;
+	RETURN idEmp;
+END;
+$$  LANGUAGE plpgsql;
 
--------------------------------------- Empleados Operadores ------------------------------------
-INSERT INTO Empleado  (id_carga, nombre, telefono, id_te, id_oficina, id_dep)
-SELECT DISTINCT codigo_operador, '', '', getIdTipoEmpleado('Operador'), codigo_oficina, getIdDepartamento(depto)
-FROM Datos;
+CREATE OR REPLACE FUNCTION getIdCargaNegociador(_nombre varchar(30))
+RETURNS INTEGER AS $$
+DECLARE idEmp INTEGER;
+BEGIN
+	SELECT id_carga INTO idEmp FROM Empleado WHERE nombre = _nombre;
+	RETURN idEmp;
+END;
+$$  LANGUAGE plpgsql;
 
--------------------------------------- Empleados Vendedores ------------------------------------
-INSERT INTO Empleado  (id_carga, nombre, telefono, id_te, id_oficina, id_dep)
-SELECT DISTINCT codigo_vendedor, '', '', getIdTipoEmpleado('Vendedor'), codigo_oficina, getIdDepartamento(depto)
-FROM Datos;
+CREATE OR REPLACE FUNCTION getIdMoneda(_moneda varchar(50))
+RETURNS INTEGER AS $$
+DECLARE idMoneda INTEGER;
+BEGIN
+	SELECT id_moneda INTO idMoneda FROM Moneda WHERE moneda = _moneda;
+	RETURN idMoneda;
+END;
+$$  LANGUAGE plpgsql;
 
--------------------------------------- Empleados Negociadores ------------------------------------
-INSERT INTO Empleado  (nombre, telefono, id_te, id_oficina, id_dep)
-SELECT DISTINCT negocio, '', getIdTipoEmpleado('Negociador'), codigo_oficina, getIdDepartamento(depto)
-FROM Datos;
-
-
-
-
-
-
-
+CREATE OR REPLACE FUNCTION getIdTipoPago(_tipo varchar(50))
+RETURNS INTEGER AS $$
+DECLARE idTipo INTEGER;
+BEGIN
+	SELECT id_tp INTO idTipo FROM Tipo_de_pago WHERE tipo = _tipo;
+	RETURN idTipo;
+END;
+$$  LANGUAGE plpgsql;
 
 
 
