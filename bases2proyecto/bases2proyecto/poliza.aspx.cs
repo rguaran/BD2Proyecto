@@ -32,6 +32,11 @@ namespace bases2proyecto
             GridView1.DataBind();
         }
 
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("modificarpoliza.aspx",true);
+        }
+
 
 
     }

@@ -64,19 +64,48 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="cliente.aspx" />
+    <Content Include="departamento.aspx" />
+    <Content Include="empleado.aspx" />
     <Content Include="index.aspx" />
     <Content Include="mantenimiento.aspx" />
     <Content Include="modificarpoliza.aspx" />
     <Content Include="nuevapoliza.aspx" />
+    <Content Include="oficina.aspx" />
     <Content Include="pagos.aspx" />
+    <Content Include="pais.aspx" />
     <Content Include="poliza.aspx" />
     <Content Include="style.css" />
+    <Content Include="tipocliente.aspx" />
+    <Content Include="tipoempleado.aspx" />
+    <Content Include="tiposeguro.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cliente.aspx.cs">
+      <DependentUpon>cliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cliente.aspx.designer.cs">
+      <DependentUpon>cliente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ConexionBD.cs" />
+    <Compile Include="departamento.aspx.cs">
+      <DependentUpon>departamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="departamento.aspx.designer.cs">
+      <DependentUpon>departamento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="empleado.aspx.cs">
+      <DependentUpon>empleado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="empleado.aspx.designer.cs">
+      <DependentUpon>empleado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -112,12 +141,26 @@
     <Compile Include="nuevapoliza.aspx.designer.cs">
       <DependentUpon>nuevapoliza.aspx</DependentUpon>
     </Compile>
+    <Compile Include="oficina.aspx.cs">
+      <DependentUpon>oficina.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="oficina.aspx.designer.cs">
+      <DependentUpon>oficina.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pagos.aspx.cs">
       <DependentUpon>pagos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pagos.aspx.designer.cs">
       <DependentUpon>pagos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pais.aspx.cs">
+      <DependentUpon>pais.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pais.aspx.designer.cs">
+      <DependentUpon>pais.aspx</DependentUpon>
     </Compile>
     <Compile Include="poliza.aspx.cs">
       <DependentUpon>poliza.aspx</DependentUpon>
@@ -127,6 +170,27 @@
       <DependentUpon>poliza.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tipocliente.aspx.cs">
+      <DependentUpon>tipocliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tipocliente.aspx.designer.cs">
+      <DependentUpon>tipocliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tipoempleado.aspx.cs">
+      <DependentUpon>tipoempleado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tipoempleado.aspx.designer.cs">
+      <DependentUpon>tipoempleado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tiposeguro.aspx.cs">
+      <DependentUpon>tiposeguro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tiposeguro.aspx.designer.cs">
+      <DependentUpon>tiposeguro.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />
