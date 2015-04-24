@@ -56,19 +56,22 @@ namespace bases2proyecto
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             string item = "";
+            int iniciar = 0;
             if (((LinkButton)GridView1.Rows[0].Cells[0].Controls[0]).Text == "Insertar")
             {
                 item = (string)Session["insert"];
+                iniciar = (Int32)Session["iniciarInsert"];
             }
             else
             {
                 item = (string)Session["update"];
+                iniciar = (Int32)Session["iniciar"];
             }
             string query = "SELECT " + item + "(";
             string[] valores = new string[e.NewValues.Count];
             e.NewValues.Values.CopyTo(valores, 0);
            
-            int iniciar = (Int32)Session["iniciar"];
+            
             for (int i = iniciar; i < e.NewValues.Count; i++)
             {
                 query += "'" + valores[i] + "' ";

@@ -13,5 +13,34 @@ namespace bases2proyecto
         {
 
         }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            Session["insert"] = "insertarMoneda";
+            Session["select"] = "seleccionarMoneda()";
+            Session["update"] = "actualizarMoneda";
+            Session["delete"] = "eliminarMoneda";
+            Session["origen"] = "pagos";
+            Session["titulo"] = "Monedas";
+            Session["iniciar"] = 0;
+            Session["iniciarInsert"] = 1;
+            Session["final"] = 1;
+            Response.Redirect("pagos_mantenimiento.aspx", true);
+
+        }
+
+        protected void LinkButton2_Click(object sender, EventArgs e)
+        {
+            Session["insert"] = "insertarTipoDeCambio";
+            Session["select"] = "seleccionarTipoDeCambio()";
+            Session["update"] = "actualizarTipoDeCambio";
+            Session["delete"] = "eliminarTipoDeCambio";
+            Session["origen"] = "pagos";
+            Session["titulo"] = "Tipo de Cambio";
+            Session["iniciar"] = 0;
+            Session["iniciarInsert"] = 0;
+            Session["final"] = 3;
+            Response.Redirect("pagos_mantenimiento.aspx", true);
+        }
     }
 }

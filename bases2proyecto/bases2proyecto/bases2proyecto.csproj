@@ -83,7 +83,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="nuevoplanpago.aspx" />
-    <Content Include="moneda.aspx" />
+    <Content Include="pagos_mantenimiento.aspx" />
     <Content Include="pagos.aspx" />
     <Content Include="suprimir.aspx" />
   </ItemGroup>
@@ -160,12 +160,12 @@
     <Compile Include="nuevoplanpago.aspx.designer.cs">
       <DependentUpon>nuevoplanpago.aspx</DependentUpon>
     </Compile>
-    <Compile Include="moneda.aspx.cs">
-      <DependentUpon>moneda.aspx</DependentUpon>
+    <Compile Include="pagos_mantenimiento.aspx.cs">
+      <DependentUpon>pagos_mantenimiento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="moneda.aspx.designer.cs">
-      <DependentUpon>moneda.aspx</DependentUpon>
+    <Compile Include="pagos_mantenimiento.aspx.designer.cs">
+      <DependentUpon>pagos_mantenimiento.aspx</DependentUpon>
     </Compile>
     <Compile Include="pagos.aspx.cs">
       <DependentUpon>pagos.aspx</DependentUpon>

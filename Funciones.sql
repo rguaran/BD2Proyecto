@@ -216,6 +216,13 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION seleccionarmoneda()
+  RETURNS TABLE(id integer, moneda text) AS$$
+BEGIN
+	
+	RETURN QUERY SELECT * FROM Moneda;
+END;
+$$  LANGUAGE plpgsql;
 
 
 
@@ -224,10 +231,36 @@ $$  LANGUAGE plpgsql;
 
 
 
+------------------------------------------------------------------------------------------
+-------------------------------------- MODIFICACIONES ------------------------------------
+------------------------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION actualizarmoneda(
+    _id integer,
+    _moneda character varying)
+  RETURNS void AS
+$$
+BEGIN
+	UPDATE Moneda SET moneda = _moneda WHERE id_moneda = _id;
+END;
+$$  LANGUAGE plpgsql;
 
 
 
 
+
+
+
+
+------------------------------------------------------------------------------------------
+-------------------------------------- ELIMINACIONES ------------------------------------
+------------------------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION eliminarmoneda(_id integer)
+  RETURNS void AS
+$$
+BEGIN
+	DELETE FROM Moneda WHERE id_moneda = _id;
+END;
+$$  LANGUAGE plpgsql;
 
 
 

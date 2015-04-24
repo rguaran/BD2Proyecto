@@ -36,9 +36,9 @@
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder5" runat="server">
     <p style="text-align: center">
     <strong>Otras páginas relacionadas:
-    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/moneda.aspx">Moneda</asp:HyperLink>
-    &nbsp;-  
-    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/tipoDeCambio.aspx">Tipo de cambio</asp:HyperLink>
+        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Moneda</asp:LinkButton>
+&nbsp;-
+        <asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton2_Click">Tipo de cambio</asp:LinkButton>
     </strong> 
     
     </p>
