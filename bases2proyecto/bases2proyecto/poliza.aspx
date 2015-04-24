@@ -8,37 +8,9 @@
         <tr>
             <td><asp:Button ID="Button1" runat="server" Text="Nueva" OnClick="Button1_Click" /></td>
             <td>&nbsp;</td>
-            <td><asp:Button ID="Button2" runat="server" Text="Modificar" /></td>
+            <td><asp:Button ID="Button2" runat="server" Text="Modificar" OnClick="Button2_Click" /></td>
             <td>&nbsp;</td>
             <td><asp:Button ID="Button3" runat="server" Text="Eliminar" /></td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
         </tr>
         <tr>
             <td>&nbsp;</td>
@@ -51,7 +23,8 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
-</asp:Content>
+
+    </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder4" runat="server">
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder5" runat="server">

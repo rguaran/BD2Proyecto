@@ -46,45 +46,86 @@
     <Reference Include="Npgsql">
       <HintPath>NPGSQL\Npgsql.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Content Include="eliminar.aspx" />
     <Content Include="index.aspx" />
     <Content Include="modificar.aspx" />
+=======
+    <Content Include="cliente.aspx" />
+    <Content Include="departamento.aspx" />
+    <Content Include="empleado.aspx" />
+    <Content Include="index.aspx" />
+    <Content Include="mantenimiento.aspx" />
+>>>>>>> origin/master
     <Content Include="modificarpoliza.aspx" />
     <Content Include="nuevapoliza.aspx" />
+    <Content Include="oficina.aspx" />
+    <Content Include="pagos.aspx" />
+    <Content Include="pais.aspx" />
     <Content Include="poliza.aspx" />
     <Content Include="style.css" />
+    <Content Include="tipocliente.aspx" />
+    <Content Include="tipoempleado.aspx" />
+    <Content Include="tiposeguro.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+<<<<<<< HEAD
     <Content Include="nuevoplanpago.aspx" />
     <Content Include="moneda.aspx" />
     <Content Include="tipoDeCambio.aspx" />
     <Content Include="pagos.aspx" />
+=======
+>>>>>>> origin/master
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cliente.aspx.cs">
+      <DependentUpon>cliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cliente.aspx.designer.cs">
+      <DependentUpon>cliente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ConexionBD.cs" />
+<<<<<<< HEAD
     <Compile Include="eliminar.aspx.cs">
       <DependentUpon>eliminar.aspx</DependentUpon>
     </Compile>
     <Compile Include="eliminar.aspx.designer.cs">
       <DependentUpon>eliminar.aspx</DependentUpon>
+=======
+    <Compile Include="departamento.aspx.cs">
+      <DependentUpon>departamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="departamento.aspx.designer.cs">
+      <DependentUpon>departamento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="empleado.aspx.cs">
+      <DependentUpon>empleado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="empleado.aspx.designer.cs">
+      <DependentUpon>empleado.aspx</DependentUpon>
+>>>>>>> origin/master
     </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
@@ -92,6 +133,13 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="mantenimiento.aspx.cs">
+      <DependentUpon>mantenimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mantenimiento.aspx.designer.cs">
+      <DependentUpon>mantenimiento.aspx</DependentUpon>
     </Compile>
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
@@ -120,21 +168,27 @@
     <Compile Include="nuevapoliza.aspx.designer.cs">
       <DependentUpon>nuevapoliza.aspx</DependentUpon>
     </Compile>
-    <Compile Include="poliza.aspx.cs">
-      <DependentUpon>poliza.aspx</DependentUpon>
+    <Compile Include="oficina.aspx.cs">
+      <DependentUpon>oficina.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="poliza.aspx.designer.cs">
-      <DependentUpon>poliza.aspx</DependentUpon>
+    <Compile Include="oficina.aspx.designer.cs">
+      <DependentUpon>oficina.aspx</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="nuevoplanpago.aspx.cs">
       <DependentUpon>nuevoplanpago.aspx</DependentUpon>
+=======
+    <Compile Include="pagos.aspx.cs">
+      <DependentUpon>pagos.aspx</DependentUpon>
+>>>>>>> origin/master
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="nuevoplanpago.aspx.designer.cs">
       <DependentUpon>nuevoplanpago.aspx</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="moneda.aspx.cs">
       <DependentUpon>moneda.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -155,6 +209,43 @@
     </Compile>
     <Compile Include="pagos.aspx.designer.cs">
       <DependentUpon>pagos.aspx</DependentUpon>
+=======
+    <Compile Include="pais.aspx.cs">
+      <DependentUpon>pais.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pais.aspx.designer.cs">
+      <DependentUpon>pais.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="poliza.aspx.cs">
+      <DependentUpon>poliza.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="poliza.aspx.designer.cs">
+      <DependentUpon>poliza.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tipocliente.aspx.cs">
+      <DependentUpon>tipocliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tipocliente.aspx.designer.cs">
+      <DependentUpon>tipocliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tipoempleado.aspx.cs">
+      <DependentUpon>tipoempleado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tipoempleado.aspx.designer.cs">
+      <DependentUpon>tipoempleado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tiposeguro.aspx.cs">
+      <DependentUpon>tiposeguro.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tiposeguro.aspx.designer.cs">
+      <DependentUpon>tiposeguro.aspx</DependentUpon>
+>>>>>>> origin/master
     </Compile>
   </ItemGroup>
   <ItemGroup>

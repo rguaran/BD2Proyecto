@@ -108,7 +108,10 @@
         </tr>
         <tr>
             <td>Poliza vieja</td>
-            <td>&nbsp;</td>
+            <td>
+                <asp:DropDownList ID="DropDownList1" runat="server">
+                </asp:DropDownList>
+            </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -122,7 +125,10 @@
         </tr>
          <tr>
             <td>Aprobada</td>
-            <td>&nbsp;</td>
+            <td>
+                <asp:DropDownList ID="DropDownList2" runat="server">
+                </asp:DropDownList>
+             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -136,7 +142,10 @@
         </tr>
          <tr>
             <td>Codigo de Venta</td>
-            <td>&nbsp;</td>
+            <td>
+                <asp:DropDownList ID="DropDownList3" runat="server">
+                </asp:DropDownList>
+             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -163,8 +172,28 @@
             <td>&nbsp;</td>
         </tr>
         <tr>
+            <td>Archivo</td>
+            <td>
+                <asp:FileUpload ID="FileUpload1" runat="server" />
+            </td>
+            <td>
+                <asp:Button ID="btncargar" runat="server" Text="Cargar" />
+            </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="height: 20px"></td>
+            <td style="height: 20px"></td>
+            <td style="height: 20px"></td>
+            <td style="height: 20px"></td>
+            <td style="height: 20px"></td>
+        </tr>
+        <tr>
+            <td>Beneficiario</td>
+            <td>
+                <asp:TextBox ID="txtbeneficiario" runat="server" Width="278px"></asp:TextBox>
+            </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -173,6 +202,15 @@
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>Continuar Proceso Creando un plan de pagos</td>
+            <td>
+                <asp:Button ID="Button2" runat="server" Text="Crear plan de pagos" />
+            </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
