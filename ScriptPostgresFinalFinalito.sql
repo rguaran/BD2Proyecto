@@ -10,11 +10,20 @@ CREATE
   TABLE Archivos
   (
     id_archivo SERIAL NOT NULL ,
-    archivo    BYTEA NOT NULL ,
+    archivo    BYTEA ,
+	nombre		TEXT NOT NULL,
     id_ts      VARCHAR (5) NOT NULL ,
     id_poliza  INTEGER NOT NULL ,
     CONSTRAINT Archivos_PK PRIMARY KEY  (id_archivo)
 );
+
+CREATE
+	TABLE Tipo_De_Pago
+	(
+		id_tp SERIAL NOT NULL,
+		tipo VARCHAR(50) NOT NULL,
+		CONSTRAINT Tipo_Pago_PK PRIMARY KEY (id_tp)
+	);
 
 CREATE
   TABLE Beneficiario
@@ -186,6 +195,7 @@ CREATE
     id_poliza               INTEGER NOT NULL ,
     porcentaje_deducible    DECIMAL ,
     deducible               DECIMAL ,
+	id_tp					INTEGER,
     CONSTRAINT Plan_de_Pagos_PK PRIMARY KEY (id_plan)
 );
 CREATE UNIQUE INDEX
@@ -208,15 +218,7 @@ CREATE
     clausulas TEXT ,
     id           INTEGER NOT NULL ,
     id_ts        VARCHAR (5) NOT NULL ,
-<<<<<<< HEAD
-    poliza_vieja VARCHAR,
-=======
-<<<<<<< HEAD
     poliza_vieja VARCHAR ,
-=======
-    poliza_vieja VARCHAR NOT NULL ,
->>>>>>> 5729ec4789ae23063d564685df6de5cc5cd63c2f
->>>>>>> origin/master
     meses        INTEGER NOT NULL ,
     producto_descripcion TEXT ,
     status        VARCHAR (15) NOT NULL ,
@@ -530,6 +532,21 @@ UPDATE NO ACTION
 ;
 
 ALTER TABLE Plan_de_Pagos
+ADD CONSTRAINT Plan_de_Pagos_Tipo_Pago_FK FOREIGN KEY
+(
+id_tp
+)
+REFERENCES Tipo_De_Pago
+(
+id_tp
+)
+ON
+DELETE
+  NO ACTION ON
+UPDATE NO ACTION
+;
+
+ALTER TABLE Plan_de_Pagos
 ADD CONSTRAINT Plan_de_Pagos_Poliza_FK FOREIGN KEY
 (
 id_ts,
@@ -612,11 +629,7 @@ ALTER TABLE Poliza
 ADD CONSTRAINT Poliza_Empleado_FK FOREIGN KEY
 (
 id_negociador,
-<<<<<<< HEAD
 id_cargaN
-=======
-id_cargaV
->>>>>>> 5729ec4789ae23063d564685df6de5cc5cd63c2f
 )
 REFERENCES Empleado
 (
@@ -650,11 +663,7 @@ ALTER TABLE Poliza
 ADD CONSTRAINT Poliza_Empleado_FKv2 FOREIGN KEY
 (
 id_vendedor,
-<<<<<<< HEAD
 id_cargaV
-=======
-id_cargaN
->>>>>>> 5729ec4789ae23063d564685df6de5cc5cd63c2f
 )
 REFERENCES Empleado
 (
