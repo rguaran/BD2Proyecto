@@ -35,9 +35,9 @@
         <strong>Seleccione una categoria:
         <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" >Tipo de empleado</asp:LinkButton>
 &nbsp;-
-        <asp:LinkButton ID="LinkButton2" runat="server">Departamento</asp:LinkButton>
+        <asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton2_Click">Departamento</asp:LinkButton>
 &nbsp;-
-        <asp:LinkButton ID="LinkButton3" runat="server">Oficina</asp:LinkButton>
+        <asp:LinkButton ID="LinkButton3" runat="server" OnClick="LinkButton3_Click">Oficina</asp:LinkButton>
         </strong>
     </p>
 </asp:Content>

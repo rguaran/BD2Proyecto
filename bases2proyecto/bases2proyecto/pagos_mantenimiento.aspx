@@ -22,7 +22,7 @@
     </p>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder4" runat="server">
-    <asp:GridView ID="GridView1" runat="server"  >
+    <asp:GridView ID="GridView1" runat="server"   OnPageIndexChanging="GridView1_PageIndexChanging" >
             
         </asp:GridView>
     </asp:Content>

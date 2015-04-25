@@ -130,6 +130,23 @@ END;
 $$  LANGUAGE plpgsql;
 
 
+CREATE OR REPLACE FUNCTION insertardepartamento( _usuario varchar, _nombre text)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Insert','Departamento');
+	INSERT INTO DEPARTAMENTO(nombre) VALUES( _nombre );
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION insertaroficina( _usuario varchar, _id_oficina text, _nombre text, _id_dep int)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Insert','Oficina');
+	INSERT INTO Oficina VALUES( _id_oficina, _nombre, _id_dep );
+END;
+$$  LANGUAGE plpgsql;
 
 
 ------------------------------------------------------------------------------------------
@@ -299,6 +316,21 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION seleccionardepartamento()
+  RETURNS TABLE(id_dep int, nombre varchar) AS $$
+BEGIN
+	
+	RETURN QUERY SELECT * FROM departamento;
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION seleccionaroficina()
+  RETURNS TABLE(id_oficina varchar, nombre varchar, id_dep int) AS $$
+BEGIN
+	
+	RETURN QUERY SELECT * FROM Oficina;
+END;
+$$  LANGUAGE plpgsql;
 
 
 ------------------------------------------------------------------------------------------
@@ -345,6 +377,15 @@ $$
 BEGIN
 	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Update','Tipo empleado');
 	UPDATE TIPO_EMPLEADO SET tipo = _nombre WHERE id_te = _id_te; 
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION actualizardepartamento( _usuario varchar, _id_dep int, _nombre text)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Update','Departamento');
+	UPDATE Departamento SET nombre = _nombre WHERE id_dep = _id_dep; 
 END;
 $$  LANGUAGE plpgsql;
 
@@ -399,5 +440,23 @@ $$
 BEGIN
 	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Delete','Tipo empleado');
 	DELETE FROM TIPO_EMPLEADO WHERE id_te = _id_te;
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION eliminardepartamento(_usuario varchar,  _id_dep integer)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Delete','Departamento');
+	DELETE FROM Departamento WHERE id_dep = _id_dep;
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION eliminaroficina(_usuario varchar,  _id_oficina varchar)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Delete','Oficina');
+	DELETE FROM Oficina WHERE id_oficina = _id_oficina;
 END;
 $$  LANGUAGE plpgsql;

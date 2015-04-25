@@ -59,5 +59,33 @@ namespace bases2proyecto
             Session["final"] = 1;
             Response.Redirect("pagos_mantenimiento.aspx", true);
         }
+
+        protected void LinkButton2_Click(object sender, EventArgs e)
+        {
+            Session["insert"] = "insertarDepartamento";
+            Session["select"] = "seleccionarDepartamento()";
+            Session["update"] = "actualizarDepartamento";
+            Session["delete"] = "eliminarDepartamento";
+            Session["origen"] = "empleados";
+            Session["titulo"] = "Departamento";
+            Session["iniciar"] = 0;
+            Session["iniciarInsert"] = 1;
+            Session["final"] = 1;
+            Response.Redirect("pagos_mantenimiento.aspx", true);
+        }
+
+        protected void LinkButton3_Click(object sender, EventArgs e)
+        {
+            Session["insert"] = "insertarOficina";
+            Session["select"] = "seleccionarOficina()";
+            Session["update"] = "actualizarOficina";
+            Session["delete"] = "eliminarOficina";
+            Session["origen"] = "empleados";
+            Session["titulo"] = "Oficina";
+            Session["iniciar"] = 0;
+            Session["iniciarInsert"] = 0;
+            Session["final"] = 1;
+            Response.Redirect("pagos_mantenimiento.aspx", true);
+        }
     }
 }

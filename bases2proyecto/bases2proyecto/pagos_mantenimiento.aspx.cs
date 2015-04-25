@@ -25,10 +25,15 @@ namespace bases2proyecto
             }
         }
 
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            BindData();
+        }
+
         private void BindData()
         {
             GridView1.AllowPaging = true;
-            GridView1.AllowSorting = true;
             string item = (string)Session["select"];
             string strCommand = "SELECT * FROM " + item;
             Ds = con.consulta(strCommand);
