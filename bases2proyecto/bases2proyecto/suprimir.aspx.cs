@@ -60,7 +60,7 @@ namespace bases2proyecto
             string[] valores = new string[e.Values.Count];
             e.Values.Values.CopyTo(valores, 0);
             string item = (string)Session["delete"];
-            string query = "SELECT " + item + "(";
+            string query = "SELECT " + item + "('" + Session["usuario"] + "',";
             int iniciar = (Int32)Session["iniciar"];
             int final = (Int32)Session["final"];
             for (int i = iniciar; i < final; i++)

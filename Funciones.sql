@@ -10,6 +10,15 @@ BEGIN
 	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insertar', 'Pais');
 END;
 $$  LANGUAGE plpgsql
+
+CREATE OR REPLACE FUNCTION insertartipodecambio( _usuario varchar, _fecha date, _cambio numeric, _moneda_id_moneda integer)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Insert','Tipo de cambio');
+	INSERT INTO tipo_de_cambio VALUES(_fecha,_cambio,_moneda_id_moneda);
+END;
+$$  LANGUAGE plpgsql;
 	
 CREATE OR REPLACE FUNCTION insertarTipoCliente(_nombre varchar(50))
 RETURNS void AS $$
@@ -25,9 +34,10 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql
 	
-CREATE OR REPLACE FUNCTION insertarMoneda(_nombre varchar(50))
+CREATE OR REPLACE FUNCTION insertarMoneda(_usuario varchar(50), _nombre varchar(50))
 RETURNS void AS $$
 BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Insert','Moneda');
 	INSERT INTO Moneda (moneda) VALUES (_nombre);
 END;
 $$  LANGUAGE plpgsql
@@ -246,7 +256,7 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION seleccionartipodecambio(_usuario varchar)
+CREATE OR REPLACE FUNCTION seleccionartipodecambio()
   RETURNS TABLE(fecha date, cambio numeric, moneda_id_moneda int) AS $$
 BEGIN
 	
@@ -267,12 +277,11 @@ $$  LANGUAGE plpgsql;
 ------------------------------------------------------------------------------------------
 -------------------------------------- MODIFICACIONES ------------------------------------
 ------------------------------------------------------------------------------------------
-CREATE OR REPLACE FUNCTION actualizarmoneda(
-    _id integer,
-    _moneda character varying)
+CREATE OR REPLACE FUNCTION actualizarmoneda( _usuario varchar(50), _id integer, _moneda character varying)
   RETURNS void AS
 $$
 BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Update','Moneda');
 	UPDATE Moneda SET moneda = _moneda WHERE id_moneda = _id;
 END;
 $$  LANGUAGE plpgsql;
@@ -281,6 +290,7 @@ CREATE OR REPLACE FUNCTION actualizartipodecambio( _usuario varchar, _fecha date
   RETURNS void AS
 $$
 BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Update','Tipo de cambio');
 	UPDATE tipo_de_cambio SET cambio = _cambio WHERE fecha = _fecha and moneda_id_moneda = _moneda_id_moneda;
 END;
 $$  LANGUAGE plpgsql;
@@ -302,10 +312,11 @@ $$  LANGUAGE plpgsql
 ------------------------------------------------------------------------------------------
 -------------------------------------- ELIMINACIONES ------------------------------------
 ------------------------------------------------------------------------------------------
-CREATE OR REPLACE FUNCTION eliminarmoneda(_id integer)
+CREATE OR REPLACE FUNCTION eliminarmoneda(_usuario varchar(50), _id integer)
   RETURNS void AS
 $$
 BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Delete','Moneda');
 	DELETE FROM Moneda WHERE id_moneda = _id;
 END;
 $$  LANGUAGE plpgsql;
@@ -316,9 +327,11 @@ CREATE OR REPLACE FUNCTION eliminartipodecambio(_usuario varchar,  _fecha date, 
   RETURNS void AS
 $$
 BEGIN
-	DELETE FROM tipo_de_cambio WHERE fecha = _fecha and moneda_id_moneda = _moneda_id_moneda;
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Delete','Tipo de cambio');
+	DELETE FROM tipo_de_cambio WHERE fecha = _fecha and id_moneda = _moneda_id_moneda;
 END;
 $$  LANGUAGE plpgsql;
+
 
 
 

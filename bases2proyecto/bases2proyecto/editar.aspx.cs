@@ -67,7 +67,7 @@ namespace bases2proyecto
                 item = (string)Session["update"];
                 iniciar = (Int32)Session["iniciar"];
             }
-            string query = "SELECT " + item + "(";
+            string query = "SELECT " + item + "('" + Session["usuario"]+"',";
             string[] valores = new string[e.NewValues.Count];
             e.NewValues.Values.CopyTo(valores, 0);
            

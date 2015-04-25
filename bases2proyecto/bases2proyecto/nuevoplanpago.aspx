@@ -79,6 +79,13 @@
 
             </td>
         </tr>
+        <tr>
+            <td style="text-align: center; font-weight: 700">Detalle de pagos</td>
+            <td style="text-align: left">
+        <asp:Button ID="btnDetalle" runat="server" Text="Ver detalle" OnClick="btnDetalle_Click" />
+
+            </td>
+        </tr>
     </table>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder4" runat="server">

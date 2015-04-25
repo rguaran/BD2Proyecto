@@ -52,6 +52,11 @@ namespace bases2proyecto
             con.executeQuery("insertarMoneda('pago"+pagoCuota.ToString()+"');");*/
         }
 
+        protected void btnDetalle_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
        
     }

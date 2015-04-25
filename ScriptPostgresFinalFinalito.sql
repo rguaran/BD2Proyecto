@@ -275,7 +275,7 @@ CREATE
   TABLE Tipo_de_cambio
   (
     fecha DATE NOT NULL ,
-    cambio BIGINT ,
+    cambio NUMERIC ,
     id_moneda INTEGER NOT NULL ,
     CONSTRAINT Tipo_de_cambio_PK PRIMARY KEY (fecha, id_moneda)
 );

@@ -11,7 +11,8 @@ namespace bases2proyecto
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session["usuario"] = "Chaz";
+            Session["pass"] = "pass";
         }
     }
 }

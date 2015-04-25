@@ -18,7 +18,6 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder4" runat="server">
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="id_plan" DataSourceID="dsPlanPagos">
         <Columns>
-            <asp:CommandField ShowEditButton="True" />
             <asp:BoundField DataField="id_plan" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="id_plan" />
             <asp:BoundField DataField="prima" HeaderText="prima" SortExpression="prima" />
             <asp:BoundField DataField="numero_cuotas" HeaderText="numero cuotas" SortExpression="numero_cuotas" />
@@ -28,7 +27,6 @@
             <asp:BoundField DataField="numero_cuotas_atrasadas" HeaderText="cuotas atrasadas" SortExpression="numero_cuotas_atrasadas" />
             <asp:BoundField DataField="poliza_tipo_de_seguro_id_ts" HeaderText="Tipo seguro" ReadOnly="True" SortExpression="poliza_tipo_de_seguro_id_ts" />
             <asp:BoundField DataField="poliza_id_poliza" HeaderText="poliza" ReadOnly="True" SortExpression="poliza_id_poliza" />
-            <asp:CommandField ShowDeleteButton="True" />
         </Columns>
     </asp:GridView>
     <asp:SqlDataSource ID="dsPlanPagos" runat="server" ConnectionString="<%$ ConnectionStrings:proyectoBD2ConnectionString %>" ProviderName="<%$ ConnectionStrings:proyectoBD2ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM plan_de_pagos"></asp:SqlDataSource>
