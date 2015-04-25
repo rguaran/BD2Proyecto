@@ -223,18 +223,18 @@ INSERT INTO Condiciones_Particulares (condicion) VALUES ('Condicion particular 1
 
 
 -------------------------------------- Empleados Operadores ------------------------------------
-INSERT INTO Empleado  (id_carga, nombre, telefono, id_te, id_oficina, id_dep)
-SELECT DISTINCT codigo_operador, '', '', getIdTipoEmpleado('Operador'), codigo_oficina, getIdDepartamento(depto)
+INSERT INTO Empleado  (id_carga, nombre, usuario, pass, telefono, id_te, id_oficina, id_dep)
+SELECT DISTINCT codigo_operador, '', CONCAT('usuario_', codigo_operador), 'password',  '', getIdTipoEmpleado('Operador'), codigo_oficina, getIdDepartamento(depto)
 FROM Datos;
 
 -------------------------------------- Empleados Vendedores ------------------------------------
-INSERT INTO Empleado  (id_carga, nombre, telefono, id_te, id_oficina, id_dep)
-SELECT DISTINCT codigo_vendedor, '', '', getIdTipoEmpleado('Vendedor'), codigo_oficina, getIdDepartamento(depto)
+INSERT INTO Empleado  (id_carga, nombre, usuario, pass, telefono, id_te, id_oficina, id_dep)
+SELECT DISTINCT codigo_vendedor, '', CONCAT('usuario_', codigo_operador), 'password', '', getIdTipoEmpleado('Vendedor'), codigo_oficina, getIdDepartamento(depto)
 FROM Datos;
 
 -------------------------------------- Empleados Negociadores ------------------------------------
-INSERT INTO Empleado  (nombre, telefono, id_te, id_oficina, id_dep)
-SELECT DISTINCT negocio, '', getIdTipoEmpleado('Negociador'), codigo_oficina, getIdDepartamento(depto)
+INSERT INTO Empleado  (nombre, usuario, pass, telefono, id_te, id_oficina, id_dep)
+SELECT DISTINCT negocio, CONCAT('usuario_', negocio), 'password', '', getIdTipoEmpleado('Negociador'), codigo_oficina, getIdDepartamento(depto)
 FROM Datos;
 
 INSERT INTO Poliza    (id_poliza, id_estado, id_cp, fecha_inicio, fecha_fin, clausulas, id, id_ts, poliza_vieja, meses, producto_descripcion,
