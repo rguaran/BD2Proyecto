@@ -85,6 +85,8 @@
     <Content Include="pagos_mantenimiento.aspx" />
     <Content Include="pagos.aspx" />
     <Content Include="suprimir.aspx" />
+    <Content Include="empleados.aspx" />
+    <Content Include="archivos.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConexionBD.cs" />
@@ -201,15 +203,6 @@
     <Compile Include="tipoempleado.aspx.designer.cs">
       <DependentUpon>tipoempleado.aspx</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-=======
-    <Compile Include="tiposeguro.aspx.cs">
-      <DependentUpon>tiposeguro.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="tiposeguro.aspx.designer.cs">
-      <DependentUpon>tiposeguro.aspx</DependentUpon>
-    </Compile>
     <Compile Include="suprimir.aspx.cs">
       <DependentUpon>suprimir.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -217,7 +210,20 @@
     <Compile Include="suprimir.aspx.designer.cs">
       <DependentUpon>suprimir.aspx</DependentUpon>
     </Compile>
->>>>>>> origin/master
+    <Compile Include="empleados.aspx.cs">
+      <DependentUpon>empleados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="empleados.aspx.designer.cs">
+      <DependentUpon>empleados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="archivos.aspx.cs">
+      <DependentUpon>archivos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="archivos.aspx.designer.cs">
+      <DependentUpon>archivos.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />

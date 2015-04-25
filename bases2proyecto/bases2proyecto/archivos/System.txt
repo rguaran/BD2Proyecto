@@ -1,0 +1,1398 @@
+2014-10-09 09:59:20 ERROR  : ERROR:  no existe la relación «tabla»
+LINE 1: SELECT * FROM Tabla_A, Tabla B
+                               ^
+2014-10-09 10:14:04 ERROR  : ERROR:  las subconsultas en FROM deben tener un alias
+LINE 1: SELECT * from tabla_a, (SELECT resultado from tabla_b where ...
+                               ^
+HINT:  Por ejemplo, FROM (SELECT ...) [AS] foo.
+2014-10-09 10:16:13 ERROR  : ERROR:  error de sintaxis en o cerca de «AS»
+LINE 1: ..._A, (SELECT resultado FROM Tabla_B WHERE tipo = 0 AS suma) A...
+                                                             ^
+2014-10-15 07:27:24 ERROR  : ERROR:  no existe el tipo «number»
+LINE 10:  sueldo number not null,
+                 ^
+2014-10-15 07:27:34 ERROR  : ERROR:  no existe el tipo «number»
+LINE 11:  depto number not null,
+                ^
+2014-10-15 07:27:40 ERROR  : ERROR:  no hay restricción unique que coincida con las columnas dadas en la tabla referida «depto»
+2014-10-15 07:28:35 ERROR  : ERROR:  inserción o actualización en la tabla «emp» viola la llave foránea «emp_depto_fkey»
+DETAIL:  La llave (depto)=(10) no está presente en la tabla «depto».
+2014-10-15 07:28:39 ERROR  : ERROR:  inserción o actualización en la tabla «emp» viola la llave foránea «emp_depto_fkey»
+DETAIL:  La llave (depto)=(10) no está presente en la tabla «depto».
+2014-10-15 07:31:31 ERROR  : ERROR:  la columna «emp.num» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: Select depto, num, count(fecha) from emp where depto in (1,2...
+                      ^
+2014-10-15 07:45:45 ERROR  : ERROR:  error de sintaxis en o cerca de «order»
+LINE 1: ...to, fecha, row_number() over( partition by depto, order by f...
+                                                             ^
+2014-10-15 07:46:11 ERROR  : ERROR:  error de sintaxis en o cerca de «nulls_last»
+LINE 1: ...number() over( partition by depto) order by fecha nulls_last
+                                                             ^
+2014-10-15 07:46:28 ERROR  : ERROR:  error de sintaxis en o cerca de «nulls_last»
+LINE 3:  order by fecha nulls_last
+                        ^
+2014-10-15 07:46:57 ERROR  : ERROR:  error de sintaxis en o cerca de «order»
+LINE 1: ...to, fecha, row_number() over( partition by depto, order by f...
+                                                             ^
+2014-10-15 07:47:59 ERROR  : ERROR:  error de sintaxis en o cerca de «nulls_last»
+LINE 1: ..._number() over( partition by depto order by fecha nulls_last...
+                                                             ^
+2014-10-15 07:48:07 ERROR  : ERROR:  error de sintaxis en o cerca de «null_last»
+LINE 1: ..._number() over( partition by depto order by fecha null_last)
+                                                             ^
+2014-10-15 07:59:04 ERROR  : ERROR:  error de sintaxis en o cerca de «over»
+LINE 3:  dense_rank over(partition by depto order by sueldo desc) dk
+                    ^
+2014-10-15 08:02:13 ERROR  : ERROR:  error de sintaxis en o cerca de «nulls_last»
+LINE 2: ...k() over(partition by depto  order by sueldo desc nulls_last...
+                                                             ^
+2014-10-15 08:02:23 ERROR  : ERROR:  error de sintaxis en o cerca de «null_last»
+LINE 2: ...k() over(partition by depto  order by sueldo desc null_last)...
+                                                             ^
+2014-10-15 08:11:25 ERROR  : ERROR:  no existe la función lead(integer, numeric)
+LINE 2:  lead(sueldo, 1.0) over(partition by depto order by sueldo d...
+         ^
+HINT:  Ninguna función coincide en el nombre y tipos de argumentos. Puede ser necesario agregar conversión explícita de tipos.
+2014-10-15 08:24:49 ERROR  : ERROR:  no existe la función firs_value(date)
+LINE 2:  fecha - firs_value(fecha) over (partition by depto order by...
+                 ^
+HINT:  Ninguna función coincide en el nombre y tipos de argumentos. Puede ser necesario agregar conversión explícita de tipos.
+2014-10-15 08:33:31 ERROR  : ERROR:  error de sintaxis en o cerca de «)»
+LINE 2: ...e(fecha) over (partition by depto rows between(1 and 2)) dif
+                                                                  ^
+2014-10-15 08:33:54 ERROR  : ERROR:  error de sintaxis en o cerca de «)»
+LINE 2: ...ue(fecha) over (partition by depto rows between 1 and 2) dif
+                                                                  ^
+2014-10-15 08:36:36 ERROR  : ERROR:  error de sintaxis en o cerca de «)»
+LINE 2: ...(fecha) over (partition by depto rows between 10 and 20) dif
+                                                                  ^
+2014-10-15 08:36:45 ERROR  : ERROR:  error de sintaxis en o cerca de «)»
+LINE 2: ...ue(fecha) over (partition by depto rows between 1 and 2) dif
+                                                                  ^
+2014-10-21 10:11:42 ERROR  : ERROR:  no se puede eliminar tabla tabla_b porque otros objetos dependen de él
+DETAIL:  vista vw_op depende de tabla tabla_b
+HINT:  Use DROP ... CASCADE para eliminar además los objetos dependientes.
+2014-10-21 10:11:54 ERROR  : ERROR:  error de sintaxis en o cerca de «cascade»
+LINE 1: drop cascade table tabla_b
+             ^
+2014-10-21 10:12:01 ERROR  : ERROR:  error de sintaxis en o cerca de «tabla_b»
+LINE 1: drop  table cascade tabla_b
+                            ^
+2014-10-21 10:12:06 ERROR  : ERROR:  no se puede eliminar tabla tabla_b porque otros objetos dependen de él
+DETAIL:  vista vw_op depende de tabla tabla_b
+HINT:  Use DROP ... CASCADE para eliminar además los objetos dependientes.
+2014-10-21 10:12:15 ERROR  : ERROR:  error de sintaxis en o cerca de «cascade»
+LINE 1: drop  cascade  tabla_b
+              ^
+2014-10-21 10:12:25 ERROR  : ERROR:  error de sintaxis en o cerca de «cascade»
+LINE 1: drop  cascade   table tabla_b
+              ^
+2014-10-21 10:12:31 ERROR  : ERROR:  error de sintaxis en o cerca de «tabla_b»
+LINE 1: drop   table cascade tabla_b
+                             ^
+2014-10-21 10:28:32 ERROR  : ERROR:  la orden DECLARE CURSOR sólo puede ser usada en bloques de transacción
+2014-10-21 10:28:50 ERROR  : ERROR:  error de sintaxis en o cerca de «declare»
+LINE 2: declare
+        ^
+2014-10-21 10:35:40 ERROR  : ERROR:  error de sintaxis en o cerca de «end»
+LINE 5: end;
+        ^
+2014-10-21 10:36:27 ERROR  : ERROR:  error de sintaxis en o cerca de «open»
+LINE 3:  open curs1;
+         ^
+2014-10-21 10:37:29 ERROR  : ERROR:  error de sintaxis en o cerca de «open»
+LINE 3:  open curs1;
+         ^
+2014-10-21 10:37:35 ERROR  : ERROR:  error de sintaxis en o cerca de «COMMIT»
+LINE 6: COMMIT;
+        ^
+2014-10-21 10:37:43 ERROR  : ERROR:  error de sintaxis en o cerca de «COMMIT»
+LINE 5: COMMIT;
+        ^
+2014-10-21 10:37:50 ERROR  : ERROR:  error de sintaxis en o cerca de «select»
+LINE 3:  select * from tabla_a;
+         ^
+2014-10-21 10:38:30 ERROR  : ERROR:  error de sintaxis en o cerca de «open»
+LINE 3:  open curs1;
+         ^
+2014-10-21 10:38:54 ERROR  : ERROR:  error de sintaxis en o cerca de «OPEN»
+LINE 4:  OPEN curs1;
+         ^
+2014-10-21 10:45:23 ERROR  : ERROR:  error de sintaxis en o cerca de «END»
+LINE 21: END;
+         ^
+2014-10-21 10:49:27 ERROR  : ERROR:  no existe la relación «tabla_b»
+LINE 1: INSERT INTO Tabla_B VALUES(id_ta,0,numero1+numero2)
+                    ^
+QUERY:  INSERT INTO Tabla_B VALUES(id_ta,0,numero1+numero2)
+CONTEXT:  PL/pgSQL function cursores() line 12 at sentencia SQL
+2014-10-21 10:51:59 ERROR  : ERROR:  el valor null para la columna «id_ta» viola la restricción not null
+DETAIL:  La fila que falla contiene (null, 0, null).
+CONTEXT:  sentencia SQL: «INSERT INTO Tabla_B VALUES(id_ta,0,numero1+numero2)»
+PL/pgSQL function cursores() line 12 at sentencia SQL
+2014-10-21 10:52:38 ERROR  : ERROR:  el valor null para la columna «id_ta» viola la restricción not null
+DETAIL:  La fila que falla contiene (null, 0, null).
+CONTEXT:  sentencia SQL: «INSERT INTO Tabla_B VALUES(id_ta,0,numero1+numero2)»
+PL/pgSQL function cursores() line 12 at sentencia SQL
+2014-10-21 10:54:27 ERROR  : ERROR:  el valor null para la columna «id_ta» viola la restricción not null
+DETAIL:  La fila que falla contiene (null, 0, null).
+CONTEXT:  sentencia SQL: «INSERT INTO Tabla_B VALUES(id_ta,0,numero1+numero2)»
+PL/pgSQL function cursores() line 12 at sentencia SQL
+2014-10-21 10:56:32 ERROR  : ERROR:  el valor null para la columna «id_ta» viola la restricción not null
+DETAIL:  La fila que falla contiene (null, 0, null).
+CONTEXT:  sentencia SQL: «INSERT INTO Tabla_B VALUES(rec.id_ta,0,rec.numero1+rec.numero2)»
+PL/pgSQL function cursores() line 10 at sentencia SQL
+2014-10-21 10:58:41 ERROR  : ERROR:  no existe el cursor «<unnamed cursor 1>»
+2014-10-21 10:59:11 ERROR  : ERROR:  error de sintaxis en o cerca de «refcursor»
+LINE 12: DECLARE curs1 refcursor;
+                       ^
+2014-10-21 10:59:44 ERROR  : ERROR:  error de sintaxis en o cerca de «;»
+LINE 12: DECLARE curs1 CURSOR;
+                             ^
+2014-10-21 10:59:52 ERROR  : ERROR:  no existe el cursor «curs1»
+2014-10-21 11:09:17 ERROR  : ERROR:  error de sintaxis en o cerca de «/»
+LINE 8: /loop
+        ^
+2014-10-21 11:09:37 ERROR  : ERROR:  el valor null para la columna «id_ta» viola la restricción not null
+DETAIL:  La fila que falla contiene (null, 0, null).
+CONTEXT:  sentencia SQL: «INSERT INTO Tabla_B VALUES(rec.id_ta,0,rec.numero1+rec.numero2)»
+PL/pgSQL function cursores() line 10 at sentencia SQL
+2014-10-21 19:13:48 ERROR  : ERROR:  error de sintaxis en o cerca de «int»
+LINE 2: DECLARE id_t int;
+                     ^
+2014-10-21 19:14:09 ERROR  : ERROR:  error de sintaxis en o cerca de «BIGINT»
+LINE 2: DECLARE id_ BIGINT;
+                    ^
+2014-10-21 19:14:17 ERROR  : ERROR:  error de sintaxis en o cerca de «BIGINT»
+LINE 2: DECLARE id BIGINT;
+                   ^
+2014-10-21 19:14:22 ERROR  : ERROR:  error de sintaxis en o cerca de «OPEN»
+LINE 5:     OPEN vcursor;
+            ^
+2014-10-21 19:15:50 ERROR  : ERROR:  falta «FROM or IN» al final de la expresión SQL
+LINE 12:         FETCH vcursor INTO id_t, num1, num2;
+                                                    ^
+2014-10-21 19:16:13 ERROR  : ERROR:  «id_t» no es una variable conocida
+LINE 12:         FETCH vcursor IN id_t, num1, num2;
+                                  ^
+2014-10-21 19:16:34 ERROR  : ERROR:  falta «FROM or IN» al final de la expresión SQL
+LINE 12:         FETCH vcursor INTO id_t, num1, num2;
+                                                    ^
+2014-10-21 19:20:37 ERROR  : ERROR:  el valor null para la columna «id_ta» viola la restricción not null
+DETAIL:  La fila que falla contiene (null, 0, null).
+CONTEXT:  sentencia SQL: «INSERT INTO Tabla_B VALUES(rec.id_ta,0,rec.numero1+rec.numero2)»
+PL/pgSQL function cursores() line 9 at sentencia SQL
+2014-10-21 19:21:51 ERROR  : ERROR:  llave duplicada viola restricción de unicidad «pk_tabla_b»
+DETAIL:  Ya existe la llave (id_ta, tipo)=(1, 0).
+CONTEXT:  sentencia SQL: «INSERT INTO Tabla_B VALUES(rec.id_ta,0,rec.numero1+rec.numero2)»
+PL/pgSQL function cursores() line 10 at sentencia SQL
+2014-10-25 20:24:55 ERROR  : ERROR:  error de sintaxis en o cerca de «;»
+LINE 7:  CONSTRAINT pk_pais PRIMARY KEY(country);
+                                                ^
+2014-10-25 20:36:18 ERROR  : ERROR:  el valor es demasiado largo para el tipo character varying(30)
+2014-10-25 20:54:45 ERROR  : ERROR:  error de sintaxis en o cerca de «)»
+LINE 87: INSERT INTO pais VALUES('Guam','Oceania',549,159358,);
+                                                             ^
+2014-10-25 20:54:54 ERROR  : ERROR:  error de sintaxis en o cerca de «)»
+LINE 154: ...NSERT INTO pais VALUES('Pitcairn Islands','Oceania',47,66,);
+                                                                       ^
+2014-10-25 20:54:57 ERROR  : ERROR:  error de sintaxis en o cerca de «)»
+LINE 180: ...RT INTO pais VALUES('South Sudan','Africa',644329,8260490,);
+                                                                       ^
+2014-10-25 20:55:00 ERROR  : ERROR:  error de sintaxis en o cerca de «)»
+LINE 183: INSERT INTO pais VALUES('Sudan','Africa',1861484,30894000,);
+                                                                    ^
+2014-10-25 20:55:01 ERROR  : ERROR:  error de sintaxis en o cerca de «)»
+LINE 196: INSERT INTO pais VALUES('Vatican City','Europe',0,800,);
+                                                                ^
+2014-10-25 20:55:02 ERROR  : ERROR:  llave duplicada viola restricción de unicidad «pk_pais»
+DETAIL:  Ya existe la llave (country)=(Democratic Republic of the Congo).
+2014-10-25 20:55:46 ERROR  : ERROR:  llave duplicada viola restricción de unicidad «pk_pais»
+DETAIL:  Ya existe la llave (country)=(Republic of the Congo).
+2014-10-25 20:55:53 ERROR  : ERROR:  llave duplicada viola restricción de unicidad «pk_pais»
+DETAIL:  Ya existe la llave (country)=(Solomon Islands).
+2014-10-25 20:56:20 ERROR  : ERROR:  llave duplicada viola restricción de unicidad «pk_pais»
+DETAIL:  Ya existe la llave (country)=(Sri Lanka).
+2014-10-25 21:01:59 ERROR  : ERROR:  la columna «pais.country» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT * FROM pais group by continent;
+               ^
+2014-10-25 21:02:22 ERROR  : ERROR:  la columna «pais.country» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT country FROM pais group by continent;
+               ^
+2014-10-25 21:06:27 ERROR  : ERROR:  la columna «cont.continent» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT continent, max(poblacion) FROM 
+               ^
+2014-10-25 21:06:36 ERROR  : ERROR:  la columna «cont.continent» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT continent, max(poblacion) FROM 
+               ^
+2014-10-25 21:07:16 ERROR  : ERROR:  no existe la columna «poblation»
+LINE 1: SELECT continent, max(sum(poblation)) FROM pais GROUP BY con...
+                                  ^
+2014-10-25 21:07:27 ERROR  : ERROR:  no se pueden anidar llamadas a funciones de agregación
+LINE 1: SELECT continent, max(sum(population)) FROM pais GROUP BY co...
+                              ^
+2014-10-25 21:07:43 ERROR  : ERROR:  la columna «cont.continent» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT continent, max(poblacion) FROM 
+               ^
+2014-10-25 21:14:56 ERROR  : ERROR:  error de sintaxis en o cerca de «UNION»
+LINE 6: UNION ALL 
+        ^
+2014-10-25 21:15:02 ERROR  : ERROR:  error de sintaxis en o cerca de «UNION»
+LINE 6: UNION 
+        ^
+2014-10-25 21:26:50 ERROR  : ERROR:  error de sintaxis en o cerca de «WHERE»
+LINE 3:      WHERE area > 10000
+             ^
+2014-10-25 21:34:59 ERROR  : ERROR:  no existe la función sum(character varying)
+LINE 1: SELECT continent, sum(country) as pais 
+                          ^
+HINT:  Ninguna función coincide en el nombre y tipos de argumentos. Puede ser necesario agregar conversión explícita de tipos.
+2014-10-25 21:35:28 ERROR  : ERROR:  no existe la función sum(character varying)
+LINE 1: SELECT continent, sum(country) as pais 
+                          ^
+HINT:  Ninguna función coincide en el nombre y tipos de argumentos. Puede ser necesario agregar conversión explícita de tipos.
+2014-10-25 21:35:36 ERROR  : ERROR:  no existe la función sum()
+LINE 1: SELECT continent, sum(*) as pais 
+                          ^
+HINT:  Ninguna función coincide en el nombre y tipos de argumentos. Puede ser necesario agregar conversión explícita de tipos.
+2014-10-25 21:39:52 ERROR  : ERROR:  la columna «pais.*» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 4:   ORDER BY pais DESC LIMIT 1
+                   ^
+2014-10-25 21:40:28 ERROR  : ERROR:  error de sintaxis en o cerca de «WHERE»
+LINE 4:   WHERE poblacion < 25000
+          ^
+2014-10-25 21:40:36 ERROR  : ERROR:  no existe la columna «poblacion»
+LINE 3:   WHERE poblacion < 25000
+                ^
+2014-10-25 21:40:42 ERROR  : ERROR:  no existe la columna «poblacion»
+LINE 3:   WHERE poblacion < 25000
+                ^
+2014-10-25 21:40:57 ERROR  : ERROR:  la columna «pais.continent» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT * FROM (SELECT continent, sum(population) as poblacio...
+                              ^
+2014-10-25 21:58:09 ERROR  : ERROR:  la columna «pais.continent» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT continent, min(population) FROM pais
+               ^
+2014-10-25 22:00:11 ERROR  : ERROR:  una subconsulta utilizada como expresión retornó más de un registro
+2014-10-25 22:00:29 ERROR  : ERROR:  una subconsulta utilizada como expresión retornó más de un registro
+2014-10-25 22:02:02 ERROR  : ERROR:  error de sintaxis en o cerca de «3»
+LINE 4:       (SELECT continent 3* min(population) poblacion 
+                                ^
+2014-10-25 22:02:07 ERROR  : ERROR:  no existe la columna «conti»
+LINE 7:        WHERE continent = conti)
+                                 ^
+2014-10-25 22:03:49 ERROR  : ERROR:  las subconsultas en FROM deben tener un alias
+LINE 1: SELECT country, continent FROM pais,(SELECT 3* min(populatio...
+                                            ^
+HINT:  Por ejemplo, FROM (SELECT ...) [AS] foo.
+2014-10-25 22:16:45 ERROR  : ERROR:  no existe la columna «last_name»
+LINE 1: SELECT ROW_NUMBER() OVER (ORDER BY continent, last_name)  id...
+                                                      ^
+2014-10-25 22:16:57 ERROR  : ERROR:  no existe la columna «total_paises»
+LINE 1: SELECT ROW_NUMBER() OVER (ORDER BY continent, total_paises) ...
+                                                      ^
+2014-10-25 22:49:36 ERROR  : ERROR:  no existe el tipo «string»
+LINE 7:  cod string;
+             ^
+2014-10-25 22:53:23 ERROR  : ERROR:  el operador no existe: bigint || integer
+LINE 1: SELECT cont_act.total_paises || i || cont_act.id_continent
+                                     ^
+HINT:  Ningún operador coincide con el nombre y el tipo de los argumentos. Puede ser necesario agregar conversiones explícitas de tipos.
+QUERY:  SELECT cont_act.total_paises || i || cont_act.id_continent
+CONTEXT:  PL/pgSQL function codigo_pais() line 16 at asignación
+2014-10-25 22:55:21 ERROR  : ERROR:  no existe la función to_number(character varying)
+LINE 1: UPDATE pais SET codigo = to_number(cod) WHERE country = pais...
+                                 ^
+HINT:  Ninguna función coincide en el nombre y tipos de argumentos. Puede ser necesario agregar conversión explícita de tipos.
+QUERY:  UPDATE pais SET codigo = to_number(cod) WHERE country = pais_act.country
+CONTEXT:  PL/pgSQL function codigo_pais() line 17 at sentencia SQL
+2014-10-26 18:42:43 ERROR  : ERROR:  error de sintaxis en o cerca de «(»
+LINE 7:     CONSTRAINT archivo_pk PRIMARY KEY(id_archivo),
+                                             ^
+2014-10-26 18:42:50 ERROR  : ERROR:  error de sintaxis en o cerca de «;»
+LINE 36: ... KEY ( id_listacco ) REFERENCES LISTA_USUARIO ( id_lista ) ;
+                                                                       ^
+2014-10-26 18:44:09 ERROR  : ERROR:  error de sintaxis en o cerca de «)»
+LINE 45: );
+         ^
+2014-10-26 18:44:18 ERROR  : ERROR:  error de sintaxis en o cerca de «)»
+LINE 73: );
+         ^
+2014-10-26 18:44:29 ERROR  : ERROR:  error de sintaxis en o cerca de «)»
+LINE 85: ) ;
+         ^
+2014-10-26 18:44:33 ERROR  : ERROR:  error de sintaxis en o cerca de «)»
+LINE 146: );
+          ^
+2014-10-26 18:44:39 ERROR  : ERROR:  no existe el tipo «varchar2»
+LINE 4:     nombre VARCHAR2(30) CONSTRAINT nn_nombre NOT NULL,
+                   ^
+2014-10-26 18:44:56 ERROR  : ERROR:  no existe la relación «correo»
+2014-10-26 18:46:42 ERROR  : ERROR:  error de sintaxis en o cerca de «CREATE»
+LINE 2: CREATE TABLE ARCHIVO
+        ^
+2014-10-26 18:47:04 ERROR  : ERROR:  no existe la relación «correo»
+2014-10-26 18:47:24 ERROR  : ERROR:  no existe la relación «trabajador»
+2014-10-26 18:47:24 ERROR  : ERROR:  no existe la relación «trabajador»
+2014-10-26 18:47:40 ERROR  : ERROR:  no existe el tipo «varchar2»
+LINE 4:     nombre           VARCHAR2 (50) NOT NULL ,
+                             ^
+2014-10-26 18:48:12 ERROR  : ERROR:  no existe la relación «departamento»
+2014-10-26 18:53:14 ERROR  : ERROR:  no existe la relación «trabajador»
+2014-10-26 18:54:46 ERROR  : ERROR:  no existe la relación «trabjador»
+2014-10-26 18:55:24 ERROR  : ERROR:  no existe el tipo «clob»
+LINE 84:     descripcion CLOB ,
+                         ^
+2014-10-26 18:55:48 ERROR  : ERROR:  la restricción de llave foránea «correo_cuenta_fk» no puede ser implementada
+DETAIL:  Las columnas llave «id_empleado» y «id_empleado» son de tipos incompatibles: numeric y integer
+2014-10-26 18:56:09 ERROR  : ERROR:  no existe la relación «departamento»
+2014-10-26 18:56:18 ERROR  : ERROR:  la restricción de llave foránea «correo_cuenta_fk» no puede ser implementada
+DETAIL:  Las columnas llave «id_empleado» y «id_empleado» son de tipos incompatibles: numeric y integer
+2014-10-26 21:43:03 ERROR  : ERROR:  no existe la relación «carpeta»
+2014-10-26 21:43:46 ERROR  : ERROR:  la restricción «archivo_correo_fk» para la relación «archivo» ya existe
+2014-10-26 21:45:44 ERROR  : ERROR:  no existe la columna «‘privado’»
+2014-10-26 21:46:16 ERROR  : ERROR:  no existe la columna «id_tarea1» referida en la llave foránea
+2014-10-26 21:46:48 ERROR  : ERROR:  no existe la relación «plaza»
+2014-10-26 21:47:17 ERROR  : ERROR:  no existe la relación «trabjador»
+2014-10-26 21:48:34 ERROR  : ERROR:  no existe la relación «trabjador»
+2014-10-27 09:49:26 ERROR  : ERROR:  el valor null para la columna «id_idioma» viola la restricción not null
+DETAIL:  La fila que falla contiene (null, Español).
+2014-10-27 09:49:29 ERROR  : ERROR:  el valor null para la columna «id_idioma» viola la restricción not null
+DETAIL:  La fila que falla contiene (null, Español).
+2014-10-27 09:49:33 ERROR  : ERROR:  el valor null para la columna «id_idioma» viola la restricción not null
+DETAIL:  La fila que falla contiene (null, Español).
+2014-10-27 09:52:17 ERROR  : ERROR:  error de sintaxis en o cerca de «*»
+LINE 1: DROP TABLE *
+                   ^
+2014-10-27 09:52:21 ERROR  : ERROR:  error de sintaxis en o cerca de «ALL»
+LINE 1: DROP TABLE ALL
+                   ^
+2014-10-27 09:52:24 ERROR  : ERROR:  error de sintaxis al final de la entrada
+LINE 1: DROP TABLE 
+                   ^
+2014-10-27 09:58:07 ERROR  : ERROR:  la restricción de llave foránea «pais_region_fk» no puede ser implementada
+DETAIL:  Las columnas llave «id_region» y «id_region» son de tipos incompatibles: numeric y integer
+2014-10-27 09:58:42 ERROR  : ERROR:  la restricción de llave foránea «empresa_pais_fk» no puede ser implementada
+DETAIL:  Las columnas llave «id_pais» y «id_pais» son de tipos incompatibles: numeric y integer
+2014-10-27 10:07:42 ERROR  : ERROR:  llave duplicada viola restricción de unicidad «pais_idioma_pk»
+DETAIL:  Ya existe la llave (id_idioma, id_pais)=(2, 3).
+2014-10-27 10:07:43 ERROR  : ERROR:  llave duplicada viola restricción de unicidad «pais_idioma_pk»
+DETAIL:  Ya existe la llave (id_idioma, id_pais)=(2, 3).
+2014-10-27 12:01:29 ERROR  : ERROR:  el valor null para la columna «id_empresa» viola la restricción not null
+DETAIL:  La fila que falla contiene (2, Mika GT, 23748965, Zacapa, Teculutan, 4, 7-82, null, null, null, null).
+2014-10-27 12:04:51 ERROR  : ERROR:  el valor null para la columna «provincia» viola la restricción not null
+DETAIL:  La fila que falla contiene (5, Dessert, null, null, null, null, null, null, null, null, null).
+2014-10-27 22:02:13 ERROR  : ERROR:  el valor null para la columna «id_empleado» viola la restricción not null
+DETAIL:  La fila que falla contiene (1, Ventas, 1, null).
+2014-10-27 22:02:16 ERROR  : ERROR:  el valor null para la columna «id_empleado» viola la restricción not null
+DETAIL:  La fila que falla contiene (2, Ventas, 1, null).
+2014-10-27 22:23:44 ERROR  : ERROR:  inserción o actualización en la tabla «trabajador» viola la llave foránea «empleado_departamento_fk»
+DETAIL:  La llave (id_departamento)=(2) no está presente en la tabla «departamento».
+2014-10-27 22:23:48 ERROR  : ERROR:  inserción o actualización en la tabla «trabajador» viola la llave foránea «empleado_departamento_fk»
+DETAIL:  La llave (id_departamento)=(2) no está presente en la tabla «departamento».
+2014-10-27 22:23:51 ERROR  : ERROR:  inserción o actualización en la tabla «trabajador» viola la llave foránea «empleado_departamento_fk»
+DETAIL:  La llave (id_departamento)=(2) no está presente en la tabla «departamento».
+2014-10-27 22:44:06 ERROR  : ERROR:  el valor null para la columna «id_empleado» viola la restricción not null
+DETAIL:  La fila que falla contiene (2014-05-12, 2014-10-07, null, null).
+2014-10-27 22:44:07 ERROR  : ERROR:  el valor null para la columna «id_empleado» viola la restricción not null
+DETAIL:  La fila que falla contiene (2014-05-12, 2014-10-07, null, null).
+2014-10-27 22:44:11 ERROR  : ERROR:  el valor null para la columna «id_plaza» viola la restricción not null
+DETAIL:  La fila que falla contiene (2014-05-12, 2014-10-07, 2, null).
+2014-10-27 22:44:11 ERROR  : ERROR:  el valor null para la columna «id_plaza» viola la restricción not null
+DETAIL:  La fila que falla contiene (2014-05-12, 2014-10-07, 2, null).
+2014-10-27 22:45:46 ERROR  : ERROR:  el valor de hora/fecha está fuera de rango: «10/15/2005»
+LINE 1: ...cha_fin, id_empleado) VALUES ('02/02/1996'::date, '10/15/200...
+                                                             ^
+HINT:  Quizás necesite una configuración diferente de «datestyle».
+2014-10-27 22:45:46 ERROR  : ERROR:  el valor de hora/fecha está fuera de rango: «10/15/2005»
+LINE 1: ...cha_fin, id_empleado) VALUES ('02/02/1996'::date, '10/15/200...
+                                                             ^
+HINT:  Quizás necesite una configuración diferente de «datestyle».
+2014-10-27 22:45:49 ERROR  : ERROR:  el valor de hora/fecha está fuera de rango: «10/15/2005»
+LINE 1: ...d_empleado, id_plaza) VALUES ('02/02/1996'::date, '10/15/200...
+                                                             ^
+HINT:  Quizás necesite una configuración diferente de «datestyle».
+2014-10-27 22:45:50 ERROR  : ERROR:  el valor de hora/fecha está fuera de rango: «10/15/2005»
+LINE 1: ...d_empleado, id_plaza) VALUES ('02/02/1996'::date, '10/15/200...
+                                                             ^
+HINT:  Quizás necesite una configuración diferente de «datestyle».
+2014-10-27 22:45:59 ERROR  : ERROR:  el valor de hora/fecha está fuera de rango: «10/15/2005»
+LINE 1: ...d_empleado, id_plaza) VALUES ('02/02/1996'::date, '10/15/200...
+                                                             ^
+HINT:  Quizás necesite una configuración diferente de «datestyle».
+2014-10-27 22:46:08 ERROR  : ERROR:  el valor de hora/fecha está fuera de rango: «10/15/2005»
+LINE 1: ...d_empleado, id_plaza) VALUES ('02/02/1996'::date, '10/15/200...
+                                                             ^
+HINT:  Quizás necesite una configuración diferente de «datestyle».
+2014-10-27 22:50:13 ERROR  : ERROR:  el valor null para la columna «id_historial_salarial» viola la restricción not null
+DETAIL:  La fila que falla contiene (null, 1996-02-02, 2005-04-05, 5600, 1).
+2014-10-27 22:50:16 ERROR  : ERROR:  el valor null para la columna «id_historial_salarial» viola la restricción not null
+DETAIL:  La fila que falla contiene (null, 1996-02-02, 2005-04-05, 5600, 1).
+2014-10-27 23:06:52 ERROR  : ERROR:  el valor null para la columna «id_empleado» viola la restricción not null
+DETAIL:  La fila que falla contiene (2, Responder enseguida, null, null, null).
+2014-10-27 23:43:57 ERROR  : ERROR:  no existe la relación «trabajador»
+2014-10-27 23:49:28 ERROR  : ERROR:  update o delete en «trabajador» viola la llave foránea «asignacion_recurso_trabajador_fk» en la tabla «asignacion_recurso»
+DETAIL:  La llave (id_empleado)=(1) todavía es referida desde la tabla «asignacion_recurso».
+2014-10-27 23:50:24 ERROR  : ERROR:  llave duplicada viola restricción de unicidad «envio_pk»
+DETAIL:  Ya existe la llave (id_correo, id_empleado)=(1, 2).
+2014-10-27 23:50:29 ERROR  : ERROR:  llave duplicada viola restricción de unicidad «envio_pk»
+DETAIL:  Ya existe la llave (id_correo, id_empleado)=(1, 2).
+2014-10-27 23:50:45 ERROR  : ERROR:  inserción o actualización en la tabla «envio» viola la llave foránea «envio_correo_fk»
+DETAIL:  La llave (id_correo)=(2) no está presente en la tabla «correo».
+2014-10-27 23:50:48 ERROR  : ERROR:  inserción o actualización en la tabla «envio» viola la llave foránea «envio_correo_fk»
+DETAIL:  La llave (id_correo)=(2) no está presente en la tabla «correo».
+2014-10-28 09:18:07 ERROR  : ERROR:  no hay restricción unique que coincida con las columnas dadas en la tabla referida «empresa»
+2014-10-28 09:32:24 ERROR  : ERROR:  error de sintaxis en o cerca de «REATE»
+LINE 1: REATE OR REPLACE FUNCTION carpetas()
+        ^
+2014-10-28 09:32:29 ERROR  : ERROR:  «paises» no es una variable conocida
+LINE 64:   CLOSE paises ;
+                 ^
+2014-10-28 09:32:36 ERROR  : ERROR:  no existe la función codigo_pais()
+2014-10-28 09:55:29 ERROR  : ERROR:  inserción o actualización en la tabla «detalle_correo» viola la llave foránea «detalle_correo_correo_fk»
+DETAIL:  La llave (id_correo)=(2) no está presente en la tabla «correo».
+2014-10-28 09:55:36 ERROR  : ERROR:  inserción o actualización en la tabla «detalle_correo» viola la llave foránea «detalle_correo_correo_fk»
+DETAIL:  La llave (id_correo)=(2) no está presente en la tabla «correo».
+2014-10-28 09:56:22 ERROR  : ERROR:  llave duplicada viola restricción de unicidad «detalle_correo_pk»
+DETAIL:  Ya existe la llave (id_carpeta, id_correo)=(9, 5).
+2014-10-28 09:56:22 ERROR  : ERROR:  llave duplicada viola restricción de unicidad «detalle_correo_pk»
+DETAIL:  Ya existe la llave (id_carpeta, id_correo)=(9, 5).
+2014-10-28 18:57:54 ERROR  : ERROR:  error de sintaxis en o cerca de «(»
+LINE 1: select num, depto, sueldo rank() over (partition by depto or...
+                                      ^
+2014-10-28 19:02:10 ERROR  : ERROR:  no existe la columna «num»
+LINE 3: select num, depto, fecha - first_value(fecha) over (partitio...
+               ^
+2014-10-28 23:23:25 ERROR  : ERROR:  el valor es demasiado largo para el tipo character varying(32)
+2014-10-28 23:47:03 ERROR  : ERROR:  no existe la columna «id_trabajador»
+LINE 1: Select * from carpeta where id_usuario= (Select id_trabajado...
+                                                        ^
+2014-10-28 23:49:42 ERROR  : ERROR:  no existe la columna correo.fecha
+LINE 1: ...re as Remitente, correo.asunto as Asunto, to_char(correo.fec...
+                                                             ^
+2014-10-28 23:53:29 ERROR  : ERROR:  no existe la columna correo.fecha
+LINE 1: ...re as Remitente, correo.asunto as Asunto, to_char(correo.fec...
+                                                             ^
+2014-10-28 23:53:41 ERROR  : ERROR:  no existe la columna correo.fecha
+LINE 1: ...re as Remitente, correo.asunto as Asunto, to_char(correo.fec...
+                                                             ^
+2014-10-28 23:54:07 ERROR  : ERROR:  no existe la columna correo.id_usuario
+LINE 1: ...rreo.id_carpeta = 5 and  trabajador.id_empleado = correo.id_...
+                                                             ^
+2014-10-29 23:18:13 ERROR  : ERROR:  la columna «estado» contiene valores nulos
+2014-11-01 11:18:33 ERROR  : ERROR:  no existe la columna correo.id_usuario
+LINE 1: ...correo.id_correo = 2 and trabajador.id_empleado = correo.id_...
+                                                             ^
+2014-11-01 11:24:48 ERROR  : ERROR:  error de sintaxis al final de la entrada
+LINE 1: ...|| trabajador.dominio from trabajador JOIN correo JOIN envio
+                                                                       ^
+2014-11-01 11:24:56 ERROR  : ERROR:  error de sintaxis al final de la entrada
+LINE 1: ...io || '@' || trabajador.dominio from trabajador JOIN correo 
+                                                                       ^
+2014-11-01 11:27:07 ERROR  : ERROR:  error de sintaxis en o cerca de «ON»
+LINE 1: ...empleado = correo.id_empleado) NATURAL JOIN envio ON (envio....
+                                                             ^
+2014-11-01 11:27:16 ERROR  : ERROR:  error de sintaxis en o cerca de «USING»
+LINE 1: ...empleado = correo.id_empleado) NATURAL JOIN envio USING (id_...
+                                                             ^
+2014-11-01 11:27:26 ERROR  : ERROR:  la columna común «id_empleado» aparece más de una vez en la tabla izquierda
+2014-11-01 15:42:05 ERROR  : ERROR:  no existe la relación «asignacion»
+LINE 1: select * from tarea, asignacion tarea where asignacion_tarea...
+                             ^
+2014-11-01 18:01:35 ERROR  : ERROR:  la columna «trabajador.id_empleado» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: Select count(*), id_empleado from trabajador where usuario='...
+                         ^
+2014-11-01 22:22:42 ERROR  : ERROR:  el argumento de JOIN/ON debe ser de tipo boolean, no tipo record
+LINE 1: select * from correo inner join envio on (correo.id_correo, ...
+                                                 ^
+2014-11-01 22:22:49 ERROR  : ERROR:  el argumento de JOIN/ON debe ser de tipo boolean, no tipo record
+LINE 1: select * from correo join envio on (correo.id_correo, envio....
+                                           ^
+2014-11-01 22:25:23 ERROR  : ERROR:  la referencia a la columna «id_empleado» es ambigua
+LINE 1: ....id_empleado = asignacion_tarea.id_empleado where id_emplead...
+                                                             ^
+2014-11-03 08:54:11 ERROR  : ERROR:  inserción o actualización en la tabla «trabajador» viola la llave foránea «trabajador_dominio_fk»
+DETAIL:  La llave (dominio)=(microsoft.com) no está presente en la tabla «empresa».
+2014-11-03 08:54:38 ERROR  : ERROR:  el registro «new» no tiene un campo «id_usuario»
+CONTEXT:  SQL statement "INSERT INTO carpeta (
+                nombre,
+                visibilidad,
+                id_usuario,
+                directorio_padre) 
+        VALUES (               
+                'Recibidos',
+                0,
+                NEW.id_usuario,
+                null
+               )"
+función PL/pgSQL crear_carpetas() en la línea 5 en sentencia SQL
+2014-11-03 08:54:56 ERROR  : ERROR:  el registro «new» no tiene un campo «id_usuario»
+CONTEXT:  SQL statement "INSERT INTO carpeta (
+                nombre,
+                visibilidad,
+                id_usuario,
+                directorio_padre) 
+        VALUES (               
+                'Recibidos',
+                0,
+                NEW.id_usuario,
+                null
+               )"
+función PL/pgSQL crear_carpetas() en la línea 5 en sentencia SQL
+2014-11-03 08:55:00 ERROR  : ERROR:  inserción o actualización en la tabla «trabajador» viola la llave foránea «trabajador_dominio_fk»
+DETAIL:  La llave (dominio)=() no está presente en la tabla «empresa».
+2014-11-03 08:55:30 ERROR  : ERROR:  el registro «new» no tiene un campo «id_usuario»
+CONTEXT:  SQL statement "INSERT INTO carpeta (
+                nombre,
+                visibilidad,
+                id_usuario,
+                directorio_padre) 
+        VALUES (               
+                'Recibidos',
+                0,
+                NEW.id_usuario,
+                null
+               )"
+función PL/pgSQL crear_carpetas() en la línea 5 en sentencia SQL
+2014-11-03 08:55:43 ERROR  : ERROR:  el registro «new» no tiene un campo «id_usuario»
+CONTEXT:  SQL statement "INSERT INTO carpeta (
+                nombre,
+                visibilidad,
+                id_usuario,
+                directorio_padre) 
+        VALUES (               
+                'Recibidos',
+                0,
+                NEW.id_usuario,
+                null
+               )"
+función PL/pgSQL crear_carpetas() en la línea 5 en sentencia SQL
+2014-11-03 08:56:40 ERROR  : ERROR:  la columna «id_usuario» es de tipo integer pero la expresión es de tipo character varying
+LINE 9:                 NEW.usuario,
+                        ^
+HINT:  Necesitará reescribir la expresión o aplicarle una conversión de tipo.
+QUERY:  INSERT INTO carpeta (
+                nombre,
+                visibilidad,
+                id_usuario,
+                directorio_padre) 
+        VALUES (               
+                'Recibidos',
+                0,
+                NEW.usuario,
+                null
+               )
+CONTEXT:  PL/pgSQL function crear_carpetas() line 5 at sentencia SQL
+2014-11-03 08:57:40 ERROR  : ERROR:  inserción o actualización en la tabla «trabajador» viola la llave foránea «trabajador_dominio_fk»
+DETAIL:  La llave (dominio)=() no está presente en la tabla «empresa».
+2014-11-03 08:57:45 ERROR  : ERROR:  inserción o actualización en la tabla «trabajador» viola la llave foránea «trabajador_dominio_fk»
+DETAIL:  La llave (dominio)=(ms.com) no está presente en la tabla «empresa».
+2014-11-03 08:57:58 ERROR  : ERROR:  inserción o actualización en la tabla «trabajador» viola la llave foránea «trabajador_dominio_fk»
+DETAIL:  La llave (dominio)=(ms.com) no está presente en la tabla «empresa».
+2014-11-03 09:41:48 ERROR  : ERROR:  inserción o actualización en la tabla «asignacion_tarea» viola la llave foránea «asignacion_tarea_trabajador_fk»
+DETAIL:  La llave (id_empleado)=(19) no está presente en la tabla «trabajador».
+2014-11-03 09:41:49 ERROR  : ERROR:  inserción o actualización en la tabla «asignacion_tarea» viola la llave foránea «asignacion_tarea_trabajador_fk»
+DETAIL:  La llave (id_empleado)=(19) no está presente en la tabla «trabajador».
+2014-11-03 10:20:15 ERROR  : ERROR:  cancelando la sentencia debido a una petición del usuario
+2014-11-03 10:23:25 ERROR  : ERROR:  error de sintaxis al final de la entrada
+LINE 11: 
+         ^
+2014-11-03 10:24:25 ERROR  : ERROR:  la columna «region.nombre» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT count(*), region.nombre FROM recurso JOIN asignacion_...
+                         ^
+2014-11-03 10:24:46 ERROR  : ERROR:  count(*) debe ser usado para invocar una función de agregación sin parámetros
+LINE 1: SELECT count(), region.nombre FROM recurso JOIN asignacion_r...
+               ^
+2014-11-03 10:25:01 ERROR  : ERROR:  la columna «region.nombre» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT count(*), region.nombre, pais.nombre FROM recurso JOI...
+                         ^
+2014-11-03 10:25:31 ERROR  : ERROR:  la columna «pais.nombre» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT count(*), pais.nombre FROM recurso JOIN asignacion_re...
+                         ^
+2014-11-03 10:25:40 ERROR  : ERROR:  la columna «region.nombre» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT count(*), region.nombre FROM recurso JOIN asignacion_...
+                         ^
+2014-11-03 10:26:34 ERROR  : ERROR:  la columna «recurso.id_recurso» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT Distinct *  /*, region.nombre, pais.nombre*/ FROM rec...
+                        ^
+2014-11-03 10:26:42 ERROR  : ERROR:  la columna «region.nombre» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT Distinct  region.nombre, pais.nombre FROM recurso JOI...
+                         ^
+2014-11-03 10:27:04 ERROR  : ERROR:  la columna «pais.nombre» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT  count(pais.nombre), pais.nombre FROM recurso JOIN as...
+                                    ^
+2014-11-03 10:27:06 ERROR  : ERROR:  la columna «region.nombre» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT  count(pais.nombre), region.nombre FROM recurso JOIN ...
+                                    ^
+2014-11-03 10:27:24 ERROR  : ERROR:  la columna «recurso.nombre» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT  count(pais.nombre), recurso.nombre FROM recurso JOIN...
+                                    ^
+2014-11-03 10:27:30 ERROR  : ERROR:  la columna «recurso.nombre» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT  count(*), recurso.nombre FROM recurso JOIN asignacio...
+                          ^
+2014-11-03 10:27:30 ERROR  : ERROR:  la columna «recurso.nombre» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT  count(*), recurso.nombre FROM recurso JOIN asignacio...
+                          ^
+2014-11-03 10:27:31 ERROR  : ERROR:  la columna «recurso.nombre» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT  count(*), recurso.nombre FROM recurso JOIN asignacio...
+                          ^
+2014-11-03 10:32:31 ERROR  : ERROR:  la columna «region.nombre» debe aparecer en la cláusula GROUP BY o ser usada en una función de agregación
+LINE 1: SELECT  region.nombre, count(*) over (partition by region.no...
+                ^
+2014-11-19 17:20:55 ERROR  : ERROR:  no se puede eliminar la base de datos activa
+2014-11-19 17:21:06 ERROR  : ERROR:  no se puede eliminar la base de datos activa
+2014-11-19 17:21:12 ERROR  : ERROR:  no se puede eliminar la base de datos activa
+2014-11-19 17:21:13 ERROR  : ERROR:  no se puede eliminar la base de datos activa
+2014-12-08 17:48:19 ERROR  : ERROR:  no existe el tipo «number»
+LINE 25:     correlativo_inicial NUMBER NOT NULL ,
+                                 ^
+2014-12-08 17:49:55 ERROR  : ERROR:  error de sintaxis en o cerca de «*»
+LINE 1: DROP TABLE *
+                   ^
+2014-12-08 17:49:59 ERROR  : ERROR:  error de sintaxis al final de la entrada
+LINE 1: DROP TABLE 
+                   ^
+2014-12-08 17:50:20 ERROR  : ERROR:  no se permiten múltiples llaves primarias para la tabla «factura»
+LINE 35:     id_documento    VARCHAR (10) NOT NULL PRIMARY KEY,
+                                                   ^
+2014-12-08 17:53:14 ERROR  : ERROR:  no se permiten múltiples llaves primarias para la tabla «factura»
+LINE 35:     id_documento    VARCHAR (10) NOT NULL PRIMARY KEY,
+                                                   ^
+2014-12-08 17:58:36 ERROR  : ERROR:  no se permiten múltiples llaves primarias para la tabla «asignacion_precio_venta_producto»
+LINE 58:     id_precio_venta INTEGER NOT NULL PRIMARY KEY,
+                                              ^
+2014-12-08 17:59:14 ERROR  : ERROR:  no se permiten múltiples llaves primarias para la tabla «atributo_valor_producto»
+LINE 74:     id_atributo_producto INTEGER NOT NULL PRIMARY KEY,
+                                                   ^
+2014-12-08 18:55:47 ERROR  : ERROR:  la restricción de llave foránea «detalle_factura_fk» no puede ser implementada
+DETAIL:  Las columnas llave «no_factura» y «no_factura» son de tipos incompatibles: numeric y integer
+2014-12-08 18:56:25 ERROR  : ERROR:  la restricción de llave foránea «factura_precio_venta_fk» no puede ser implementada
+DETAIL:  Las columnas llave «id_precio_venta» y «id_precio_venta» son de tipos incompatibles: numeric y integer
+2014-12-08 18:57:18 ERROR  : ERROR:  la restricción de llave foránea «producto_estado_producto_fk» no puede ser implementada
+DETAIL:  Las columnas llave «id_estado_producto» y «id_estado_producto» son de tipos incompatibles: numeric y integer
+2014-12-08 18:57:26 ERROR  : ERROR:  la restricción de llave foránea «asig_precio_venta_fk» no puede ser implementada
+DETAIL:  Las columnas llave «id_precio_venta» y «id_precio_venta» son de tipos incompatibles: numeric y integer
+2014-12-08 18:57:38 ERROR  : ERROR:  la restricción de llave foránea «atributo_valor_fk» no puede ser implementada
+DETAIL:  Las columnas llave «id_atributo_producto» y «id_atributo_producto» son de tipos incompatibles: numeric y integer
+2014-12-08 18:57:50 ERROR  : ERROR:  la restricción de llave foránea «detalle_factura_fk» no puede ser implementada
+DETAIL:  Las columnas llave «no_factura» y «no_factura» son de tipos incompatibles: numeric y integer
+2014-12-09 17:23:08 ERROR  : ERROR:  error de sintaxis en o cerca de «)»
+LINE 1: ...re_serie, correlativo_inicial, correlativo_final, ) VALUES (...
+                                                             ^
+2014-12-09 17:23:18 ERROR  : ERROR:  error de sintaxis en o cerca de «)»
+LINE 1: ...re_serie, correlativo_inicial, correlativo_final, ) VALUES (...
+                                                             ^
+2014-12-09 17:23:22 ERROR  : ERROR:  error de sintaxis en o cerca de «)»
+LINE 1: ...re_serie, correlativo_inicial, correlativo_final, ) VALUES (...
+                                                             ^
+2014-12-09 17:24:29 ERROR  : ERROR:  error de sintaxis al final de la entrada
+LINE 1: ALTER TABLE documento DROP COLUMN 
+                                          ^
+2014-12-09 18:25:47 ERROR  : ERROR:  el valor null para la columna «id_estado_producto» viola la restricción not null
+DETAIL:  La fila que falla contiene (25A896V, 152.37, null, null).
+2014-12-09 18:25:49 ERROR  : ERROR:  el valor null para la columna «id_estado_producto» viola la restricción not null
+DETAIL:  La fila que falla contiene (25A896V, 152.37, null, null).
+2014-12-09 18:30:38 ERROR  : ERROR:  inserción o actualización en la tabla «producto» viola la llave foránea «producto_estado_producto_fk»
+DETAIL:  La llave (id_estado_producto)=(0) no está presente en la tabla «estado_producto».
+2014-12-09 18:30:40 ERROR  : ERROR:  inserción o actualización en la tabla «producto» viola la llave foránea «producto_estado_producto_fk»
+DETAIL:  La llave (id_estado_producto)=(0) no está presente en la tabla «estado_producto».
+2014-12-09 18:32:03 ERROR  : ERROR:  el valor null para la columna «id_estado_producto» viola la restricción not null
+DETAIL:  La fila que falla contiene (Q456T89, 1478.23, Por servicios computacionales, null).
+2014-12-09 18:40:47 ERROR  : ERROR:  el valor null para la columna «sku» viola la restricción not null
+DETAIL:  La fila que falla contiene (1400, null, null).
+2014-12-09 18:41:22 ERROR  : ERROR:  el valor null para la columna «sku» viola la restricción not null
+DETAIL:  La fila que falla contiene (400, null, null).
+2014-12-09 18:55:49 ERROR  : ERROR:  el valor null para la columna «sku» viola la restricción not null
+DETAIL:  La fila que falla contiene (2550, null, null).
+2014-12-09 18:57:07 ERROR  : ERROR:  el valor null para la columna «sku» viola la restricción not null
+DETAIL:  La fila que falla contiene (10000, null, null).
+2014-12-10 09:30:18 ERROR  : ERROR:  el valor null para la columna «no_factura» viola la restricción not null
+DETAIL:  La fila que falla contiene (1, 1, 45.25, fds, null, null, 25A896V).
+2014-12-10 09:30:25 ERROR  : ERROR:  el valor null para la columna «no_factura» viola la restricción not null
+DETAIL:  La fila que falla contiene (2, 1, 45.25, fds, null, null, 25A896V).
+2014-12-10 15:06:08 ERROR  : ERROR:  inserción o actualización en la tabla «detalle_factura» viola la llave foránea «detalle_factura_fk»
+DETAIL:  La llave (no_factura, id_documento)=(2, FAC001) no está presente en la tabla «factura».
+2014-12-16 17:31:42 ERROR  : ERROR:  no se puede eliminar el rol «libertya» porque otros objetos dependen de él
+DETAIL:  dueño de base de datos libertya
+1441 objetos en base de datos libertya
+2015-01-09 15:20:41 ERROR  : ERROR:  no se puede eliminar tabla cliente porque otros objetos dependen de él
+DETAIL:  restricción «factura_cliente_fk» en tabla factura depende de tabla cliente
+HINT:  Use DROP ... CASCADE para eliminar además los objetos dependientes.
+2015-01-09 15:20:54 ERROR  : ERROR:  no existe la relación «empresa»
+2015-01-09 15:25:11 ERROR  : ERROR:  el valor null para la columna «puede_facturar» viola la restricción not null
+DETAIL:  La fila que falla contiene (1, Activo, null).
+2015-01-09 15:25:13 ERROR  : ERROR:  el valor null para la columna «puede_facturar» viola la restricción not null
+DETAIL:  La fila que falla contiene (2, Activo, null).
+2015-01-09 15:25:17 ERROR  : ERROR:  el valor null para la columna «puede_facturar» viola la restricción not null
+DETAIL:  La fila que falla contiene (3, Activo, null).
+2015-01-09 15:25:19 ERROR  : ERROR:  el valor null para la columna «puede_facturar» viola la restricción not null
+DETAIL:  La fila que falla contiene (4, Activo, null).
+2015-01-09 15:31:16 ERROR  : ERROR:  no existe la relación «CLIENTE»
+LINE 1: INSERT INTO "CLIENTE" (nit,nombre,direccion,email,nombre_fac...
+                    ^
+2015-01-09 15:50:38 ERROR  : ERROR:  no existe la relación «cliente»
+LINE 3: insert into cliente (nit, nombre, direccion, email, nombre_f...
+                    ^
+2015-01-09 15:51:26 ERROR  : ERROR:  la relación «cliente» ya existe
+2015-01-09 15:51:32 ERROR  : ERROR:  llave duplicada viola restricción de unicidad «cliente_pk»
+DETAIL:  Ya existe la llave (nit)=(94028-k).
+2015-01-09 15:52:29 ERROR  : ERROR:  llave duplicada viola restricción de unicidad «cliente_pk»
+DETAIL:  Ya existe la llave (nit)=(94028-k).
+2015-01-13 12:15:05 ERROR  : ERROR:  error de sintaxis en o cerca de «varchar»
+LINE 2: ALTER COLUMN telefono varchar(10)
+                              ^
+2015-01-13 12:15:23 ERROR  : ERROR:  error de sintaxis en o cerca de «MODIFY»
+LINE 2: MODIFY COLUMN telefono varchar(10)
+        ^
+2015-01-15 10:29:07 ERROR  : ERROR:  no se puede eliminar tabla precio_venta_producto porque otros objetos dependen de él
+DETAIL:  restricción «factura_precio_venta_fk» en tabla factura depende de tabla precio_venta_producto
+restricción «asig_precio_venta_fk» en tabla asignacion_precio_venta_producto depende de tabla precio_venta_producto
+HINT:  Use DROP ... CASCADE para eliminar además los objetos dependientes.
+2015-01-15 10:29:21 ERROR  : ERROR:  no se puede eliminar tabla precio_venta_producto porque otros objetos dependen de él
+DETAIL:  restricción «factura_precio_venta_fk» en tabla factura depende de tabla precio_venta_producto
+HINT:  Use DROP ... CASCADE para eliminar además los objetos dependientes.
+2015-01-15 10:30:40 ERROR  : ERROR:  error de sintaxis en o cerca de «A»
+LINE 1: A
+        ^
+2015-01-21 12:01:08 ERROR  : ERROR:  llave duplicada viola restricción de unicidad «cliente_pk»
+DETAIL:  Ya existe la llave (nit)=(94028k).
+2015-01-22 17:16:19 ERROR  : ERROR:  error de sintaxis al final de la entrada
+LINE 1: ...ECT * FROM atributo_cliente LEFT JOIN atributo_valor_cliente
+                                                                       ^
+2015-01-22 17:27:41 ERROR  : ERROR:  inserción o actualización en la tabla «atributo_valor_cliente» viola la llave foránea «atributo_valor_cliente_fk2»
+DETAIL:  La llave (nit)=(14874k) no está presente en la tabla «cliente».
+2015-01-22 17:27:44 ERROR  : ERROR:  inserción o actualización en la tabla «atributo_valor_cliente» viola la llave foránea «atributo_valor_cliente_fk2»
+DETAIL:  La llave (nit)=(14874k) no está presente en la tabla «cliente».
+2015-01-22 17:28:34 ERROR  : ERROR:  inserción o actualización en la tabla «atributo_valor_cliente» viola la llave foránea «atributo_valor_cliente_fk2»
+DETAIL:  La llave (nit)=(14874k) no está presente en la tabla «cliente».
+2015-01-22 17:28:35 ERROR  : ERROR:  inserción o actualización en la tabla «atributo_valor_cliente» viola la llave foránea «atributo_valor_cliente_fk2»
+DETAIL:  La llave (nit)=(14874k) no está presente en la tabla «cliente».
+2015-01-22 17:43:13 ERROR  : ERROR:  la referencia a la columna «nit» es ambigua
+LINE 6: WHERE NIT = '14847k'
+              ^
+2015-01-22 17:45:50 ERROR  : ERROR:  falta una entrada para la tabla «cliente» en la cláusula FROM
+LINE 1: SELECT cliente.nit, atributo_valor_cliente.valor, atributo_c...
+               ^
+2015-01-22 17:46:21 ERROR  : ERROR:  falta una entrada para la tabla «atributo_valor_cliente» en la cláusula FROM
+LINE 4: ON atributo_valor_cliente.nit = cliente.nit
+           ^
+2015-01-22 18:00:53 ERROR  : ERROR:  el valor es demasiado largo para el tipo character varying(1)
+2015-01-22 18:00:57 ERROR  : ERROR:  el valor es demasiado largo para el tipo character varying(1)
+2015-01-22 18:01:03 ERROR  : ERROR:  llave duplicada viola restricción de unicidad «moneda_pk»
+DETAIL:  Ya existe la llave (id_moneda)=(1).
+2015-01-22 18:02:19 ERROR  : ERROR:  error de sintaxis al final de la entrada
+LINE 2: LEFT JOIN empresa
+                         ^
+2015-01-22 18:05:37 ERROR  : ERROR:  error de sintaxis al final de la entrada
+LINE 4: JOIN atributo_cliente
+                             ^
+2015-01-22 18:06:13 ERROR  : ERROR:  falta una entrada para la tabla «valor_cliente» en la cláusula FROM
+LINE 5: ON atributo_valor_cliente.id_atributo_cliente = valor_client...
+                                                        ^
+2015-01-22 18:07:12 ERROR  : ERROR:  las subconsultas en FROM deben tener un alias
+LINE 2: LEFT JOIN (SELECT * FROM atributo_valor_cliente)
+                  ^
+HINT:  Por ejemplo, FROM (SELECT ...) [AS] foo.
+2015-01-22 18:08:09 ERROR  : ERROR:  referencia a la entrada de la cláusula FROM para la tabla «cliente» no válida
+LINE 4: ON cliente.nit = A.nit
+           ^
+HINT:  Probablemente quiera hacer referencia al alias de la tabla «c».
+2015-01-22 18:08:57 ERROR  : ERROR:  la referencia a la columna «nit» es ambigua
+LINE 5: WHERE nit = '152790'
+              ^
+2015-01-22 18:45:20 ERROR  : ERROR:  la referencia a la columna «nit» es ambigua
+LINE 1: SELECT A.nit, A.valor, C.nombre FROM atributo_cliente C
+               ^
+2015-01-22 18:45:35 ERROR  : ERROR:  no existe la columna c.nit
+LINE 5: WHERE C.nit = '152790'
+              ^
+2015-01-22 18:45:40 ERROR  : ERROR:  la referencia a la columna «nit» es ambigua
+LINE 5: WHERE A.nit = '152790'
+              ^
+2015-01-22 18:45:50 ERROR  : ERROR:  no existe la columna a.nit1
+LINE 5: WHERE A.nit1 = '152790'
+              ^
+2015-01-22 18:48:37 ERROR  : ERROR:  falta una entrada para la tabla «a» en la cláusula FROM
+LINE 1: SELECT A.nombre FROM atributo_cliente
+               ^
+2015-01-22 19:10:01 ERROR  : ERROR:  error de sintaxis en o cerca de «)»
+LINE 3: ..., D.valor FROM cliente C JOIN atributo_valor_cliente D) as B
+                                                                 ^
+2015-01-26 16:27:02 ERROR  : ERROR:  ya existe una regla llamada «update_insert_atributo_valor_cliente» para la relación «atributo_valor_cliente»
+2015-01-26 16:27:28 ERROR  : ERROR:  llave duplicada viola restricción de unicidad «atributo_valor_cliente_pk»
+DETAIL:  Ya existe la llave (nit, id_atributo_cliente)=(152790, 2).
+2015-01-26 16:29:49 ERROR  : ERROR:  no se puede hacer INSERT RETURNING a la relación «atributo_valor_cliente»
+HINT:  Necesita un regla incondicional ON INSERT DO INSTEAD con una cláusula RETURNING.
+2015-01-26 16:30:24 ERROR  : ERROR:  listas de RETURNING no están soportadas en reglas condicionales
+2015-01-26 16:31:55 ERROR  : ERROR:  no se puede hacer INSERT RETURNING a la relación «atributo_valor_cliente»
+HINT:  Necesita un regla incondicional ON INSERT DO INSTEAD con una cláusula RETURNING.
+2015-01-26 16:32:31 ERROR  : ERROR:  no se puede hacer INSERT RETURNING a la relación «atributo_valor_cliente»
+HINT:  Necesita un regla incondicional ON INSERT DO INSTEAD con una cláusula RETURNING.
+2015-01-26 16:44:07 ERROR  : ERROR:  listas de RETURNING no están soportadas en reglas condicionales
+2015-01-29 21:04:34 ERROR  : ERROR:  no existe el tipo «varchar2»
+LINE 4:     nombre      VARCHAR2 (35) NOT NULL ,
+                        ^
+2015-01-30 20:04:09 ERROR  : ERROR:  el nuevo registro para la relación «producto» viola la restricción «check» «tipo_valido»
+DETAIL:  La fila que falla contiene (89657UO, 2369.14, Por servicios médicos, 2, 0, 4, 1, null, null, null, null).
+2015-01-30 20:04:20 ERROR  : ERROR:  el nuevo registro para la relación «producto» viola la restricción «check» «tipo_valido»
+DETAIL:  La fila que falla contiene (89657UO, 2369.14, Por servicios médicos, 2, 0, 4, 1, null, null, null, null).
+2015-01-30 20:04:31 ERROR  : ERROR:  el nuevo registro para la relación «producto» viola la restricción «check» «tipo_valido»
+DETAIL:  La fila que falla contiene (89657UO, 2369.14, Por servicios médicos, 2, 0, 4, 1, null, null, null, null).
+2015-01-30 20:04:43 ERROR  : ERROR:  el nuevo registro para la relación «producto» viola la restricción «check» «tipo_valido»
+DETAIL:  La fila que falla contiene (89657UO, 2369.14, Por servicios médicos, 2, 0, 4, 1, null, null, null, null).
+2015-01-30 20:06:52 ERROR  : ERROR:  la columna «tipo» no puede convertirse automáticamente al tipo boolean
+HINT:  Especifique una expresión USING para llevar a cabo la conversión.
+2015-01-30 20:09:37 ERROR  : ERROR:  error de sintaxis en o cerca de «SET»
+LINE 2: ... PRODUCTO ADD COLUMN es_producto boolean NOT NULL SET DEFAUL...
+                                                             ^
+2015-01-30 20:09:47 ERROR  : ERROR:  la columna «es_producto» contiene valores nulos
+2015-02-09 22:06:53 ERROR  : ERROR:  error de sintaxis en o cerca de «DATA»
+LINE 1: ALTER TABLE factura SET DATA TYPE varchar(25)
+                                ^
+2015-02-09 22:07:13 ERROR  : ERROR:  error de sintaxis en o cerca de «TYPE»
+LINE 1: ALTER TABLE factura SET TYPE varchar(25)
+                                ^
+2015-02-09 22:07:55 ERROR  : ERROR:  la restricción de llave foránea «detalle_factura_fk» no puede ser implementada
+DETAIL:  Las columnas llave «no_factura» y «no_factura» son de tipos incompatibles: integer y character varying
+2015-02-09 22:08:25 ERROR  : ERROR:  la restricción de llave foránea «detalle_factura_fk» no puede ser implementada
+DETAIL:  Las columnas llave «no_factura» y «no_factura» son de tipos incompatibles: integer y character varying
+2015-02-09 22:08:27 ERROR  : ERROR:  la restricción de llave foránea «detalle_factura_fk» no puede ser implementada
+DETAIL:  Las columnas llave «no_factura» y «no_factura» son de tipos incompatibles: integer y character varying
+2015-02-09 22:08:33 ERROR  : ERROR:  la restricción de llave foránea «detalle_factura_fk» no puede ser implementada
+DETAIL:  Las columnas llave «no_factura» y «no_factura» son de tipos incompatibles: character varying y integer
+2015-02-09 22:08:55 ERROR  : ERROR:  error de sintaxis en o cerca de «ALTER»
+LINE 2: ALTER TABLE detalle_factura ALTER COLUMN no_factura SET DATA...
+        ^
+2015-02-09 22:09:02 ERROR  : ERROR:  error de sintaxis en o cerca de «ALTER»
+LINE 2: ALTER TABLE detalle_factura ALTER COLUMN no_factura SET DATA...
+        ^
+2015-02-19 09:36:18 ERROR  : ERROR:  «correlativo_final» no es una variable conocida
+LINE 8:   correlativo_final INTO correlativo_fin
+          ^
+2015-02-19 09:37:07 ERROR  : ERROR:  INTO fue especificado más de una vez en o cerca de «INTO»
+LINE 8:   correlativo_final INTO correlativo_fin
+                            ^
+2015-02-19 09:37:20 ERROR  : ERROR:  INTO fue especificado más de una vez en o cerca de «INTO»
+LINE 8:   (correlativo_final INTO correlativo_fin)
+                             ^
+2015-02-19 09:41:28 ERROR  : ERROR:  no existe la función length(integer)
+LINE 1: select length(correlativo_final) from documento
+               ^
+HINT:  Ninguna función coincide en el nombre y tipos de argumentos. Puede ser necesario agregar conversión explícita de tipos.
+2015-02-19 09:41:34 ERROR  : ERROR:  error de sintaxis en o cerca de «as»
+LINE 1: select length(correlativo_final as text) from documento
+                                        ^
+2015-02-19 09:59:18 ERROR  : ERROR:  falta «THEN» al final de la expresión SQL
+LINE 24:   ultimo_no_factura = 0;
+                                ^
+2015-02-19 10:28:48 ERROR  : ERROR:  no coinciden los paréntesis en o cerca de «;»
+LINE 35:         RETURN nuevo_no_factura;
+                                        ^
+2015-02-19 10:46:05 ERROR  : ERROR:  «no_factura_devolver» no es una variable conocida
+LINE 36:    no_factura_devolver = '0' || no_factura_devolver;
+            ^
+2015-02-19 10:49:10 ERROR  : ERROR:  error de sintaxis en o cerca de «OR»
+LINE 1: ...SE off, COSTS on, BUFFERS off, TIMING off )CREATE OR REPLACE...
+                                                             ^
+2015-02-19 10:49:22 ERROR  : ERROR:  error de sintaxis en o cerca de «OR»
+LINE 1: ...SE off, COSTS on, BUFFERS off, TIMING off )CREATE OR REPLACE...
+                                                             ^
+2015-02-19 10:49:22 ERROR  : ERROR:  error de sintaxis en o cerca de «OR»
+LINE 1: ...SE off, COSTS on, BUFFERS off, TIMING off )CREATE OR REPLACE...
+                                                             ^
+2015-02-19 10:49:23 ERROR  : ERROR:  error de sintaxis en o cerca de «OR»
+LINE 1: ...SE off, COSTS on, BUFFERS off, TIMING off )CREATE OR REPLACE...
+                                                             ^
+2015-02-19 10:49:25 ERROR  : ERROR:  error de sintaxis en o cerca de «OR»
+LINE 1: ...SE off, COSTS on, BUFFERS off, TIMING off )CREATE OR REPLACE...
+                                                             ^
+2015-02-19 10:49:33 ERROR  : ERROR:  error de sintaxis al final de la entrada
+LINE 2: 
+        ^
+2015-02-19 11:05:12 ERROR  : ERROR:  secuencia de bytes no válida para codificación «UTF8»: 0xe1 0x20 0x6c
+2015-02-19 11:05:15 ERROR  : ERROR:  secuencia de bytes no válida para codificación «UTF8»: 0xe1 0x20 0x6c
+2015-02-19 11:05:16 ERROR  : ERROR:  secuencia de bytes no válida para codificación «UTF8»: 0xe1 0x20 0x6c
+2015-02-19 11:05:17 ERROR  : ERROR:  secuencia de bytes no válida para codificación «UTF8»: 0xe1 0x20 0x6c
+2015-02-19 11:05:17 ERROR  : ERROR:  secuencia de bytes no válida para codificación «UTF8»: 0xe1 0x20 0x6c
+2015-02-19 11:05:20 ERROR  : ERROR:  secuencia de bytes no válida para codificación «UTF8»: 0xe1 0x20 0x6c
+2015-02-19 11:07:24 ERROR  : ERROR:  no existe la columna «nombreserie»
+LINE 2:         WHERE   nombreserie = $1
+                        ^
+QUERY:  SELECT  correlativo_inicial                              FROM    documento
+        WHERE   nombreserie = $1
+CONTEXT:  PL/pgSQL function no_factura(text) line 8 at sentencia SQL
+
+
+2015-02-19 11:10:53 ERROR  : ERROR:  no se puede cambiar el tipo de retorno de una función existente
+HINT:  Use DROP FUNCTION primero.
+2015-02-19 11:11:06 ERROR  : ERROR:  error de sintaxis en o cerca de «;»
+LINE 1: DROP FUNCTION no_factura; 
+                                ^
+2015-02-19 11:11:38 ERROR  : The selected function could not be found.
+2015-02-19 11:14:26 ERROR  : The selected function could not be found.
+2015-02-19 11:18:45 ERROR  : ERROR:  el valor «9999999999999999999» está fuera de rango para el tipo integer
+CONTEXT:  sentencia SQL: «SELECT  CAST(no_factura as INTEGER)                         FROM factura
+	WHERE id_documento = $1
+	ORDER BY fecha DESC
+	LIMIT 1»
+PL/pgSQL function no_factura(text) line 16 at sentencia SQL
+
+
+2015-02-19 11:19:26 ERROR  : ERROR:  el valor «9999999999» está fuera de rango para el tipo integer
+CONTEXT:  sentencia SQL: «SELECT  CAST(no_factura as INTEGER)                         FROM factura
+	WHERE id_documento = $1
+	ORDER BY fecha DESC
+	LIMIT 1»
+PL/pgSQL function no_factura(text) line 16 at sentencia SQL
+
+
+2015-02-19 13:04:30 ERROR  : ERROR:  no existe la columna «FAC001»
+LINE 1: Select no_factura("FAC001")
+                          ^
+2015-02-19 13:38:33 ERROR  : ERROR:  no existe la columna «FAC001»
+LINE 1: select no_factura("FAC001")
+                          ^
+2015-02-19 13:58:16 ERROR  : The selected function could not be found.
+2015-02-26 22:08:04 ERROR  : ERROR:  error de sintaxis en o cerca de «\»
+LINE 35: \connect "CORPOSAF"
+         ^
+2015-02-26 22:08:17 ERROR  : ERROR:  error de sintaxis en o cerca de «1»
+LINE 792: 1 Zona Zona donde consume
+          ^
+2015-02-26 22:08:56 ERROR  : ERROR:  error de sintaxis en o cerca de «\»
+LINE 35: \connect "CORPOSAF"
+         ^
+2015-02-26 22:14:33 ERROR  : ERROR:  error de sintaxis en o cerca de «\»
+LINE 42: \connect "CORPOSAF"
+         ^
+2015-02-26 22:14:40 ERROR  : ERROR:  error de sintaxis en o cerca de «connect»
+LINE 42: connect "CORPOSAF"
+         ^
+2015-02-26 22:14:46 ERROR  : ERROR:  error de sintaxis en o cerca de «/»
+LINE 42: /connect "CORPOSAF"
+         ^
+2015-02-26 22:14:54 ERROR  : ERROR:  error de sintaxis en o cerca de «USE»
+LINE 42: USE "CORPOSAF"
+         ^
+2015-02-26 22:15:02 ERROR  : ERROR:  error de sintaxis en o cerca de «USING»
+LINE 42: USING "CORPOSAF"
+         ^
+2015-02-26 22:40:15 ERROR  : ERROR:  error de sintaxis en o cerca de «1»
+LINE 703: 1 Zona Zona donde consume
+          ^
+2015-02-26 22:40:35 ERROR  : ERROR:  error de sintaxis en o cerca de «1»
+LINE 726: 1 Nombre \N
+          ^
+2015-02-26 22:40:42 ERROR  : ERROR:  error de sintaxis en o cerca de «Norte»
+LINE 750: Norte 114424 1
+          ^
+2015-02-26 22:40:46 ERROR  : ERROR:  error de sintaxis en o cerca de «Norte»
+LINE 750: Norte 114424 1
+          ^
+2015-02-26 22:40:54 ERROR  : ERROR:  error de sintaxis en o cerca de «25»
+LINE 773: 25A896V 1 Libro Matemática 1
+          ^
+2015-02-26 22:41:02 ERROR  : ERROR:  error de sintaxis en o cerca de «1»
+LINE 801: 1 Librería 5.00 1
+          ^
+2015-02-26 22:41:07 ERROR  : ERROR:  error de sintaxis en o cerca de «1»
+LINE 801: 1 Librería 5.00 1
+          ^
+2015-02-26 22:41:14 ERROR  : ERROR:  error de sintaxis en o cerca de «747719»
+LINE 824: 747719 Larry Bowman 9911 Anderson Point \N George \N 4 2 1
+          ^
+2015-02-26 22:41:32 ERROR  : ERROR:  error de sintaxis en o cerca de «\»
+LINE 1838: \.
+           ^
+2015-02-26 22:41:39 ERROR  : ERROR:  error de sintaxis en o cerca de «\»
+LINE 1848: \.
+           ^
+2015-02-26 22:41:45 ERROR  : ERROR:  error de sintaxis en o cerca de «FAC001»
+LINE 1867: FAC001 A 1 999999999 No. 2014-1-52-248 del 10/03/2014
+           ^
+2015-02-26 22:41:50 ERROR  : ERROR:  error de sintaxis en o cerca de «1»
+LINE 1879: 1 7194376-5 Cristian Alejandro Mucun Guzmán Cristian Mucun C...
+           ^
+2015-02-26 22:41:55 ERROR  : ERROR:  error de sintaxis en o cerca de «1»
+LINE 1890: 1 Activo t
+           ^
+2015-02-26 22:42:00 ERROR  : ERROR:  error de sintaxis en o cerca de «1»
+LINE 1913: 1 Activo t
+           ^
+2015-02-26 22:42:09 ERROR  : ERROR:  error de sintaxis en o cerca de «000000001»
+LINE 1934: 000000001 2014-12-10 00:00:00 5160.00 FAC001 7194376-5 1 \N
+           ^
+2015-02-26 22:42:14 ERROR  : ERROR:  error de sintaxis en o cerca de «1»
+LINE 1956: 1 IVA 12.00 f 1
+           ^
+2015-02-26 22:42:20 ERROR  : ERROR:  error de sintaxis en o cerca de «1»
+LINE 1981: 1 Quetzales Q 1.00
+           ^
+2015-02-26 22:42:26 ERROR  : ERROR:  error de sintaxis en o cerca de «1»
+LINE 2002: 1 Cliente regular 0.00
+           ^
+2015-02-26 22:42:31 ERROR  : ERROR:  error de sintaxis en o cerca de «1»
+LINE 2025: 1 Contado
+           ^
+2015-02-26 22:42:36 ERROR  : ERROR:  error de sintaxis en o cerca de «25»
+LINE 2047: 25A896V 152.37 Libro matemática 1 1 1 1 566TY t \N \N t \N
+           ^
+2015-02-26 22:49:05 ERROR  : ERROR:  error de sintaxis en o cerca de «"C:\server1.sql"»
+LINE 702: ...e (id_atributo_cliente, nombre, descripcion) FROM "C:\server...
+                                                               ^
+2015-02-26 22:49:37 ERROR  : ERROR:  error de sintaxis en o cerca de «1»
+LINE 703: 1 Zona Zona donde consume
+          ^
+2015-02-26 22:58:35 ERROR  : ERROR:  error de sintaxis en o cerca de «1»
+LINE 2: 1 Zona Zona donde consume
+        ^
+2015-02-26 22:58:45 ERROR  : ERROR:  error de sintaxis en o cerca de «1»
+LINE 2: 1 Zona Zona donde consume
+        ^
+2015-02-26 22:59:53 ERROR  : ERROR:  error de sintaxis en o cerca de «1»
+LINE 2: 1 Zona Zona donde consume
+        ^
+2015-02-26 22:59:54 ERROR  : ERROR:  error de sintaxis en o cerca de «1»
+LINE 2: 1 Zona Zona donde consume
+        ^
+2015-02-26 22:59:54 ERROR  : ERROR:  error de sintaxis en o cerca de «1»
+LINE 2: 1 Zona Zona donde consume
+        ^
+2015-02-26 22:59:59 ERROR  : ERROR:  error de sintaxis en o cerca de «\»
+LINE 3: \.
+        ^
+2015-02-26 23:01:04 ERROR  : ERROR:  inserción o actualización en la tabla «atributo_valor_cliente» viola la llave foránea «atributo_valor_cliente_fk2»
+DETAIL:  La llave (nit)=(114424) no está presente en la tabla «cliente».
+2015-02-26 23:08:18 ERROR  : ERROR:  no existe la base de datos «corposaf»
+2015-02-26 23:08:49 ERROR  : ERROR:  no existe la base de datos «corposaf»
+2015-02-26 23:08:50 ERROR  : ERROR:  no existe la base de datos «corposaf»
+2015-02-26 23:08:50 ERROR  : ERROR:  no existe la base de datos «corposaf»
+2015-02-26 23:08:50 ERROR  : ERROR:  no existe la base de datos «corposaf»
+2015-02-26 23:08:50 ERROR  : ERROR:  no existe la base de datos «corposaf»
+2015-02-26 23:08:51 ERROR  : ERROR:  no existe la base de datos «corposaf»
+2015-02-26 23:08:51 ERROR  : ERROR:  no existe la base de datos «corposaf»
+2015-02-26 23:09:06 ERROR  : ERROR:  la base de datos «CORPOSAF» está siendo utilizada por otros usuarios
+DETAIL:  Hay 1 otra sesión usando la base de datos.
+2015-02-26 23:09:37 ERROR  : ERROR:  la base de datos «CORPOSAF» está siendo utilizada por otros usuarios
+DETAIL:  Hay 1 otra sesión usando la base de datos.
+2015-02-27 20:13:17 ERROR  : Error connecting to the server: fe_sendauth: no password supplied
+
+2015-02-27 20:59:26 ERROR  : ERROR:  no existe la columna «afecta_precio_venta»
+LINE 1: Select valor/100 + 1 from impuesto where afecta_precio_venta...
+                                                 ^
+2015-02-28 12:10:23 ERROR  : ERROR:  no existe la columna p.nit
+LINE 1: ...lect * from cliente C join precio_cliente P on C.nit = P.nit
+                                                                  ^
+2015-03-06 15:59:31 ERROR  : ERROR:  error de sintaxis en o cerca de «CONSTRAINT»
+LINE 50:  CONSTRAINT CANTIDADES_VALIDAS CHECK ( valor >= 0 )
+          ^
+2015-03-06 15:59:42 ERROR  : ERROR:  el argumento de CHECK debe ser de tipo boolean, no tipo timestamp without time zone
+2015-03-06 15:59:54 ERROR  : ERROR:  no existe la columna «id_empresa» referida en la llave foránea
+2015-03-06 16:00:17 ERROR  : ERROR:  no existe la columna «id_empresa» referida en la llave foránea
+2015-03-06 16:00:57 ERROR  : ERROR:  no existe la columna «id_empresa» referida en la llave foránea
+2015-03-06 16:02:11 ERROR  : ERROR:  no existe la columna «id_empresa» referida en la llave foránea
+2015-03-06 16:03:46 ERROR  : ERROR:  no existe el tipo «number»
+LINE 39:     valor        NUMBER (20,2) NOT NULL ,
+                          ^
+2015-03-06 16:03:55 ERROR  : ERROR:  no existe el tipo «number»
+LINE 40:     no_factura   NUMBER NOT NULL ,
+                          ^
+2015-03-06 16:04:01 ERROR  : ERROR:  no existe el tipo «varchar2»
+LINE 41:     id_documento VARCHAR2 (10) NOT NULL ,
+                          ^
+2015-03-06 16:04:05 ERROR  : ERROR:  la restricción de llave foránea «fcta_tipo_factura_fk» no puede ser implementada
+DETAIL:  Las columnas llave «no_factura» y «no_factura» son de tipos incompatibles: integer y character varying
+2015-03-06 16:05:26 ERROR  : ERROR:  no existe la relación «tipo_pago_venta»
+2015-03-07 21:43:14 ERROR  : ERROR:  una cadena de caracteres entre comillas está inconclusa en o cerca de «'FAC001);»
+LINE 1: SELECT no_factura('FAC001);
+                          ^
+2015-03-07 21:45:40 ERROR  : ERROR:  INSERT tiene más columnas de destino que expresiones
+LINE 1: ...ento, iva, total, anulada, voucher, id_documento, id_empresa...
+                                                             ^
+2015-03-07 21:46:05 ERROR  : ERROR:  la columna «fecha» es de tipo timestamp without time zone pero la expresión es de tipo integer
+LINE 1: ...umento, id_empresa) VALUES (no_factura('FAC001'), 04/03/2015...
+                                                             ^
+HINT:  Necesitará reescribir la expresión o aplicarle una conversión de tipo.
+2015-03-20 13:32:28 ERROR  : ERROR:  ya existe la columna «hora» en la relación «factura»
+2015-03-26 13:11:28 ERROR  : ERROR:  error de sintaxis en o cerca de «SET»
+LINE 3:         SET new.no_factura = no_factura(new.id_documento);
+                ^
+2015-03-26 13:13:14 ERROR  : ERROR:  error de sintaxis en o cerca de «new»
+LINE 3:     DO new.no_factura = no_factura(new.id_documento);
+               ^
+2015-03-26 13:34:47 ERROR  : ERROR:  error de sintaxis en o cerca de «SELECT»
+LINE 4:  VALUES (SELECT no_factura(new.id_documento),new.fecha, new....
+                 ^
+2015-03-26 13:36:39 ERROR  : ERROR:  error de sintaxis en o cerca de «SELECT»
+LINE 4:  VALUES (SELECT no_factura(new.id_documento),new.fecha, new....
+                 ^
+2015-03-26 13:42:03 ERROR  : ERROR:  update o delete en «factura» viola la llave foránea «detalle_factura_factura_fk» en la tabla «detalle_factura»
+DETAIL:  La llave (no_factura, id_documento, id_empresa)=(001500, FAC002, 1) todavía es referida desde la tabla «detalle_factura».
+2015-03-26 13:42:12 ERROR  : ERROR:  update o delete en «factura» viola la llave foránea «detalle_factura_factura_fk» en la tabla «detalle_factura»
+DETAIL:  La llave (no_factura, id_documento, id_empresa)=(001500, FAC002, 1) todavía es referida desde la tabla «detalle_factura».
+2015-03-26 13:42:18 ERROR  : ERROR:  update o delete en «factura» viola la llave foránea «detalle_factura_factura_fk» en la tabla «detalle_factura»
+DETAIL:  La llave (no_factura, id_documento, id_empresa)=(001500, FAC002, 1) todavía es referida desde la tabla «detalle_factura».
+2015-03-26 13:42:20 ERROR  : ERROR:  update o delete en «factura» viola la llave foránea «detalle_factura_factura_fk» en la tabla «detalle_factura»
+DETAIL:  La llave (no_factura, id_documento, id_empresa)=(001500, FAC002, 1) todavía es referida desde la tabla «detalle_factura».
+2015-03-26 13:42:22 ERROR  : ERROR:  update o delete en «factura» viola la llave foránea «detalle_factura_factura_fk» en la tabla «detalle_factura»
+DETAIL:  La llave (no_factura, id_documento, id_empresa)=(001500, FAC002, 1) todavía es referida desde la tabla «detalle_factura».
+2015-03-26 13:42:47 ERROR  : ERROR:  error de sintaxis al final de la entrada
+LINE 1: SELECT no_factura('FAC001') FROM 
+                                         ^
+2015-03-26 15:53:51 ERROR  : ERROR:  inserción o actualización en la tabla «detalle_factura» viola la llave foránea «detalle_factura_factura_fk»
+DETAIL:  La llave (no_factura, id_documento, id_empresa)=(0015010, FAC002, 1) no está presente en la tabla «factura».
+2015-03-26 15:53:52 ERROR  : ERROR:  inserción o actualización en la tabla «detalle_factura» viola la llave foránea «detalle_factura_factura_fk»
+DETAIL:  La llave (no_factura, id_documento, id_empresa)=(0015010, FAC002, 1) no está presente en la tabla «factura».
+2015-04-23 14:39:20 ERROR  : ERROR:  error de sintaxis en o cerca de «id_moneda»
+LINE 10:  constraint fk_tipo_de_cambio id_moneda references moneda(id...
+                                       ^
+2015-04-23 14:39:34 ERROR  : ERROR:  error de sintaxis en o cerca de «foreign»
+LINE 10:  constraint fk_tipo_de_cambio foreign key (id_moneda) refere...
+                                       ^
+2015-04-23 14:40:07 ERROR  : ERROR:  no se permiten múltiples llaves primarias para la tabla «tipo_de_cambio»
+LINE 9:  fecha date PRIMARY KEY,
+                    ^
+2015-04-23 14:41:12 ERROR  : ERROR:  el valor null para la columna «fecha» viola la restricción not null
+DETAIL:  La fila que falla contiene (1.23, 3, null).
+2015-04-23 14:41:13 ERROR  : ERROR:  el valor null para la columna «fecha» viola la restricción not null
+DETAIL:  La fila que falla contiene (1.23, 3, null).
+2015-04-24 04:20:10 ERROR  : ERROR:  error de sintaxis en o cerca de «'2015-04-22'»
+LINE 21: INSERT INTO tipo_de_cambio('2015-04-22',2.3,1);
+                                    ^
+2015-04-24 04:20:31 ERROR  : ERROR:  no se puede eliminar tabla moneda porque otros objetos dependen de él
+DETAIL:  restricción «fk_tipo_de_cambio» en tabla tipo_de_cambio depende de tabla moneda
+HINT:  Use DROP ... CASCADE para eliminar además los objetos dependientes.
+2015-04-24 04:20:38 ERROR  : ERROR:  el valor null para la columna «id» viola la restricción not null
+DETAIL:  La fila que falla contiene (null, Dolar).
+2015-04-24 04:46:38 ERROR  : ERROR:  error de sintaxis en o cerca de «CREATE»
+LINE 13: CREATE OR REPLACE FUNCTION insertarTipoCliente(_nombre varch...
+         ^
+2015-04-24 04:46:52 ERROR  : ERROR:  error de sintaxis en o cerca de «CREATE»
+LINE 20: CREATE OR REPLACE FUNCTION insertarFotografia(_nombre varcha...
+         ^
+2015-04-24 04:57:45 ERROR  : ERROR:  no existe la columna «nombre» en la relación «moneda»
+LINE 2: INSERT INTO moneda (nombre) VALUES ('Dolar');
+                            ^
+2015-04-24 08:41:44 ERROR  : ERROR:  error de sintaxis en o cerca de «insertarmoneda»
+LINE 1: insertarmoneda('pago22');
+        ^
+2015-04-24 14:22:06 ERROR  : ERROR:  error de sintaxis en o cerca de «SELECT»
+LINE 5:  RETURN SELECT * FROM Moneda;
+                ^
+2015-04-24 14:22:14 ERROR  : ERROR:  error de sintaxis en o cerca de «END»
+LINE 6: END;
+        ^
+2015-04-24 14:25:55 ERROR  : ERROR:  error de sintaxis en o cerca de «AS»
+LINE 2: RETURNS TABLE AS $$
+                      ^
+2015-04-24 14:26:39 ERROR  : ERROR:  error de sintaxis en o cerca de «END»
+LINE 6: END;
+        ^
+2015-04-24 14:27:01 ERROR  : ERROR:  error de sintaxis en o cerca de «select»
+LINE 9: select seleccionarmoneda();
+        ^
+2015-04-24 14:27:10 ERROR  : ERROR:  structure of query does not match function result type
+DETAIL:  El tipo retornado text no coincide con el tipo de registro esperado character varying en la columna 2.
+CONTEXT:  función PL/pgSQL seleccionarmoneda() en la línea 4 en RETURN QUERY
+2015-04-24 14:27:31 ERROR  : ERROR:  structure of query does not match function result type
+DETAIL:  El tipo retornado text no coincide con el tipo de registro esperado character varying en la columna 2.
+CONTEXT:  función PL/pgSQL seleccionarmoneda() en la línea 4 en RETURN QUERY
+2015-04-24 14:28:04 ERROR  : ERROR:  no se puede cambiar el tipo de retorno de una función existente
+DETAIL:  Tipo de registro definido por parámetros OUT es diferente.
+HINT:  Use DROP FUNCTION seleccionarmoneda() primero.
+2015-04-24 15:50:03 ERROR  : ERROR:  update o delete en «moneda» viola la llave foránea «tipo_de_cambio_moneda_fk» en la tabla «tipo_de_cambio»
+DETAIL:  La llave (id_moneda)=(2) todavía es referida desde la tabla «tipo_de_cambio».
+CONTEXT:  sentencia SQL: «DELETE FROM Moneda WHERE id_moneda = _id»
+función PL/pgSQL eliminarmoneda(integer) en la línea 3 en sentencia SQL
+2015-04-24 17:52:08 ERROR  : ERROR:  error de sintaxis en o cerca de «AS$$»
+LINE 2: ...TABLE(fecha date, cambio numeric, moneda_id_moneda int) AS$$
+                                                                   ^
+2015-04-24 18:05:00 ERROR  : ERROR:  no existe la función eliminartipodecambio()
+2015-04-24 18:05:01 ERROR  : ERROR:  error de sintaxis al final de la entrada
+LINE 1: DROP FUNCTION eliminartipodecambio
+                                          ^
+2015-04-24 18:05:13 ERROR  : ERROR:  no existe la función eliminartipodecambio()
+2015-04-24 18:05:17 ERROR  : ERROR:  error de sintaxis en o cerca de «;»
+LINE 1: DROP FUNCTION eliminartipodecambio;
+                                          ^
+2015-04-24 18:36:09 ERROR  : ERROR:  llave duplicada viola restricción de unicidad «tipo_de_cambio_pk»
+DETAIL:  Ya existe la llave (fecha, moneda_id_moneda)=(2015-04-25, 1).
+CONTEXT:  sentencia SQL: «INSERT INTO tipo_de_cambio VALUES(_fecha,_cambio,_moneda_id_moneda)»
+función PL/pgSQL insertartipodecambio(character varying,date,numeric,integer) en la línea 4 en sentencia SQL
+2015-04-24 18:39:11 ERROR  : ERROR:  error de sintaxis en o cerca de «23»
+LINE 1: SELECT eliminarTipoDeCambio(Chaz','23/04/2015 00:00:00' , '4...
+                                           ^
+2015-04-24 18:39:23 ERROR  : ERROR:  error de sintaxis en o cerca de «4.563»
+LINE 1: ...iminarTipoDeCambio(Chaz',"23/04/2015 00:00:00" , '4.563' , '...
+                                                             ^
+2015-04-24 18:39:33 ERROR  : ERROR:  una cadena de caracteres entre comillas está inconclusa en o cerca de «',"23/04/2015 00:00:00" , "4.563" , "1" )»
+LINE 1: SELECT eliminarTipoDeCambio(Chaz',"23/04/2015 00:00:00" , "4...
+                                        ^
+2015-04-24 18:39:39 ERROR  : ERROR:  no existe la columna «23/04/2015 00:00:00»
+LINE 1: SELECT eliminarTipoDeCambio('Chaz',"23/04/2015 00:00:00" , "...
+                                           ^
+2015-04-24 18:46:15 ERROR  : ERROR:  la orden DROP DATABASE no puede ser ejecutada desde una función o una línea con múltiples órdenes
+2015-04-24 18:46:24 ERROR  : ERROR:  la orden DROP DATABASE no puede ser ejecutada desde una función o una línea con múltiples órdenes
+2015-04-24 18:46:29 ERROR  : ERROR:  no existe la base de datos «proyectobd2»
+2015-04-24 18:47:22 ERROR  : ERROR:  no existe la base de datos «proyectobd2»
+2015-04-24 18:47:38 ERROR  : ERROR:  no se puede eliminar la base de datos activa
+2015-04-24 18:47:49 ERROR  : ERROR:  la base de datos «proyectoBD2» está siendo utilizada por otros usuarios
+DETAIL:  Hay otras 4 sesiones usando la base de datos.
+2015-04-24 18:48:19 ERROR  : ERROR:  la base de datos «proyectoBD2» está siendo utilizada por otros usuarios
+DETAIL:  Hay otras 3 sesiones usando la base de datos.
+2015-04-24 18:48:57 ERROR  : ERROR:  la base de datos «proyectoBD2» está siendo utilizada por otros usuarios
+DETAIL:  Hay otras 3 sesiones usando la base de datos.
+2015-04-24 18:52:03 ERROR  : ERROR:  no se ha seleccionado ningún esquema dentro del cual crear
+2015-04-24 18:53:52 ERROR  : ERROR:  error de sintaxis en o cerca de «CREATE»
+LINE 11: CREATE OR REPLACE FUNCTION insertartipodecambio( _usuario va...
+         ^
+2015-04-24 18:54:00 ERROR  : ERROR:  error de sintaxis en o cerca de «CREATE»
+LINE 27: CREATE OR REPLACE FUNCTION insertarFotografia(_nombre varcha...
+         ^
+2015-04-24 18:54:23 ERROR  : ERROR:  error de sintaxis en o cerca de «)»
+LINE 100:             _productoDescripcion, )
+                                            ^
+2015-04-24 18:54:28 ERROR  : ERROR:  error de sintaxis en o cerca de «AS$$»
+LINE 248:   RETURNS TABLE(id integer, moneda text) AS$$
+                                                   ^
+2015-04-24 18:54:34 ERROR  : ERROR:  error de sintaxis en o cerca de «CREATE»
+LINE 311: CREATE OR REPLACE FUNCTION eliminarmoneda(_id integer)
+          ^
+2015-04-24 18:54:40 ERROR  : ERROR:  no existe el tipo _estado
+2015-04-24 18:54:56 ERROR  : ERROR:  no existe el tipo _estado
+2015-04-24 18:54:57 ERROR  : ERROR:  no existe el tipo _estado
+2015-04-24 19:06:15 ERROR  : ERROR:  structure of query does not match function result type
+DETAIL:  El tipo retornado bigint no coincide con el tipo de registro esperado numeric en la columna 2.
+CONTEXT:  función PL/pgSQL seleccionartipodecambio() en la línea 4 en RETURN QUERY
+2015-04-24 19:10:12 ERROR  : ERROR:  no existe la columna «moneda_id_moneda»
+LINE 1: ...bio SET cambio = _cambio WHERE fecha = _fecha and moneda_id_...
+                                                             ^
+QUERY:  UPDATE tipo_de_cambio SET cambio = _cambio WHERE fecha = _fecha and moneda_id_moneda = _moneda_id_moneda
+CONTEXT:  función PL/pgSQL actualizartipodecambio(character varying,date,numeric,integer) en la línea 4 en sentencia SQL
+2015-04-24 19:11:31 ERROR  : ERROR:  no existe la columna «moneda_id_moneda»
+LINE 1: ...bio SET cambio = _cambio WHERE fecha = _fecha and moneda_id_...
+                                                             ^
+QUERY:  UPDATE tipo_de_cambio SET cambio = _cambio WHERE fecha = _fecha and moneda_id_moneda = _moneda_id_moneda
+CONTEXT:  función PL/pgSQL actualizartipodecambio(character varying,date,numeric,integer) en la línea 4 en sentencia SQL
+2015-04-24 20:13:22 ERROR  : ERROR:  structure of query does not match function result type
+DETAIL:  El tipo retornado integer no coincide con el tipo de registro esperado text en la columna 2.
+CONTEXT:  función PL/pgSQL seleccionarempleado() en la línea 4 en RETURN QUERY
+2015-04-24 20:14:12 ERROR  : ERROR:  la referencia a la columna «id_emp» es ambigua
+LINE 1: SELECT id_emp , nombre , usuario , pass , telefono , id_te ,...
+               ^
+DETAIL:  Podría referirse tanto a una variable PL/pgSQL como a una columna de una tabla.
+QUERY:  SELECT id_emp , nombre , usuario , pass , telefono , id_te , id_oficina , id_dep  FROM empleado
+CONTEXT:  función PL/pgSQL seleccionarempleado() en la línea 4 en RETURN QUERY
+2015-04-24 20:14:47 ERROR  : ERROR:  la referencia a la columna «nombre» es ambigua
+LINE 1: SELECT empleado.id_emp , nombre , usuario , pass , telefono ...
+                                 ^
+DETAIL:  Podría referirse tanto a una variable PL/pgSQL como a una columna de una tabla.
+QUERY:  SELECT empleado.id_emp , nombre , usuario , pass , telefono , id_te , id_oficina , id_dep  FROM empleado
+CONTEXT:  función PL/pgSQL seleccionarempleado() en la línea 4 en RETURN QUERY
+2015-04-24 20:15:21 ERROR  : ERROR:  structure of query does not match function result type
+DETAIL:  El tipo retornado character varying(30) no coincide con el tipo de registro esperado text en la columna 3.
+CONTEXT:  función PL/pgSQL seleccionarempleado() en la línea 4 en RETURN QUERY
+2015-04-24 20:15:55 ERROR  : ERROR:  no se puede cambiar el tipo de retorno de una función existente
+DETAIL:  Tipo de registro definido por parámetros OUT es diferente.
+HINT:  Use DROP FUNCTION seleccionarempleado() primero.
+2015-04-24 20:16:05 ERROR  : ERROR:  structure of query does not match function result type
+DETAIL:  El tipo retornado character varying(5) no coincide con el tipo de registro esperado text en la columna 7.
+CONTEXT:  función PL/pgSQL seleccionarempleado() en la línea 4 en RETURN QUERY
+2015-04-24 20:20:20 ERROR  : ERROR:  el nombre de parámetro «_usuario» fue usado más de una vez
+2015-04-24 20:36:08 ERROR  : ERROR:  no existe la columna «empleado» en la relación «empleado»
+LINE 1: UPDATE EMPLEADO SET empleado.nombre = _nombre, empleado.usua...
+                            ^
+QUERY:  UPDATE EMPLEADO SET empleado.nombre = _nombre, empleado.usuario = _usuario, empleado.pass = md5(_pass), empleado.telefono = _telefono, empleado.id_te = _id_te , empleado.id_oficina = _id_oficina, empleado.id_dep = _id_dep WHERE empleado.id_emp = _id_emp
+CONTEXT:  función PL/pgSQL actualizarempleado(character varying,integer,text,character varying,character varying,text,integer,character varying,integer) en la línea 4 en sentencia SQL
+2015-04-24 20:46:34 ERROR  : ERROR:  no existe la función insertarempleado(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown)
+LINE 1: SELECT insertarEmpleado('Chaz','Cristian' , 'Chaz' , 'passwo...
+               ^
+HINT:  Ninguna función coincide en el nombre y tipos de argumentos. Puede ser necesario agregar conversión explícita de tipos.
+2015-04-24 20:47:42 ERROR  : ERROR:  no existe la función insertarempleado(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown)
+LINE 9: SELECT insertarEmpleado('Chaz', 'Cristian' , 'Chaz' , 'passw...
+               ^
+HINT:  Ninguna función coincide en el nombre y tipos de argumentos. Puede ser necesario agregar conversión explícita de tipos.
+2015-04-24 20:48:13 ERROR  : ERROR:  no existe la función insertarempleado(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown)
+LINE 9: SELECT insertarEmpleado('Chaz', 'Cristian' , 'Chaz' , 'passw...
+               ^
+HINT:  Ninguna función coincide en el nombre y tipos de argumentos. Puede ser necesario agregar conversión explícita de tipos.
+2015-04-24 20:48:31 ERROR  : ERROR:  no existe la función insertarempleado(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown)
+LINE 9: SELECT insertarEmpleado('Chaz', 'Cristian' , 'Chaz' , 'passw...
+               ^
+HINT:  Ninguna función coincide en el nombre y tipos de argumentos. Puede ser necesario agregar conversión explícita de tipos.
+2015-04-24 20:48:38 ERROR  : ERROR:  no existe la función insertarempleado(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown)
+LINE 9: SELECT insertarempleado('Chaz', 'Cristian' , 'Chaz' , 'passw...
+               ^
+HINT:  Ninguna función coincide en el nombre y tipos de argumentos. Puede ser necesario agregar conversión explícita de tipos.
+2015-04-24 20:49:43 ERROR  : ERROR:  no existe la función insertarempleado(unknown, unknown, unknown, unknown, unknown, unknown, unknown, unknown)
+LINE 9: SELECT insertarempleado('Chaz', 'Cristian' , 'Chaz' , 'passw...
+               ^
+HINT:  Ninguna función coincide en el nombre y tipos de argumentos. Puede ser necesario agregar conversión explícita de tipos.
+2015-04-24 20:50:02 ERROR  : ERROR:  no existe la columna «_id_emp»
+LINE 1: ... , telefono , id_te , id_oficina , id_dep) VALUES(_id_emp , ...
+                                                             ^
+QUERY:  INSERT INTO EMPLEADO(nombre , usuario , pass , telefono , id_te , id_oficina , id_dep) VALUES(_id_emp , _nombre , _usuario , _pass , _telefono , _id_te , _id_oficina , _id_dep )
+CONTEXT:  función PL/pgSQL insertarempleado(text,text,text,text,text,integer,text,integer) en la línea 4 en sentencia SQL
+2015-04-24 20:56:05 ERROR  : ERROR:  error de sintaxis en o cerca de «,»
+LINE 6:  INSERT INTO TIPO_EMPLEADO(tipo) VALUES(, _nombre );
+                                                ^
+2015-04-24 20:57:46 ERROR  : ERROR:  error de sintaxis en o cerca de «WHERE»
+LINE 6:  UPDATE TIPO_EMPLEADO SET nombre = _nombre, WHERE id_te = _i...
+                                                    ^
+2015-04-24 21:00:06 ERROR  : ERROR:  no existe la columna «nombre» en la relación «tipo_empleado»
+LINE 1: UPDATE TIPO_EMPLEADO SET nombre = _nombre WHERE id_te = _id_...
+                                 ^
+QUERY:  UPDATE TIPO_EMPLEADO SET nombre = _nombre WHERE id_te = _id_te
+CONTEXT:  función PL/pgSQL actualizartipoempleado(character varying,integer,text) en la línea 4 en sentencia SQL
+2015-04-24 21:02:55 ERROR  : ERROR:  structure of query does not match function result type
+DETAIL:  El tipo retornado character varying(50) no coincide con el tipo de registro esperado text en la columna 2.
+CONTEXT:  función PL/pgSQL seleccionardepartamento() en la línea 4 en RETURN QUERY
+2015-04-24 21:03:13 ERROR  : ERROR:  no se puede cambiar el tipo de retorno de una función existente
+DETAIL:  Tipo de registro definido por parámetros OUT es diferente.
+HINT:  Use DROP FUNCTION seleccionardepartamento() primero.
+2015-04-24 22:44:49 ERROR  : ERROR:  no existe la columna «_nombre»
+LINE 1: INSERT INTO Tipo_de_pago (tipo) VALUES( _nombre )
+                                                ^
+QUERY:  INSERT INTO Tipo_de_pago (tipo) VALUES( _nombre )
+CONTEXT:  función PL/pgSQL insertartipodepago(character varying,text) en la línea 4 en sentencia SQL
+2015-04-24 22:45:41 ERROR  : ERROR:  el operador no existe: integer = character varying
+LINE 1: UPDATE tipo_de_pago SET tipo = _tipo WHERE id_tp = _id_tp
+                                                         ^
+HINT:  Ningún operador coincide con el nombre y el tipo de los argumentos. Puede ser necesario agregar conversiones explícitas de tipos.
+QUERY:  UPDATE tipo_de_pago SET tipo = _tipo WHERE id_tp = _id_tp
+CONTEXT:  función PL/pgSQL actualizartipodepago(character varying,character varying,text) en la línea 4 en sentencia SQL
+2015-04-24 22:47:22 ERROR  : ERROR:  el operador no existe: integer = character varying
+LINE 1: UPDATE tipo_de_pago SET tipo = _tipo WHERE id_tp = _id_tp
+                                                         ^
+HINT:  Ningún operador coincide con el nombre y el tipo de los argumentos. Puede ser necesario agregar conversiones explícitas de tipos.
+QUERY:  UPDATE tipo_de_pago SET tipo = _tipo WHERE id_tp = _id_tp
+CONTEXT:  función PL/pgSQL actualizartipodepago(character varying,character varying,text) en la línea 4 en sentencia SQL
+2015-04-24 22:50:48 ERROR  : ERROR:  structure of query does not match function result type
+DETAIL:  El tipo retornado bigint no coincide con el tipo de registro esperado integer en la columna 2.
+CONTEXT:  función PL/pgSQL seleccionarplandepagos() en la línea 4 en RETURN QUERY
+2015-04-24 22:51:04 ERROR  : ERROR:  no se puede cambiar el tipo de retorno de una función existente
+DETAIL:  Tipo de registro definido por parámetros OUT es diferente.
+HINT:  Use DROP FUNCTION seleccionarplandepagos() primero.
+2015-04-24 22:51:22 ERROR  : ERROR:  structure of query does not match function result type
+DETAIL:  El tipo retornado integer no coincide con el tipo de registro esperado bigint en la columna 3.
+CONTEXT:  función PL/pgSQL seleccionarplandepagos() en la línea 4 en RETURN QUERY
+2015-04-24 22:51:33 ERROR  : ERROR:  structure of query does not match function result type
+DETAIL:  El tipo retornado bigint no coincide con el tipo de registro esperado integer en la columna 4.
+CONTEXT:  función PL/pgSQL seleccionarplandepagos() en la línea 4 en RETURN QUERY
+2015-04-24 22:51:41 ERROR  : ERROR:  structure of query does not match function result type
+DETAIL:  El tipo retornado bigint no coincide con el tipo de registro esperado integer en la columna 5.
+CONTEXT:  función PL/pgSQL seleccionarplandepagos() en la línea 4 en RETURN QUERY
+2015-04-24 23:22:18 ERROR  : ERROR:  no existe la columna «prima»
+LINE 2: ...orcentaje_deducible , deducible , id_tp ) VALUES( prima ,  _...
+                                                             ^
+HINT:  Hay una columna llamada «prima» en la tabla «plan_de_pagos», pero no puede ser referenciada desde esta parte de la consulta.
+QUERY:  INSERT INTO plan_de_pagos ( prima ,  numero_cuotas , recargo , pago_cuota  , id_moneda , numero_cuotas_atrasadas , id_ts ,
+  id_poliza , porcentaje_deducible , deducible , id_tp ) VALUES( prima ,  _numero_cuotas , _recargo , _pago_cuota  , _id_moneda , _numero_cuotas_atrasadas , _id_ts ,
+  _id_poliza , _porcentaje_deducible , _deducible , _id_tp )
+CONTEXT:  función PL/pgSQL insertarplandepagos(character varying,integer,integer,integer,integer,integer,integer,character varying,integer,numeric,numeric,integer) en la línea 4 en sentencia SQL
+2015-04-24 23:23:52 ERROR  : ERROR:  inserción o actualización en la tabla «plan_de_pagos» viola la llave foránea «plan_de_pagos_poliza_fk»
+DETAIL:  La llave (id_ts, id_poliza)=(AUTO, 1) no está presente en la tabla «poliza».
+CONTEXT:  sentencia SQL: «INSERT INTO plan_de_pagos ( prima ,  numero_cuotas , recargo , pago_cuota  , id_moneda , numero_cuotas_atrasadas , id_ts ,
+  id_poliza , porcentaje_deducible , deducible , id_tp ) VALUES( _prima ,  _numero_cuotas , _recargo , _pago_cuota  , _id_moneda , _numero_cuotas_atrasadas , _id_ts ,
+  _id_poliza , _porcentaje_deducible , _deducible , _id_tp )»
+función PL/pgSQL insertarplandepagos(character varying,integer,integer,integer,integer,integer,integer,character varying,integer,numeric,numeric,integer) en la línea 4 en sentencia SQL
