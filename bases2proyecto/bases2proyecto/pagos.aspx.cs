@@ -42,5 +42,19 @@ namespace bases2proyecto
             Session["final"] = 3;
             Response.Redirect("pagos_mantenimiento.aspx", true);
         }
+
+        protected void LinkButton3_Click(object sender, EventArgs e)
+        {
+            Session["insert"] = "insertarTipoDePago";
+            Session["select"] = "seleccionarTipoDePago()";
+            Session["update"] = "actualizarTipoDePago";
+            Session["delete"] = "eliminarTipoDePago";
+            Session["origen"] = "pagos";
+            Session["titulo"] = "Tipo de Pago";
+            Session["iniciar"] = 0;
+            Session["iniciarInsert"] = 1;
+            Session["final"] = 1;
+            Response.Redirect("pagos_mantenimiento.aspx", true);
+        }
     }
 }

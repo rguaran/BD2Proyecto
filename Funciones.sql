@@ -149,6 +149,15 @@ END;
 $$  LANGUAGE plpgsql;
 
 
+CREATE OR REPLACE FUNCTION insertartipodepago( _usuario varchar, _tipo text)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Insert','Tipo de pago');
+	INSERT INTO Tipo_de_pago (tipo) VALUES( _nombre );
+END;
+$$  LANGUAGE plpgsql;
+
 ------------------------------------------------------------------------------------------
 -------------------------------------- RECUPERACIONES ------------------------------------
 ------------------------------------------------------------------------------------------
@@ -332,6 +341,14 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION seleccionartipodepago()
+  RETURNS TABLE(id_tipo_pago int, tipo varchar) AS $$
+BEGIN
+	
+	RETURN QUERY SELECT * FROM tipo_de_pago;
+END;
+$$  LANGUAGE plpgsql;
+
 
 ------------------------------------------------------------------------------------------
 -------------------------------------- MODIFICACIONES ------------------------------------
@@ -386,6 +403,16 @@ $$
 BEGIN
 	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Update','Departamento');
 	UPDATE Departamento SET nombre = _nombre WHERE id_dep = _id_dep; 
+END;
+$$  LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION actualizartipodepago( _usuario varchar, _id_tp int, _tipo text)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Update','Tipo de pago');
+	UPDATE tipo_de_pago SET tipo = _tipo WHERE id_tp = _id_tp; 
 END;
 $$  LANGUAGE plpgsql;
 
@@ -458,5 +485,14 @@ $$
 BEGIN
 	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Delete','Oficina');
 	DELETE FROM Oficina WHERE id_oficina = _id_oficina;
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION eliminartipodepago(_usuario varchar, _id_tp int)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Delete','Tipo de pago');
+	DELETE FROM tipo_de_pago WHERE id_tp = _id_tp;
 END;
 $$  LANGUAGE plpgsql;

@@ -16,20 +16,22 @@
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder4" runat="server">
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="id_plan" DataSourceID="dsPlanPagos">
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="id_poliza,id_ts" DataSourceID="dsPlanPagos" AllowPaging="True" AllowSorting="True">
         <Columns>
-            <asp:BoundField DataField="id_plan" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="id_plan" />
-            <asp:BoundField DataField="prima" HeaderText="prima" SortExpression="prima" />
-            <asp:BoundField DataField="numero_cuotas" HeaderText="numero cuotas" SortExpression="numero_cuotas" />
-            <asp:BoundField DataField="recargo" HeaderText="recargo" SortExpression="recargo" />
-            <asp:BoundField DataField="pago_cuota" HeaderText="pago por cuota" SortExpression="pago_cuota" />
-            <asp:BoundField DataField="moneda_id_moneda" HeaderText="moneda" SortExpression="moneda_id_moneda" />
-            <asp:BoundField DataField="numero_cuotas_atrasadas" HeaderText="cuotas atrasadas" SortExpression="numero_cuotas_atrasadas" />
-            <asp:BoundField DataField="poliza_tipo_de_seguro_id_ts" HeaderText="Tipo seguro" ReadOnly="True" SortExpression="poliza_tipo_de_seguro_id_ts" />
-            <asp:BoundField DataField="poliza_id_poliza" HeaderText="poliza" ReadOnly="True" SortExpression="poliza_id_poliza" />
+            <asp:BoundField DataField="prima" HeaderText="prima" ReadOnly="True" SortExpression="prima" />
+            <asp:BoundField DataField="numero_cuotas" HeaderText="numero_cuotas" SortExpression="numero_cuotas" ReadOnly="True" />
+            <asp:BoundField DataField="recargo" HeaderText="recargo" SortExpression="recargo" ReadOnly="True" />
+            <asp:BoundField DataField="pago_cuota" HeaderText="pago_cuota" SortExpression="pago_cuota" ReadOnly="True" />
+            <asp:BoundField DataField="numero_cuotas_atrasadas" HeaderText="numero_cuotas_atrasadas" SortExpression="numero_cuotas_atrasadas" ReadOnly="True" />
+            <asp:BoundField DataField="porcentaje_deducible" HeaderText="porcentaje_deducible" SortExpression="porcentaje_deducible" ReadOnly="True" />
+            <asp:BoundField DataField="deducible" HeaderText="deducible" SortExpression="deducible" ReadOnly="True" />
+            <asp:BoundField DataField="id_poliza" HeaderText="id_poliza" ReadOnly="True" SortExpression="id_poliza" />
+            <asp:BoundField DataField="id_ts" HeaderText="id_ts" ReadOnly="True" SortExpression="id_ts" />
+            <asp:BoundField DataField="tipo" HeaderText="tipo" ReadOnly="True" SortExpression="tipo" />
+            <asp:BoundField DataField="moneda" HeaderText="moneda" ReadOnly="True" SortExpression="moneda" />
         </Columns>
     </asp:GridView>
-    <asp:SqlDataSource ID="dsPlanPagos" runat="server" ConnectionString="<%$ ConnectionStrings:proyectoBD2ConnectionString %>" ProviderName="<%$ ConnectionStrings:proyectoBD2ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM plan_de_pagos"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="dsPlanPagos" runat="server" ConnectionString="<%$ ConnectionStrings:proyectoBD2ConnectionString %>" ProviderName="<%$ ConnectionStrings:proyectoBD2ConnectionString.ProviderName %>" SelectCommand="SELECT plan_de_pagos.prima, plan_de_pagos.numero_cuotas, plan_de_pagos.recargo, plan_de_pagos.pago_cuota, plan_de_pagos.numero_cuotas_atrasadas, plan_de_pagos.porcentaje_deducible, plan_de_pagos.deducible, poliza.id_poliza, poliza.id_ts, tipo_de_pago.tipo, moneda.moneda FROM plan_de_pagos INNER JOIN poliza ON plan_de_pagos.id_poliza = poliza.id_poliza INNER JOIN tipo_de_pago ON plan_de_pagos.id_tp = tipo_de_pago.id_tp INNER JOIN moneda ON plan_de_pagos.id_moneda = moneda.id_moneda"></asp:SqlDataSource>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder5" runat="server">
     <p style="text-align: center">
@@ -37,6 +39,8 @@
         <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">Moneda</asp:LinkButton>
 &nbsp;-
         <asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton2_Click">Tipo de cambio</asp:LinkButton>
+    &nbsp;-
+        <asp:LinkButton ID="LinkButton3" runat="server" OnClick="LinkButton3_Click">Tipo de pago</asp:LinkButton>
     </strong> 
     
     </p>

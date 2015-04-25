@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="nuevoplanpago.aspx.cs" Inherits="bases2proyecto.WebForm1" UnobtrusiveValidationMode="None" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p style="font-size: xx-large">
-        Nuevo plan de pagos</p>
+        Plan de pagos</p>
     <p style="font-size: xx-large">
         &nbsp;</p>
 </asp:Content>

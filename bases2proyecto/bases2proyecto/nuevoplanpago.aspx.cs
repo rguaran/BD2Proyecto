@@ -9,31 +9,19 @@ namespace bases2proyecto
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        string nuevo;
+        string tipo_seguro;
+        int no_poliza;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-
-        protected void TextBox3_TextChanged(object sender, EventArgs e)
-        {
-            
-            
-        }
-
-        protected void txtDeducible_TextChanged(object sender, EventArgs e)
-        {
-     
-        }
-
-        protected void txtPrima_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        protected void txtPorcentajeDeducible_TextChanged(object sender, EventArgs e)
-        {
-            
-
+            nuevo = (string)Session["nuevoPlanPago"];
+            tipo_seguro = (string)Session["tipoSeguro"];
+            no_poliza = (Int32)Session["idPoliza"];
+            if (!IsPostBack)
+            {
+                //BindData();
+            }
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -48,8 +36,7 @@ namespace bases2proyecto
             txtDeducible.Text = deducible.ToString();
             txtPagoCuota.Text = pagoCuota.ToString();
 
-            /*ConexionBD con = new ConexionBD();
-            con.executeQuery("insertarMoneda('pago"+pagoCuota.ToString()+"');");*/
+
         }
 
         protected void btnDetalle_Click(object sender, EventArgs e)
