@@ -224,6 +224,14 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION seleccionartipodecambio(_usuario varchar)
+  RETURNS TABLE(fecha date, cambio numeric, moneda_id_moneda int) AS $$
+BEGIN
+	
+	RETURN QUERY SELECT * FROM tipo_de_cambio;
+END;
+$$  LANGUAGE plpgsql;
+
 
 
 
@@ -244,6 +252,14 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION actualizartipodecambio( _usuario varchar, _fecha date, _cambio numeric, _moneda_id_moneda integer)
+  RETURNS void AS
+$$
+BEGIN
+	UPDATE tipo_de_cambio SET cambio = _cambio WHERE fecha = _fecha and moneda_id_moneda = _moneda_id_moneda;
+END;
+$$  LANGUAGE plpgsql;
+
 
 
 
@@ -259,6 +275,16 @@ CREATE OR REPLACE FUNCTION eliminarmoneda(_id integer)
 $$
 BEGIN
 	DELETE FROM Moneda WHERE id_moneda = _id;
+END;
+$$  LANGUAGE plpgsql;
+
+
+
+CREATE OR REPLACE FUNCTION eliminartipodecambio(_usuario varchar,  _fecha date, _cambio numeric, _moneda_id_moneda integer)
+  RETURNS void AS
+$$
+BEGIN
+	DELETE FROM tipo_de_cambio WHERE fecha = _fecha and moneda_id_moneda = _moneda_id_moneda;
 END;
 $$  LANGUAGE plpgsql;
 
