@@ -9,15 +9,16 @@ namespace bases2proyecto
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
-        string nuevo;
+       
         string tipo_seguro;
         int no_poliza;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            nuevo = (string)Session["nuevoPlanPago"];
+         
             tipo_seguro = (string)Session["tipoSeguro"];
             no_poliza = (Int32)Session["idPoliza"];
+            
             if (!IsPostBack)
             {
                 //BindData();
@@ -36,10 +37,22 @@ namespace bases2proyecto
             txtDeducible.Text = deducible.ToString();
             txtPagoCuota.Text = pagoCuota.ToString();
 
+            ConexionBD con = new ConexionBD();
 
+            string query = "SELECT insertarplandepagos('" + Session["usuario"] + "',";
+            query += prima + "," + noCuotas + "," + recargo + "," + pagoCuota + "," + DropDownList1.SelectedValue + ",";
+            query += 0 + ",'" + tipo_seguro + "'," + no_poliza + "," + pcnDeducible + "," + deducible + "," + DropDownList2.SelectedValue;
+            query += ")";
+            con.Query(query);
+            Label1.Text = "Plan de pagos guardado exitosamente";
         }
 
         protected void btnDetalle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void SqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {
 
         }

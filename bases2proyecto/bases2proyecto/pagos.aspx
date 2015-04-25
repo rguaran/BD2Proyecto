@@ -8,11 +8,17 @@
         Seleccione una opción:</p>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
-     <p>
-         &nbsp;
-     <a href="nuevoplanpago.aspx">Nuevo plan de pagos</a>
+     <p style="text-align: center">
+        <asp:Button ID="btnAgregar" runat="server" OnClick="btnAgregar_Click" Text="Agregar" />
 
-         &nbsp;</p>
+        &nbsp;
+
+        <asp:Button ID="btnEditar" runat="server" OnClick="btnEditar_Click" Text="Editar" />
+
+        &nbsp;
+
+        <asp:Button ID="btnEliminar" runat="server" OnClick="btnEliminar_Click" Text="Eliminar" />
+     </p>
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder4" runat="server">

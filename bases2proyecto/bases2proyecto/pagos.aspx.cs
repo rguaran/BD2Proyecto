@@ -14,6 +14,19 @@ namespace bases2proyecto
 
         }
 
+        private void setSession()
+        {
+            Session["insert"] = "insertarPlanDePagos";
+            Session["select"] = "seleccionarPlanDePagos()";
+            Session["update"] = "actualizarPlanDePagos";
+            Session["delete"] = "eliminarPlanDePagos";
+            Session["origen"] = "pagos";
+            Session["titulo"] = "Plan de pagos";
+            Session["iniciar"] = 0;
+            Session["iniciarInsert"] = 1;
+            Session["final"] = 1;
+        }
+
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
             Session["insert"] = "insertarMoneda";
@@ -55,6 +68,23 @@ namespace bases2proyecto
             Session["iniciarInsert"] = 1;
             Session["final"] = 1;
             Response.Redirect("pagos_mantenimiento.aspx", true);
+        }
+
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("nuevoplanpago.aspx", true);
+        }
+
+        protected void btnEditar_Click(object sender, EventArgs e)
+        {
+            setSession();
+            Response.Redirect("editar.aspx", true);
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            setSession();
+            Response.Redirect("suprimir.aspx", true);
         }
     }
 }
