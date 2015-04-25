@@ -111,6 +111,14 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql
 
+CREATE OR REPLACE FUNCTION insertarempleado( _usuario1 varchar, _id_emp int, _nombre text, _usuario varchar, _pass varchar, _telefono text, _id_te int, _id_oficina varchar, _id_dep int)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario1,now(),'Insert','Empleado');
+	INSERT INTO EMPLEADO(empleado.id_emp , empleado.nombre , empleado.usuario , empleado.pass , empleado.telefono , empleado.id_te , empleado.id_oficina , empleado.id_dep) VALUES(_id_emp , _nombre , _usuario , _pass , _telefono , _id_te , _id_oficina , _id_dep );
+END;
+$$  LANGUAGE plpgsql;
 
 
 ------------------------------------------------------------------------------------------
@@ -264,6 +272,13 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION seleccionarempleado()
+  RETURNS TABLE(id_emp int, nombre text, usuario varchar, pass varchar, telefono text, id_te int, id_oficina varchar, id_dep int) AS $$
+BEGIN
+	
+	RETURN QUERY SELECT empleado.id_emp , empleado.nombre , empleado.usuario , empleado.pass , empleado.telefono , empleado.id_te , empleado.id_oficina , empleado.id_dep  FROM empleado;
+END;
+$$  LANGUAGE plpgsql;
 
 
 ------------------------------------------------------------------------------------------
@@ -291,10 +306,18 @@ CREATE OR REPLACE FUNCTION actualizartipodecambio( _usuario varchar, _fecha date
 $$
 BEGIN
 	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Update','Tipo de cambio');
-	UPDATE tipo_de_cambio SET cambio = _cambio WHERE fecha = _fecha and moneda_id_moneda = _moneda_id_moneda;
+	UPDATE tipo_de_cambio SET cambio = _cambio WHERE fecha = _fecha and id_moneda = _moneda_id_moneda;
 END;
 $$  LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION actualizarempleado( _usuario1 varchar, _id_emp int, _nombre text, _usuario varchar, _pass varchar, _telefono text, _id_te int, _id_oficina varchar, _id_dep int)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario1,now(),'Update','Empleado');
+	UPDATE EMPLEADO SET empleado.nombre = _nombre, empleado.usuario = _usuario, empleado.pass = md5(_pass), empleado.telefono = _telefono, empleado.id_te = _id_te , empleado.id_oficina = _id_oficina, empleado.id_dep = _id_dep WHERE empleado.id_emp = _id_emp; 
+END;
+$$  LANGUAGE plpgsql;
 
 
 ------------------------------------------------------------------------------------------
@@ -329,6 +352,15 @@ $$
 BEGIN
 	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Delete','Tipo de cambio');
 	DELETE FROM tipo_de_cambio WHERE fecha = _fecha and id_moneda = _moneda_id_moneda;
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION eliminarempleado(_usuario varchar,  _id_empleado integer)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Delete','Empleado');
+	DELETE FROM EMPLEADO WHERE empleado.id_emp = _id_empleado;
 END;
 $$  LANGUAGE plpgsql;
 
