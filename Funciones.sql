@@ -3,10 +3,11 @@
 -------------------------------------- INSERCIONES ------------------------------------
 ---------------------------------------------------------------------------------------
 
-CREATE OR REPLACE FUNCTION insertarPais(_nombre varchar(50))
+CREATE OR REPLACE FUNCTION insertarPais(_usuario varchar(20), _nombre varchar(50))
 RETURNS void AS $$
 BEGIN
 	INSERT INTO Pais (pais) VALUES (_nombre);
+	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insertar', 'Pais');
 END;
 $$  LANGUAGE plpgsql
 	
@@ -84,14 +85,19 @@ BEGIN
 	SELECT getIdTipoEmpleado (_tipo) INTO idTE;
 	SELECT getIdOficina (_oficina) INTO idOficina;
 	SELECT getIdDepartamento (_depto) INTO idDepto;
-	INSERT INTO Empleado (nombre, telefono, Tipo_Empleado_id_te, Oficina_id_oficina, Oficina_Departamento_id_dep) VALUES (_nombre, _telefono, idTE, idOficina, idDepto);
+	INSERT INTO Empleado (nombre, telefono, Tipo_Empleado_id_te, Oficina_id_oficina, Oficina_Departamento_id_dep) VALUES 
+	(_nombre, _telefono, idTE, idOficina, idDepto);
 END;
 $$  LANGUAGE plpgsql
 
-CREATE OR REPLACE FUNCTION insertarPoliza()
+CREATE OR REPLACE FUNCTION insertarPoliza(_estado, _cp, _fechaIni, _fechaFin, _clausulas, _nombreCliente, _pais, _tipoSeguro, _polizaVieja, _meses,
+										  _productoDescripcion, )
 RETURNS void AS $$
 BEGIN
-
+	INSERT INTO Poliza(id_estado, id_cp, fecha_inicio, fecha_fin, clausulas, id, id_ts, poliza_vieja, meses, producto_descripcion, status,
+						id_vendedor, id_operador, id_negociador, cod_venta, coberturas_adicionales, id_cargaV, id_cargaO, id_cargaN) 
+			VALUES   (getIdEstado(_estado), getIdCondicionParticular(_cp), _fechaIni, _fechaFin, _clausulas, getIdCliente(_nombreCliente, _pais),
+						getIdTS(_tipoSeguro), _polizaVieja, _meses, _productoDescripcion, _estado, r)
 END;
 $$ LANGUAGE plpgsql
 
@@ -107,6 +113,15 @@ DECLARE idPais INTEGER;
 BEGIN
 	SELECT id_pais INTO idPais FROM Pais WHERE pais = _nombre;
 	RETURN idPais;
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION getIdCondicionParticular(_condicion varchar(50))
+RETURNS INTEGER AS $$
+DECLARE idCp INTEGER;
+BEGIN
+	SELECT id_cp INTO idCp FROM Condiciones_Particulares WHERE condicion = _condicion;
+	RETURN idCp;
 END;
 $$  LANGUAGE plpgsql;
 
@@ -256,8 +271,15 @@ $$  LANGUAGE plpgsql;
 
 
 
-
-
+------------------------------------------------------------------------------------------
+-------------------------------------- ELIMINACIONES -------------------------------------
+------------------------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION insertarPais(_nombre varchar(50))
+RETURNS void AS $$
+BEGIN
+	INSERT INTO Pais (pais) VALUES (_nombre);
+END;
+$$  LANGUAGE plpgsql
 
 
 

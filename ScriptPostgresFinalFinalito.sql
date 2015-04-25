@@ -3,7 +3,16 @@
 --   sitio:      SQL Server 2008
 --   tipo:      SQL Server 2008
 
-
+CREATE
+  TABLE Bitacora
+  (
+    id_bit SERIAL NOT NULL ,
+    usuario    VARCHAR (20) NOT NULL,
+	fecha		TIMESTAMP NOT NULL,
+    accion      VARCHAR (25) NOT NULL ,
+    modulo	    VARCHAR (50) NOT NULL ,
+    CONSTRAINT Bitacora_PK PRIMARY KEY  (id_bit)
+);
 
 
 CREATE
@@ -118,6 +127,8 @@ CREATE
     id_emp   SERIAL NOT NULL ,
     id_carga SERIAL NOT NULL ,
     nombre TEXT ,
+	usuario VARCHAR(30),
+	pass	VARCHAR(50),
     telefono TEXT ,
     id_te      INTEGER NOT NULL ,
     id_oficina VARCHAR (5) NOT NULL ,
