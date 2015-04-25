@@ -111,14 +111,25 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql
 
-CREATE OR REPLACE FUNCTION insertarempleado( _usuario1 varchar, _id_emp int, _nombre text, _usuario varchar, _pass varchar, _telefono text, _id_te int, _id_oficina varchar, _id_dep int)
+CREATE OR REPLACE FUNCTION insertarempleado( _usuario1 text,  _nombre text, _usuario text, _pass text, _telefono text, _id_te int, _id_oficina text, _id_dep int)
   RETURNS void AS
 $$
 BEGIN
 	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario1,now(),'Insert','Empleado');
-	INSERT INTO EMPLEADO(empleado.id_emp , empleado.nombre , empleado.usuario , empleado.pass , empleado.telefono , empleado.id_te , empleado.id_oficina , empleado.id_dep) VALUES(_id_emp , _nombre , _usuario , _pass , _telefono , _id_te , _id_oficina , _id_dep );
+	INSERT INTO EMPLEADO(nombre , usuario , pass , telefono , id_te , id_oficina , id_dep) VALUES( _nombre , _usuario , _pass , _telefono , _id_te , _id_oficina , _id_dep );
 END;
 $$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION insertartipoempleado( _usuario varchar, _nombre text)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Insert','Tipo empleado');
+	INSERT INTO TIPO_EMPLEADO(tipo) VALUES( _nombre );
+END;
+$$  LANGUAGE plpgsql;
+
+
 
 
 ------------------------------------------------------------------------------------------
@@ -280,6 +291,15 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION seleccionartipoempleado()
+  RETURNS TABLE(id_tipo int, tipo text) AS $$
+BEGIN
+	
+	RETURN QUERY SELECT * FROM tipo_empleado;
+END;
+$$  LANGUAGE plpgsql;
+
+
 
 ------------------------------------------------------------------------------------------
 -------------------------------------- MODIFICACIONES ------------------------------------
@@ -315,7 +335,16 @@ CREATE OR REPLACE FUNCTION actualizarempleado( _usuario1 varchar, _id_emp int, _
 $$
 BEGIN
 	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario1,now(),'Update','Empleado');
-	UPDATE EMPLEADO SET empleado.nombre = _nombre, empleado.usuario = _usuario, empleado.pass = md5(_pass), empleado.telefono = _telefono, empleado.id_te = _id_te , empleado.id_oficina = _id_oficina, empleado.id_dep = _id_dep WHERE empleado.id_emp = _id_emp; 
+	UPDATE EMPLEADO SET nombre = _nombre, usuario = _usuario, pass = _pass, telefono = _telefono, id_te = _id_te , id_oficina = _id_oficina, id_dep = _id_dep WHERE empleado.id_emp = _id_emp; 
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION actualizartipoempleado( _usuario varchar, _id_te int, _nombre text)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Update','Tipo empleado');
+	UPDATE TIPO_EMPLEADO SET tipo = _nombre WHERE id_te = _id_te; 
 END;
 $$  LANGUAGE plpgsql;
 
@@ -364,13 +393,11 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
-
-
-
-
-
-
-
-
-
-
+CREATE OR REPLACE FUNCTION eliminartipoempleado(_usuario varchar,  _id_te integer)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Delete','Tipo empleado');
+	DELETE FROM TIPO_EMPLEADO WHERE id_te = _id_te;
+END;
+$$  LANGUAGE plpgsql;

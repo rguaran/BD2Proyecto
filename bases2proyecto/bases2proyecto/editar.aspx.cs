@@ -25,6 +25,7 @@ namespace bases2proyecto
 
         private void BindData()
         {
+            GridView1.AllowPaging = true;
             string item = (string)Session["select"];
             string strCommand = "SELECT * FROM " + item;
             Ds = con.consulta(strCommand);
@@ -33,7 +34,7 @@ namespace bases2proyecto
             GridView1.DataSource = Ds;
             GridView1.DataBind();
             GridView1.HorizontalAlign = HorizontalAlign.Center;
-            GridView1.AllowPaging = true;
+            
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
@@ -109,6 +110,12 @@ namespace bases2proyecto
             //Changing the Text for Inserting a New Record
             ((LinkButton)GridView1.Rows[0].Cells[0].Controls[0]).Text = "Insertar";
             GridView1.HorizontalAlign = HorizontalAlign.Center;
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            BindData();  
         }
 
         

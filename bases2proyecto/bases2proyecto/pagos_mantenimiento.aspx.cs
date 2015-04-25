@@ -18,6 +18,7 @@ namespace bases2proyecto
         {
             con = new ConexionBD();
             Label1.Text = (String)Session["titulo"];
+            
             if (!IsPostBack)
             {
                 BindData();
@@ -26,6 +27,8 @@ namespace bases2proyecto
 
         private void BindData()
         {
+            GridView1.AllowPaging = true;
+            GridView1.AllowSorting = true;
             string item = (string)Session["select"];
             string strCommand = "SELECT * FROM " + item;
             Ds = con.consulta(strCommand);
@@ -34,7 +37,7 @@ namespace bases2proyecto
             GridView1.DataSource = Ds;
             GridView1.DataBind();
             GridView1.HorizontalAlign = HorizontalAlign.Center;
-            GridView1.AllowPaging = true;
+            
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)

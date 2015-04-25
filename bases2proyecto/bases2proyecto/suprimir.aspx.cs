@@ -25,6 +25,7 @@ namespace bases2proyecto
 
         private void BindData()
         {
+            GridView1.AllowPaging = true;
             string item = (string)Session["select"];
             string strCommand = "SELECT * FROM " + item;
             Ds = con.consulta(strCommand);
@@ -33,7 +34,6 @@ namespace bases2proyecto
             GridView1.DataSource = Ds;
             GridView1.DataBind();
             GridView1.HorizontalAlign = HorizontalAlign.Center;
-            GridView1.AllowPaging = true;
 
         }
 
@@ -82,6 +82,12 @@ namespace bases2proyecto
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             Response.Redirect((string)Session["origen"] + ".aspx", true);
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            BindData();
         }
 
 

@@ -17,7 +17,7 @@
     </p>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="id_emp" DataSourceID="SqlDataSource1">
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="id_emp" DataSourceID="SqlDataSource1" AllowPaging="True" AllowSorting="True">
         <Columns>
             <asp:BoundField DataField="id_emp" HeaderText="id_emp" ReadOnly="True" SortExpression="id_emp" />
             <asp:BoundField DataField="nombre" HeaderText="nombre" ReadOnly="True" SortExpression="nombre" />
