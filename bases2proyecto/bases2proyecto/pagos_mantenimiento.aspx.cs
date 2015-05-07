@@ -9,7 +9,7 @@ using System.Collections;
 
 namespace bases2proyecto
 {
-    public partial class WebForm2 : System.Web.UI.Page
+    public partial class pagosmantenimiento : System.Web.UI.Page
     {
 
         ConexionBD con;

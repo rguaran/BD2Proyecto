@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="pagos_mantenimiento.aspx.cs" Inherits="bases2proyecto.WebForm2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="pagos_mantenimiento.aspx.cs" Inherits="bases2proyecto.pagosmantenimiento" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p style="font-size: xx-large">
         <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>

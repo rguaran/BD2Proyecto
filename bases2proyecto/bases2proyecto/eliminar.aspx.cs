@@ -7,17 +7,19 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Collections;
 
-namespace BD1Proyecto1
+namespace bases2proyecto
 {
     public partial class WebForm7 : System.Web.UI.Page
     {
-        private conPostgresql con;
+        private ConexionBD con;
         private DataSet Ds;
         private ArrayList Titulos;
+        string user = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            con = new conPostgresql();
+            string user = (String)Session["user"];
+            con = new ConexionBD();
             if (!IsPostBack)
             {
                 BindData();
@@ -27,7 +29,7 @@ namespace BD1Proyecto1
         private void BindData()
         {
             string item = (string)Session["Item"];
-            string strCommand = "SELECT " + item + ".* FROM " + item;
+            string strCommand = "SELECT * FROM consultar_" + item + "()";
             Ds = con.consulta(strCommand);
             DataTable Dt = Ds.Tables[0];
             Titulos = new ArrayList();
@@ -69,29 +71,10 @@ namespace BD1Proyecto1
             string[] valores = new string[e.Values.Count];
             e.Values.Values.CopyTo(valores, 0);
             Titulos = (ArrayList)Session["Titulos"];
-            string query = "Delete From " + (string)Session["Item"];
-            
-            if(((string)Session["Item"]).Equals("asignacion_recurso"))
-                {
-                    query += " where (" + Titulos[2] + " = '" + valores[2] + "' and " + Titulos[3] + " = '" + valores[3] + "' and " + Titulos[4] + " = '" + valores[4] + "')";
-                }
-                else if (((string)Session["Item"]).Equals("asignacion_tarea"))
-                {
-                    query += " where (" + Titulos[2] + " = '" + valores[2] + "' and " + Titulos[3] + " = '" + valores[3] + "' and " + Titulos[4] + " = '" + valores[4] + "' and " + Titulos[5] + " = '" + valores[5] + "')";
-                }
-                else if (((string)Session["Item"]).Equals("plaza_empleado"))
-                {
-                    query += " where (" + Titulos[2] + " = '" + valores[2] + "' and " + Titulos[3] + " = '" + valores[3] + "')";
-                }
-                else if (((string)Session["Item"]).Equals("pais_idioma"))
-                {
-                    query += " where (" + Titulos[0] + " = '" + valores[0] + "' and " + Titulos[1] + " = '" + valores[1] + "')";
-                }
-                else
-                {
-                    query += " where " + Titulos[0] + " = '" + valores[0] + "'";
-                }
-            
+            string query = "select delete_" + (string)Session["Item"] + "('" + user + "',";
+
+            query += "'" + valores[0] + "')";
+                        
             con.Query(query);
             BindData();
 
@@ -99,7 +82,14 @@ namespace BD1Proyecto1
 
         protected void BtnGuardar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Mantenimiento.aspx", true);
+            if ((string)Session["lugar"] == "mantenimiento.aspx")
+            {
+                Response.Redirect("Mantenimiento.aspx", true);
+            }
+            else
+            {
+                Response.Redirect("clientesmantenimiento.aspx", true);
+            }
         }
         
     }

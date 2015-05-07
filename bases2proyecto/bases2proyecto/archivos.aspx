@@ -36,6 +36,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder4" runat="server">
     <p> 
         <asp:Button ID="btnGuardar" runat="server" Text="Guardar archivo" OnClick="btnGuardar_Click" />&nbsp;<asp:Button ID="btnConsultar" runat="server" Text="Consultar archivos" OnClick="btnConsultar_Click" />
+    &nbsp;<asp:Button ID="btnContinuar" runat="server" OnClick="btnContinuar_Click" Text="Continuar" />
     </p>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder5" runat="server">

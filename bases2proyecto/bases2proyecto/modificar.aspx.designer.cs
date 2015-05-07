@@ -10,7 +10,7 @@
 namespace bases2proyecto {
     
     
-    public partial class WebForm2 {
+    public partial class modificar {
         
         /// <summary>
         /// BtnAgregar control.

@@ -11,13 +11,13 @@ namespace bases2proyecto
     {
        
         string tipo_seguro;
-        int no_poliza;
+        string no_poliza;
 
         protected void Page_Load(object sender, EventArgs e)
         {
          
             tipo_seguro = (string)Session["tipoSeguro"];
-            no_poliza = (Int32)Session["idPoliza"];
+            no_poliza = (string)Session["idPoliza"];
             
             if (!IsPostBack)
             {
@@ -55,6 +55,11 @@ namespace bases2proyecto
         protected void SqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {
 
+        }
+
+        protected void btnContinuar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("nuevapoliza.aspx", true);
         }
 
 

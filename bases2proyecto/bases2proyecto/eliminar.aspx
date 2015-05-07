@@ -1,10 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin.Master" AutoEventWireup="true" CodeBehind="eliminar.aspx.cs" Inherits="BD1Proyecto1.WebForm7" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="eliminar.aspx.cs" Inherits="bases2proyecto.WebForm7" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
-    <table style="width:100%;" align="left">
+
+        <table style="width:100%;" align="left">
         <tr>
             <td class="style1">
                 Elimine los datos que necesite y luego presione en guardar</td>
@@ -35,5 +34,12 @@
         Width="80px" onclick="BtnGuardar_Click" /></td>
         </tr>
     </table>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
+
     
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder4" runat="server">
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder5" runat="server">
 </asp:Content>

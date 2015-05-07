@@ -100,6 +100,25 @@ namespace bases2proyecto
         }
 
 
+		public String getIDpoliza(string query)
+        {
+            try
+            {
+                abrirConexion();
+                NpgsqlDataAdapter ada = new NpgsqlDataAdapter("select regresaIDPoliza(" +  query, con);
+                DataSet ds = new DataSet();
+                ada.Fill(ds);
+
+                string idpoli = ds.Tables[0].Rows[0][0].ToString();
+                con.Close();
+                return idpoli;
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.Message);
+            }
+            return null;
+        }
 
 
     }

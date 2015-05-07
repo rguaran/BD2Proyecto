@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BD1Proyecto1 {
+namespace bases2proyecto {
     
     
     public partial class WebForm7 {

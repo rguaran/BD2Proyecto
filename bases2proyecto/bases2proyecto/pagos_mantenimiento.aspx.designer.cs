@@ -10,7 +10,7 @@
 namespace bases2proyecto {
     
     
-    public partial class WebForm2 {
+    public partial class pagosmantenimiento {
         
         /// <summary>
         /// Label1 control.

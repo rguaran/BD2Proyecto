@@ -7,13 +7,12 @@ using System.Web.UI.WebControls;
 
 namespace bases2proyecto
 {
-    public partial class index : System.Web.UI.Page
+    public partial class beneficiarios : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["usuario"] = "usuario_5344";
-            Session["user"] = "usuario_5344";
-            Session["password"] = "password";
+            Label1.Text = (String)Session["tipoSeguro"];
+            Label2.Text = (String)Session["idPoliza"];
         }
     }
 }

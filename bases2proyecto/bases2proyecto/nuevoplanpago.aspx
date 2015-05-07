@@ -104,6 +104,7 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder4" runat="server">
     <p style="text-align: center">
         <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click" />
+    &nbsp;<asp:Button ID="btnContinuar" runat="server" OnClick="btnContinuar_Click" Text="Continuar" />
     </p>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder5" runat="server">

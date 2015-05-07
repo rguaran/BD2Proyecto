@@ -63,14 +63,19 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="beneficiarios.aspx" />
     <Content Include="cliente.aspx" />
+    <Content Include="clientesmantenimiento.aspx" />
     <Content Include="departamento.aspx" />
     <Content Include="editar.aspx" />
+    <Content Include="eliminar.aspx" />
     <Content Include="empleado.aspx" />
     <Content Include="index.aspx" />
     <Content Include="mantenimiento.aspx" />
+    <Content Include="modificar.aspx" />
     <Content Include="modificarpoliza.aspx" />
     <Content Include="nuevapoliza.aspx" />
+    <Content Include="nuevocliente.aspx" />
     <Content Include="oficina.aspx" />
     <Content Include="pais.aspx" />
     <Content Include="poliza.aspx" />
@@ -89,6 +94,20 @@
     <Content Include="archivos.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="beneficiarios.aspx.cs">
+      <DependentUpon>beneficiarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="beneficiarios.aspx.designer.cs">
+      <DependentUpon>beneficiarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="clientesmantenimiento.aspx.cs">
+      <DependentUpon>clientesmantenimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="clientesmantenimiento.aspx.designer.cs">
+      <DependentUpon>clientesmantenimiento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ConexionBD.cs" />
     <Compile Include="departamento.aspx.cs">
       <DependentUpon>departamento.aspx</DependentUpon>
@@ -104,6 +123,13 @@
     <Compile Include="editar.aspx.designer.cs">
       <DependentUpon>editar.aspx</DependentUpon>
     </Compile>
+    <Compile Include="eliminar.aspx.cs">
+      <DependentUpon>eliminar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="eliminar.aspx.designer.cs">
+      <DependentUpon>eliminar.aspx</DependentUpon>
+    </Compile>
     <Compile Include="empleado.aspx.cs">
       <DependentUpon>empleado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -118,12 +144,26 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="mantenimiento.aspx.cs">
+      <DependentUpon>mantenimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="mantenimiento.aspx.designer.cs">
+      <DependentUpon>mantenimiento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="modificar.aspx.cs">
+      <DependentUpon>modificar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="modificar.aspx.designer.cs">
+      <DependentUpon>modificar.aspx</DependentUpon>
     </Compile>
     <Compile Include="modificarpoliza.aspx.cs">
       <DependentUpon>modificarpoliza.aspx</DependentUpon>
@@ -138,6 +178,13 @@
     </Compile>
     <Compile Include="nuevapoliza.aspx.designer.cs">
       <DependentUpon>nuevapoliza.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="nuevocliente.aspx.cs">
+      <DependentUpon>nuevocliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="nuevocliente.aspx.designer.cs">
+      <DependentUpon>nuevocliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="oficina.aspx.cs">
       <DependentUpon>oficina.aspx</DependentUpon>

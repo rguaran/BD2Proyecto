@@ -9,14 +9,16 @@ using System.Collections;
 
 namespace bases2proyecto
 {
-    public partial class WebForm2 : System.Web.UI.Page
+    public partial class modificar : System.Web.UI.Page
     {
         private ConexionBD con;
         private DataSet Ds;
         private ArrayList Titulos;
+        string user = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            user = (String)Session["user"];
             con = new ConexionBD();
             if (!IsPostBack)
             {
@@ -63,18 +65,34 @@ namespace bases2proyecto
         {
             if (((LinkButton)GridView1.Rows[0].Cells[0].Controls[0]).Text == "Insert")
             {
-                string query = "Select insertar_" + (string)Session["Item"] + "( ";
+                string query = "Select insertar_" + (string)Session["Item"] + "('" + user + "',";
                 string[] valores = new string[e.NewValues.Count];
                 e.NewValues.Values.CopyTo(valores, 0);
                 Titulos = (ArrayList)Session["Titulos"];
-                for (int i = 0; i < e.NewValues.Count; i++)
-                {
-                    query += "'" + valores[i] + "' ";
-                    if (i != e.NewValues.Count - 1)
-                    {
-                        query += ", ";
-                    }
 
+                if ((string)Session["Item"] == "tipo_de_seguro")
+                {
+                    for (int i = 0; i < e.NewValues.Count; i++)
+                    {
+                        query += "'" + valores[i] + "' ";
+                        if (i != e.NewValues.Count - 1)
+                        {
+                            query += ", ";
+                        }
+
+                    }
+                }
+                else
+                {
+                    for (int i = 1; i < e.NewValues.Count; i++)
+                    {
+                        query += "'" + valores[i] + "' ";
+                        if (i != e.NewValues.Count - 1)
+                        {
+                            query += ", ";
+                        }
+
+                    }
                 }
                 query += ")";
                 GridView1.EditIndex = -1;
@@ -83,13 +101,16 @@ namespace bases2proyecto
             }
             else
             {
-                string query = "Update " + (string)Session["Item"] + " set ";
+                string query = "select update_" + (string)Session["Item"] + "('" + user + "',";
                 string[] valores = new string[e.NewValues.Count];
                 e.NewValues.Values.CopyTo(valores, 0);
                 Titulos = (ArrayList)Session["Titulos"];
-                for (int i = 0; i < e.NewValues.Count; i++)
+                query += " '" + valores[0] + "'";
+
+                query += ", ";
+                for (int i = 1; i < e.NewValues.Count; i++)
                 {
-                    query += Titulos[i] + " = '" + valores[i] + "' ";
+                    query += "'" + valores[i] + "' ";
                     if (i != e.NewValues.Count - 1)
                     {
                         query += ", ";
@@ -97,27 +118,8 @@ namespace bases2proyecto
 
                 }
 
+                query += ")";
 
-                if (((string)Session["Item"]).Equals("asignacion_recurso"))
-                {
-                    query += " where (" + Titulos[2] + " = '" + valores[2] + "' and " + Titulos[3] + " = '" + valores[3] + "' and " + Titulos[4] + " = '" + valores[4] + "')";
-                }
-                else if (((string)Session["Item"]).Equals("asignacion_tarea"))
-                {
-                    query += " where (" + Titulos[2] + " = '" + valores[2] + "' and " + Titulos[3] + " = '" + valores[3] + "' and " + Titulos[4] + " = '" + valores[4] + "' and " + Titulos[5] + " = '" + valores[5] + "')";
-                }
-                else if (((string)Session["Item"]).Equals("plaza_empleado"))
-                {
-                    query += " where (" + Titulos[2] + " = '" + valores[2] + "' and " + Titulos[3] + " = '" + valores[3] + "')";
-                }
-                else if (((string)Session["Item"]).Equals("pais_idioma"))
-                {
-                    query += " where (" + Titulos[0] + " = '" + valores[0] + "' and " + Titulos[1] + " = '" + valores[1] + "')";
-                }
-                else
-                {
-                    query += " where " + Titulos[0] + " = '" + valores[0] + "'";
-                }
 
                 GridView1.EditIndex = -1;
                 con.Query(query);
@@ -132,7 +134,14 @@ namespace bases2proyecto
 
         protected void BtnGuardar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("mantenimiento.aspx", true);
+            if ((string)Session["lugar"] == "mantenimiento.aspx")
+            {
+                Response.Redirect("Mantenimiento.aspx", true);
+            }
+            else
+            {
+                Response.Redirect("clientesmantenimiento.aspx", true);
+            }
         }
 
         protected void BtnAgregar_Click(object sender, EventArgs e)

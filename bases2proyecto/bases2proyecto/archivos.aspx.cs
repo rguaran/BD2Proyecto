@@ -15,7 +15,8 @@ namespace bases2proyecto
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            DropDownList1.SelectedValue = (string)Session["tipoSeguro"];
+            txtIdPoliza.Text = (string)Session["idPoliza"];
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -120,6 +121,11 @@ namespace bases2proyecto
                 Response.TransmitFile(Server.MapPath(filePath));
                 Response.End();
             }
+        }
+
+        protected void btnContinuar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("nuevapoliza.aspx", true);
         }
 
 
