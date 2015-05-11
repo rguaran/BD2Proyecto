@@ -57,23 +57,20 @@
 
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder5" runat="server">
-
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="id_pais" DataSourceID="SqlDataSource1" OnRowCommand="GridView1_RowCommand" AllowPaging="True" AllowSorting="True"  >
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnRowCommand="GridView1_RowCommand" AllowPaging="true" AllowSorting="true">
         <Columns>
             <asp:BoundField DataField="id" HeaderText="id" ReadOnly="True" SortExpression="id" />
             <asp:BoundField DataField="nombre" HeaderText="nombre" ReadOnly="True" SortExpression="nombre" />
             <asp:BoundField DataField="domicilio" HeaderText="domicilio" ReadOnly="True" SortExpression="domicilio" />
             <asp:BoundField DataField="id1" HeaderText="id1" ReadOnly="True" SortExpression="id1" Visible="False" />
             <asp:BoundField DataField="id_pais" HeaderText="id_pais" ReadOnly="True" SortExpression="id_pais" Visible="False" />
-            <asp:BoundField DataField="id2" HeaderText="id2" ReadOnly="True" SortExpression="id2" Visible="False" />
+            <asp:BoundField DataField="id_tc" HeaderText="id_tc" ReadOnly="True" SortExpression="id_tc" Visible="False" />
             <asp:BoundField DataField="tipo" HeaderText="tipo" ReadOnly="True" SortExpression="tipo" />
-            <asp:BoundField DataField="id_pais1" HeaderText="id_pais1" ReadOnly="True" SortExpression="id_pais1" Visible="False" />
+            <asp:BoundField DataField="id_pais2" HeaderText="id_pais2" ReadOnly="True" SortExpression="id_pais2" Visible="False" />
             <asp:BoundField DataField="pais" HeaderText="pais" ReadOnly="True" SortExpression="pais" />
             <asp:ButtonField Text="eliminar" CommandName="eliminar" />
             <asp:ButtonField Text="modificar" CommandName="modificar" />
         </Columns>
     </asp:GridView>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="User Id=postgres;Password=admin123;Host=localhost;Database=proyectoBD2;Initial Schema=public" ProviderName="Devart.Data.PostgreSql" SelectCommand="select * from 
-(cliente join tipo_cliente on cliente.id1 = tipo_cliente.id) c join pais on c.id_pais = pais.id_pais"></asp:SqlDataSource>
-
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:proyectoBD2ConnectionString %>" ProviderName="<%$ ConnectionStrings:proyectoBD2ConnectionString.ProviderName %>" SelectCommand="consultar_cliente" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
 </asp:Content>
