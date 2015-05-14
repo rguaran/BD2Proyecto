@@ -18,7 +18,7 @@ namespace bases2proyecto
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string user = (String)Session["user"];
+            user = (String)Session["user"];
             con = new ConexionBD();
             if (!IsPostBack)
             {
@@ -71,9 +71,9 @@ namespace bases2proyecto
             string[] valores = new string[e.Values.Count];
             e.Values.Values.CopyTo(valores, 0);
             Titulos = (ArrayList)Session["Titulos"];
-            string query = "select delete_" + (string)Session["Item"] + "('" + user + "',";
+            string query = "select delete_" + (string)Session["Item"] + "(";
 
-            query += "'" + valores[0] + "')";
+            query += "'" + valores[0] + "','"+user+"')";
                         
             con.Query(query);
             BindData();

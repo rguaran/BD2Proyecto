@@ -65,7 +65,7 @@ namespace bases2proyecto
         {
             if (((LinkButton)GridView1.Rows[0].Cells[0].Controls[0]).Text == "Insert")
             {
-                string query = "Select insertar_" + (string)Session["Item"] + "('" + user + "',";
+                string query = "Select insertar_" + (string)Session["Item"] + "(";
                 string[] valores = new string[e.NewValues.Count];
                 e.NewValues.Values.CopyTo(valores, 0);
                 Titulos = (ArrayList)Session["Titulos"];
@@ -94,14 +94,14 @@ namespace bases2proyecto
 
                     }
                 }
-                query += ")";
+                query += ",'"+ user+ "')";
                 GridView1.EditIndex = -1;
                 con.Query(query);
                 BindData();
             }
             else
             {
-                string query = "select update_" + (string)Session["Item"] + "('" + user + "',";
+                string query = "select update_" + (string)Session["Item"] + "(";
                 string[] valores = new string[e.NewValues.Count];
                 e.NewValues.Values.CopyTo(valores, 0);
                 Titulos = (ArrayList)Session["Titulos"];
@@ -118,7 +118,7 @@ namespace bases2proyecto
 
                 }
 
-                query += ")";
+                query += ",'" + user + "')";
 
 
                 GridView1.EditIndex = -1;

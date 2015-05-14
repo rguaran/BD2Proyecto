@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Devart.Data, Version=5.0.1181.0, Culture=neutral, PublicKeyToken=09af7300eec23701" />
+    <Reference Include="Devart.Data.PostgreSql, Version=7.3.389.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Mono.Security">
       <HintPath>NPGSQL\Mono.Security.dll</HintPath>
@@ -47,6 +53,7 @@
       <HintPath>NPGSQL\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -71,6 +78,7 @@
     <Content Include="editar.aspx" />
     <Content Include="eliminar.aspx" />
     <Content Include="empleado.aspx" />
+    <Content Include="frmreporte1.aspx" />
     <Content Include="index.aspx" />
     <Content Include="mantenimiento.aspx" />
     <Content Include="modificar.aspx" />
@@ -80,6 +88,7 @@
     <Content Include="oficina.aspx" />
     <Content Include="pais.aspx" />
     <Content Include="poliza.aspx" />
+    <Content Include="Reportes.aspx" />
     <Content Include="style.css" />
     <Content Include="tipocliente.aspx" />
     <Content Include="tipoDeCambio.aspx" />
@@ -146,6 +155,13 @@
     <Compile Include="empleado.aspx.designer.cs">
       <DependentUpon>empleado.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmreporte1.aspx.cs">
+      <DependentUpon>frmreporte1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmreporte1.aspx.designer.cs">
+      <DependentUpon>frmreporte1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -181,6 +197,7 @@
     <Compile Include="modificarpoliza.aspx.designer.cs">
       <DependentUpon>modificarpoliza.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Mydataset.cs" />
     <Compile Include="nuevapoliza.aspx.cs">
       <DependentUpon>nuevapoliza.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -238,6 +255,24 @@
     <Compile Include="poliza.aspx.designer.cs">
       <DependentUpon>poliza.aspx</DependentUpon>
     </Compile>
+    <Compile Include="reporte1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>reporte1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reporte1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes.aspx.cs">
+      <DependentUpon>Reportes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes.aspx.designer.cs">
+      <DependentUpon>Reportes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="tipocliente.aspx.cs">
       <DependentUpon>tipocliente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -290,12 +325,32 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />
+    <Content Include="Reporte1.xsc">
+      <DependentUpon>Reporte1.xsd</DependentUpon>
+    </Content>
+    <None Include="Reporte1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Reporte1.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reporte1.xss">
+      <DependentUpon>Reporte1.xsd</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="reporte1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>reporte1.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

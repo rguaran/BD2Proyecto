@@ -19,6 +19,7 @@ namespace bases2proyecto
             string user = (String)Session["user"];
             con = new ConexionBD();
             Titulos = new ArrayList();
+            Session["lugar"] = "clientesmantenimiento.aspx";
         }
 
         protected void BtnNuevo_Click(object sender, ImageClickEventArgs e)
@@ -77,9 +78,9 @@ namespace bases2proyecto
                 int ide = Convert.ToInt32(id.Text);
 
                 // Display the selected author.
-                string query = "select eliminarCliente('" + user + "',";
+                string query = "select eliminarCliente(";
 
-                query += "'" + ide + "')";
+                query += "'" + ide + "','"+ user +"')";
 
                 con.Query(query);
                 GridView1.DataBind();

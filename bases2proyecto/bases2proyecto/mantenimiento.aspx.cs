@@ -11,7 +11,7 @@ namespace bases2proyecto
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session["lugar"] = "mantenimiento.aspx";
         }
         protected void BtnNuevo_Click(object sender, ImageClickEventArgs e)
         {

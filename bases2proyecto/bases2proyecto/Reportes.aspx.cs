@@ -7,18 +7,16 @@ using System.Web.UI.WebControls;
 
 namespace bases2proyecto
 {
-    public partial class index : System.Web.UI.Page
+    public partial class Reportes : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["usuario"] = "usuario_5344";
-            Session["user"] = "usuario_5344";
-            Session["password"] = "password";
+
         }
 
-        protected void btningresar_Click(object sender, EventArgs e)
+        protected void btnreporte1_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("frmreporte1.aspx", true);
         }
     }
 }
