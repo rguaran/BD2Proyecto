@@ -14,12 +14,12 @@ namespace bases2proyecto
         protected void Page_Load(object sender, EventArgs e)
         {
             //poblarReporte();
-            CrystalReportViewer1.Visible = true;
+            //CrystalReportViewer1.Visible = true;
             ReportDocument rDoc = new ReportDocument();
             //Reporte1 dset = new Reporte1(); // dataset file name
             //DataTable dtable = new DataTable(); // data table name
             //dtable.TableName = "Reporte 1 - Clientes";  // Crystal Report Name
-            rDoc.Load(Server.MapPath("/reporte1.rpt")); // Your .rpt file path
+            rDoc.Load(Server.MapPath("~/reporte1.rpt")); // Your .rpt file path
             //rDoc.SetDataSource(dset); //set dataset to the report viewer.
             CrystalReportViewer1.ReportSource = rDoc;
             //CrystalReportViewer1.RefreshReport();
@@ -33,7 +33,7 @@ namespace bases2proyecto
             Reporte1 ds = new Reporte1();
 
             try {
-                NpgsqlConnection conne = new NpgsqlConnection("Server=localhost;User Id=postgres;Password=admin123;Database=proyectoBD2;");
+                NpgsqlConnection conne = new NpgsqlConnection("Server=localhost;User Id=postgres;Password=admin123;Database=proyectoBD2;Initial Schema=public");
                 NpgsqlDataAdapter sqlDaClientes = new NpgsqlDataAdapter(sqlClientes, conne);
                 NpgsqlDataAdapter sqlDaPais = new NpgsqlDataAdapter(sqlPais, conne);
                 NpgsqlDataAdapter sqlDaTipoCliente = new NpgsqlDataAdapter(sqlTipoCliente, conne);
