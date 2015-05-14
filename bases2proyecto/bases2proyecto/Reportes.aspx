@@ -1,43 +1,44 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="bases2proyecto.index" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Reportes.aspx.cs" Inherits="bases2proyecto.Reportes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <h1>Bienvenidos a Seguritos S.A.</h1>
-    <br />
-    <h2>Donde aseguramos lo que más quieres</h2>
+<h1>Reportes</h1>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+
     <table style="width: 100%">
         <tr>
-            <td>User</td>
+            <td style="width: 174px">Reporte(1) de Clientes</td>
             <td>
-                <asp:TextBox ID="TextBox1" runat="server" Width="150px"></asp:TextBox>
+                <asp:Button ID="btnreporte1" runat="server" OnClick="btnreporte1_Click" Text="Ver Reporte" Width="99px" />
             </td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td>
-                <asp:TextBox ID="TextBox2" runat="server" TextMode="Password" Width="148px"></asp:TextBox>
-            </td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
+            <td style="width: 174px">&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
+            <td style="width: 174px">&nbsp;</td>
             <td>&nbsp;</td>
-            <td>
-                <asp:Button ID="btningresar" runat="server" Text="Sign In" OnClick="btningresar_Click" />
-            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="width: 174px">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="width: 174px">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="width: 174px">&nbsp;</td>
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
     </table>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
 </asp:Content>

@@ -10,33 +10,24 @@
 namespace bases2proyecto {
     
     
-    public partial class index {
+    public partial class frmreporte1 {
         
         /// <summary>
-        /// TextBox1 control.
+        /// CrystalReportViewer1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::CrystalDecisions.Web.CrystalReportViewer CrystalReportViewer1;
         
         /// <summary>
-        /// TextBox2 control.
+        /// CrystalReportSource1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
-        
-        /// <summary>
-        /// btningresar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btningresar;
+        protected global::CrystalDecisions.Web.CrystalReportSource CrystalReportSource1;
     }
 }

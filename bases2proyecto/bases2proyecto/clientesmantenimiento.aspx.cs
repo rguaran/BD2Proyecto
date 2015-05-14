@@ -19,6 +19,7 @@ namespace bases2proyecto
             string user = (String)Session["user"];
             con = new ConexionBD();
             Titulos = new ArrayList();
+            Session["lugar"] = "clientesmantenimiento.aspx";
         }
 
         protected void BtnNuevo_Click(object sender, ImageClickEventArgs e)
