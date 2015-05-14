@@ -170,6 +170,15 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION insertarcobertura( _usuario varchar, _descripcion text, _monto numeric, _id_ts varchar, _id_poliza integer)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Insert','Cobertura');
+	INSERT INTO cobertura (descripcion, monto, id_ts, id_poliza) VALUES( _descripcion, _monto, _id_ts, _id_poliza );
+END;
+$$  LANGUAGE plpgsql;
+
 ------------------------------------------------------------------------------------------
 -------------------------------------- RECUPERACIONES ------------------------------------
 ------------------------------------------------------------------------------------------
@@ -313,6 +322,14 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION seleccionarcobertura()
+  RETURNS TABLE(id integer, descripcion text, monto numeric, id_ts varchar, id_poliza integer) AS $$
+BEGIN
+	
+	RETURN QUERY SELECT * FROM cobertura;
+END;
+$$  LANGUAGE plpgsql;
+
 CREATE OR REPLACE FUNCTION seleccionartipodecambio()
   RETURNS TABLE(fecha date, cambio numeric, moneda_id_moneda int) AS $$
 BEGIN
@@ -390,6 +407,17 @@ BEGIN
 	UPDATE Moneda SET moneda = _moneda WHERE id_moneda = _id;
 END;
 $$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION actualizarcobertura( _usuario varchar, _id_cobertura integer, _descripcion text, _monto numeric, _id_ts varchar, _id_poliza integer)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Update','Cobertura');
+	UPDATE cobertura SET monto = _monto, descripcion = _descripcion, id_ts = _id_ts, id_poliza = _id_poliza WHERE id_cobertura = _id_cobertura;
+END;
+$$  LANGUAGE plpgsql;
+
+
 
 CREATE OR REPLACE FUNCTION actualizartipodecambio( _usuario varchar, _fecha date, _cambio numeric, _moneda_id_moneda integer)
   RETURNS void AS
@@ -492,6 +520,14 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION eliminarcobertura(_usuario varchar, _id_cobertura integer)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Delete','Cobertura');
+	DELETE FROM cobertura WHERE id_cobertura = _id_cobertura;
+END;
+$$  LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE FUNCTION eliminartipodecambio(_usuario varchar,  _fecha date, _cambio numeric, _moneda_id_moneda integer)
