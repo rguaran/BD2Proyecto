@@ -18,7 +18,7 @@ namespace bases2proyecto
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string user = (String)Session["user"];
+            user = (String)Session["user"];
             con = new ConexionBD();
             if (!IsPostBack)
             {
