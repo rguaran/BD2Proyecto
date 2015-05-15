@@ -55,7 +55,7 @@ namespace bases2proyecto
         {
 
             GridView1.EditIndex = e.NewEditIndex;
-            BindData2();
+            BindData();
 
         }
 
@@ -71,11 +71,12 @@ namespace bases2proyecto
         protected void GridView1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
             string item = "";
+            string terminar = ")";
             int iniciar = 0;
             if (((LinkButton)GridView1.Rows[0].Cells[0].Controls[0]).Text == "Insertar")
             {
                 item = "insertarcobertura";
-                iniciar = 1;
+                terminar = ",'" + (string)Session["tipoSeguro"] + "', " + (string)Session["idPoliza"] + ")";
             }
             else
             {
@@ -96,7 +97,9 @@ namespace bases2proyecto
                 }
 
             }
-            query += ",'" + (string)Session["tipoSeguro"] + "', " + (string)Session["idPoliza"] + ")";
+
+            
+            query += terminar;
             GridView1.EditIndex = -1;
             con.Query(query);
             BindData();
@@ -112,7 +115,7 @@ namespace bases2proyecto
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
 
-            string strCommand = "SELECT * FROM seleccionarcobertura(" + (string)Session["tipoSeguro"] + ", " + (string)Session["idPoliza"] + ")";
+            string strCommand = "SELECT * FROM seleccionarcoberturareducido('" + (string)Session["tipoSeguro"] + "', " + (string)Session["idPoliza"] + ")";
             Ds = con.consulta(strCommand);
             DataTable Dt = Ds.Tables[0];
             

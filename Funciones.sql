@@ -188,6 +188,15 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION insertarInspeccion( _usuario varchar, _fecha date, _id_bien integer, _aprobado varchar,  _id_ts varchar, _id_poliza integer, _id_emp integer, _id_carga integer)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Insert','Inspeccion');
+	INSERT INTO inspeccion (fecha, id_bien, aprobado, id_ts, id_poliza, id_emp, id_carga) VALUES( _fecha, _id_bien, _aprobado,  _id_ts, _id_poliza, _id_emp, _id_carga );
+END;
+$$  LANGUAGE plpgsql;
+
 ------------------------------------------------------------------------------------------
 -------------------------------------- RECUPERACIONES ------------------------------------
 ------------------------------------------------------------------------------------------
@@ -339,6 +348,24 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
+
+CREATE OR REPLACE FUNCTION seleccionarinspeccion(_id_ts varchar, _id_poliza integer)
+  RETURNS TABLE(id integer, fecha date, id_bien integer, aprobado varchar,  id_ts varchar, id_poliza integer, id_emp integer, id_carga integer) AS $$
+BEGIN
+	
+	RETURN QUERY SELECT * FROM inspeccion where inspeccion.id_ts = _id_ts and inspeccion.id_poliza = _id_poliza;
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION seleccionarinspeccion()
+  RETURNS TABLE(id integer, fecha date, id_bien integer, aprobado varchar,  id_ts varchar, id_poliza integer, id_emp integer, id_carga integer) AS $$
+BEGIN
+	
+	RETURN QUERY SELECT * FROM inspeccion;
+END;
+$$  LANGUAGE plpgsql;
+
+
 CREATE OR REPLACE FUNCTION seleccionarbienreducido(_id_ts varchar, _id_poliza integer)
   RETURNS TABLE(nombre text, monto numeric) AS $$
 BEGIN
@@ -471,7 +498,7 @@ CREATE OR REPLACE FUNCTION actualizarbien( _usuario varchar, _id_bien integer, _
 $$
 BEGIN
 	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Update','Bien');
-	UPDATE bien SET monto = _monto, nombre = _nombre, id_ts = _id_ts, id_poliza = _id_poliza WHERE id_cobertura = _id_cobertura;
+	UPDATE bien SET monto = _monto, nombre = _nombre, id_ts = _id_ts, id_poliza = _id_poliza WHERE id_bien = _id_bien;
 END;
 $$  LANGUAGE plpgsql;
 
@@ -533,7 +560,14 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
-
+CREATE OR REPLACE FUNCTION actualizarinspeccion(_id_inspeccion integer, _fecha date, _id_bien integer, _aprobado varchar,  _id_ts varchar, _id_poliza integer, _id_emp integer, _id_carga integer)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Update','Inspeccion');
+	UPDATE inspeccion SET fecha = _fecha, id_bien = _id_bien, aprobado = _aprobado, id_ts = _id_ts, id_poliza = _id_poliza, id_emp = _id_emp, id_carga = _id_carga WHERE id_inspeccion = _id_inspeccion; 
+END;
+$$  LANGUAGE plpgsql;
 
 ------------------------------------------------------------------------------------------
 -------------------------------------- ELIMINACIONES -------------------------------------
@@ -655,5 +689,14 @@ $$
 BEGIN
 	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Delete','Plan de pago');
 	DELETE FROM plan_de_pagos WHERE id_plan = _id_plan;
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION eliminarinspeccion(_usuario varchar, _id_inspeccion int)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Delete','Inspeccion');
+	DELETE FROM inspeccion WHERE id_inspeccion = _id_inspeccion;
 END;
 $$  LANGUAGE plpgsql;
