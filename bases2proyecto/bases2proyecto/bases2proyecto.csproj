@@ -74,6 +74,7 @@
     <Content Include="cliente.aspx" />
     <Content Include="clientesmantenimiento.aspx" />
     <Content Include="bien.aspx" />
+    <Content Include="cobertura.aspx" />
     <Content Include="departamento.aspx" />
     <Content Include="editar.aspx" />
     <Content Include="eliminar.aspx" />
@@ -102,7 +103,6 @@
     <Content Include="suprimir.aspx" />
     <Content Include="empleados.aspx" />
     <Content Include="archivos.aspx" />
-    <Content Include="cobertura.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="beneficiarios.aspx.cs">
@@ -126,6 +126,13 @@
     </Compile>
     <Compile Include="bien.aspx.designer.cs">
       <DependentUpon>bien.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cobertura.aspx.cs">
+      <DependentUpon>cobertura.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cobertura.aspx.designer.cs">
+      <DependentUpon>cobertura.aspx</DependentUpon>
     </Compile>
     <Compile Include="departamento.aspx.cs">
       <DependentUpon>departamento.aspx</DependentUpon>
@@ -314,13 +321,6 @@
     </Compile>
     <Compile Include="archivos.aspx.designer.cs">
       <DependentUpon>archivos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="cobertura.aspx.cs">
-      <DependentUpon>cobertura.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="cobertura.aspx.designer.cs">
-      <DependentUpon>cobertura.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

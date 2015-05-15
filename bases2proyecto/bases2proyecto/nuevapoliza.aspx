@@ -308,7 +308,7 @@
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>
-                <asp:Button ID="btnbienes" runat="server" Text="Asignar bienes" />
+                <asp:Button ID="btnbienes" runat="server" Text="Asignar bienes" OnClick="btnbienes_Click" />
             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -349,6 +349,15 @@
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>
+                <asp:Button ID="btnbienes0" runat="server" Text="Asignar Coberturas" OnClick="btncoberturas_Click" />
+            </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>

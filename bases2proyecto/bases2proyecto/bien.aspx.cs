@@ -26,8 +26,8 @@ namespace bases2proyecto
         private void BindData()
         {
             GridView1.AllowPaging = true;
-            string item = (string)Session["select"];
-            string strCommand = "SELECT * FROM " + item;
+
+            string strCommand = "SELECT * FROM seleccionarbien('"+ (string)Session["tipoSeguro"] + "', " +(string)Session["idPoliza"] + ")";
             Ds = con.consulta(strCommand);
             DataTable Dt = Ds.Tables[0];
             
@@ -60,13 +60,13 @@ namespace bases2proyecto
             int iniciar = 0;
             if (((LinkButton)GridView1.Rows[0].Cells[0].Controls[0]).Text == "Insertar")
             {
-                item = (string)Session["insert"];
-                iniciar = (Int32)Session["iniciarInsert"];
+                item = "insertarBien";
+                iniciar = 1;
             }
             else
             {
-                item = (string)Session["update"];
-                iniciar = (Int32)Session["iniciar"];
+                item = "actualizarBien";
+                iniciar = 0;
             }
             string query = "SELECT " + item + "('" + Session["usuario"]+"',";
             string[] valores = new string[e.NewValues.Count];
@@ -92,13 +92,13 @@ namespace bases2proyecto
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            Response.Redirect((string)Session["origen"]+".aspx", true);
+            Response.Redirect("poliza.aspx", true);
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            string item = (string)Session["select"];
-            string strCommand = "SELECT * FROM " + item;
+
+            string strCommand = "SELECT * FROM seleccionarbien(" + (string)Session["tipoSeguro"] + ", " + (string)Session["idPoliza"] + ")";
             Ds = con.consulta(strCommand);
             DataTable Dt = Ds.Tables[0];
             

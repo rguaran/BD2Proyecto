@@ -179,6 +179,15 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION insertarbien( _usuario varchar, _nombre text, _monto numeric, _id_ts varchar, _id_poliza integer)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Insert','Bien');
+	INSERT INTO bien (nombre, monto, id_ts, id_poliza) VALUES( _nombre, _monto, _id_ts, _id_poliza );
+END;
+$$  LANGUAGE plpgsql;
+
 ------------------------------------------------------------------------------------------
 -------------------------------------- RECUPERACIONES ------------------------------------
 ------------------------------------------------------------------------------------------
@@ -322,11 +331,51 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION seleccionarbien()
+  RETURNS TABLE(id integer, nombre text, monto numeric, id_ts varchar, id_poliza integer) AS $$
+BEGIN
+	
+	RETURN QUERY SELECT * FROM bien;
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION seleccionarbienreducido(_id_ts varchar, _id_poliza integer)
+  RETURNS TABLE(nombre text, monto numeric) AS $$
+BEGIN
+	RETURN QUERY SELECT bien.nombre, bien.monto FROM bien WHERE bien.id_ts = _id_ts AND bien.id_poliza = _id_poliza;
+	
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION seleccionarbien(_id_ts varchar, _id_poliza integer)
+  RETURNS TABLE(id integer, nombre text, monto numeric, id_ts varchar, id_poliza integer) AS $$
+BEGIN
+	
+	RETURN QUERY SELECT * FROM bien WHERE bien.id_ts = _id_ts AND bien.id_poliza = _id_poliza;
+END;
+$$  LANGUAGE plpgsql;
+
 CREATE OR REPLACE FUNCTION seleccionarcobertura()
   RETURNS TABLE(id integer, descripcion text, monto numeric, id_ts varchar, id_poliza integer) AS $$
 BEGIN
 	
 	RETURN QUERY SELECT * FROM cobertura;
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION seleccionarcoberturareducido(_id_ts varchar, _id_poliza integer)
+  RETURNS TABLE(descripcion text, monto numeric) AS $$
+BEGIN
+	
+	RETURN QUERY SELECT cobertura.descripcion, cobertura.monto FROM cobertura WHERE id_ts = _id_ts AND id_poliza = _id_poliza;
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION seleccionarcobertura(_id_ts varchar, _id_poliza integer)
+  RETURNS TABLE(id integer, descripcion text, monto numeric, id_ts_ varchar, id_poliza_ integer) AS $$
+BEGIN
+	
+	RETURN QUERY SELECT * FROM cobertura WHERE id_ts = _id_ts AND id_poliza = _id_poliza;
 END;
 $$  LANGUAGE plpgsql;
 
@@ -417,7 +466,14 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
-
+CREATE OR REPLACE FUNCTION actualizarbien( _usuario varchar, _id_bien integer, _nombre text, _monto numeric, _id_ts varchar, _id_poliza integer)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Update','Bien');
+	UPDATE bien SET monto = _monto, nombre = _nombre, id_ts = _id_ts, id_poliza = _id_poliza WHERE id_cobertura = _id_cobertura;
+END;
+$$  LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION actualizartipodecambio( _usuario varchar, _fecha date, _cambio numeric, _moneda_id_moneda integer)
   RETURNS void AS
@@ -526,6 +582,15 @@ $$
 BEGIN
 	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Delete','Cobertura');
 	DELETE FROM cobertura WHERE id_cobertura = _id_cobertura;
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION eliminarbien(_usuario varchar, _id_bien integer)
+  RETURNS void AS
+$$
+BEGIN
+	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Delete','Bien');
+	DELETE FROM bien WHERE id_bien = _id_bien;
 END;
 $$  LANGUAGE plpgsql;
 

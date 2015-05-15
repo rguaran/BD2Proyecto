@@ -44,7 +44,7 @@ namespace bases2proyecto
 
                 Session["idPoliza"] = idpoliza;
 
-                Response.Write("<script languaje = javascript>alert('Se ha creado la Poliza!'); </script>");
+                Response.Write("<script languaje = javascript>alert('Se ha creado la Poliza! " + ddltiposeguro.SelectedValue +  "-"+ idpoliza + " '); </script>");
             }
             catch (Exception ex) { }
 
@@ -63,6 +63,16 @@ namespace bases2proyecto
         protected void btnadjuntararchivos_Click(object sender, EventArgs e)
         {
             Response.Redirect("archivos.aspx", true);
+        }
+
+        protected void btnbienes_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("bien.aspx", true);
+        }
+
+        protected void btncoberturas_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("cobertura.aspx", true);
         }
 
 
