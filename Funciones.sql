@@ -7,7 +7,7 @@ CREATE OR REPLACE FUNCTION insertarPais(_usuario varchar(20), _nombre varchar(50
 RETURNS void AS $$
 BEGIN
 	INSERT INTO Pais (pais) VALUES (_nombre);
-	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insertar', 'Pais');
+	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insert', 'Pais');
 END;
 $$  LANGUAGE plpgsql
 

@@ -103,6 +103,7 @@
     <Content Include="suprimir.aspx" />
     <Content Include="empleados.aspx" />
     <Content Include="archivos.aspx" />
+    <Content Include="VerReporte.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="beneficiarios.aspx.cs">
@@ -321,6 +322,13 @@
     </Compile>
     <Compile Include="archivos.aspx.designer.cs">
       <DependentUpon>archivos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VerReporte.aspx.cs">
+      <DependentUpon>VerReporte.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerReporte.aspx.designer.cs">
+      <DependentUpon>VerReporte.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
