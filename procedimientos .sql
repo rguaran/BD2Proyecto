@@ -306,4 +306,88 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+CREATE OR REPLACE FUNCTION getValorCambio(_id_moneda int, _prima bigint,_fecha date)
+RETURNS numeric AS 
+$$
+DECLARE 
+valor numeric;
+cambiodolar numeric;
+cambioeuro numeric;
+cambiopeso numeric;
+BEGIN
+	SELECT cambio INTO cambiodolar FROM tipo_de_cambio where id_moneda = 1 and fecha = _fecha;
+	SELECT cambio INTO cambioeuro FROM tipo_de_cambio where id_moneda = 2 and fecha = _fecha;
+	SELECT cambio INTO cambiopeso FROM tipo_de_cambio where id_moneda = 3 and fecha = _fecha;
+
+	IF _id_moneda = 1 THEN
+		valor := _prima * cambiodolar;
+	END IF;
+	IF _id_moneda = 2 THEN
+		valor := _prima * cambioeuro;
+	END IF;
+	IF _id_moneda = 3 THEN
+		valor := _prima * cambiopeso;
+	END IF;
+	IF _id_moneda = 4 THEN
+		valor := _prima;
+	END IF;
+	RETURN valor;
+END;
+$$  LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION conversionMoneda(_fecha date)
+  RETURNS setof plan_de_pagos AS $$
+DECLARE
+	valor numeric;
+	cur_row record;
+	c cursor for select * from plan_de_pagos;
+BEGIN
+create temporary table pagos_temp as select * from plan_de_pagos; 
+
+ FOR cur_row IN c LOOP
+	select getValorCambio(cur_row.id_moneda, cur_row.prima,_fecha) into valor;
+	update pagos_temp set prima = valor where id_plan = cur_row.id_plan;  
+ END LOOP;
+
+	RETURN QUERY SELECT * FROM pagos_temp order by id_plan;
+	DROP TABLE pagos_temp;
+END;
+$$  LANGUAGE plpgsql;
+
+--CREATE FUNCTION obtener_cursor(refcursor) RETURNS refcursor AS $$
+--BEGIN
+	--OPEN $1 FOR SELECT * FROM plan_de_pagos;
+	--RETURN $1;
+--END;
+--$$ LANGUAGE plpgsql;
+
+
+--CREATE OR REPLACE FUNCTION conversionMoneda(_fecha date)
+  --RETURNS setof plan_de_pagos AS $$
+--DECLARE
+	--valor numeric;
+	--ts plan_de_pagos%ROWTYPE;
+
+	--cur_row record;
+	
+	--c refcursor;
+--BEGIN
+--create temporary table pagos_temp as select * from plan_de_pagos; 
+--c := obtener_cursor(c);
+
+ --Loop
+ --FETCH from c INTO cur_row;
+ --exit when not FOUND;
+	--select getValorCambio(cur_row.id_moneda, cur_row.prima,_fecha) into valor;
+	--update pagos_temp set prima = valor where id_plan = cur_row.id_plan;  
+ --END LOOP;
+--CLOSE c;
+ --for ts in select * from pagos_temp order by id_plan loop
+   --return next ts;	
+--end loop;
+
+	--DROP TABLE pagos_temp;
+--END;
+--$$  LANGUAGE plpgsql;
 
