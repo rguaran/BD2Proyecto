@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="VerReporte.aspx.cs" Inherits="bases2proyecto.verReporte" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server" EnableEventValidation="false">
     <p style="font-size: xx-large">
         <asp:Label ID="lblTitulo" runat="server" Text="Reporte "></asp:Label>
     </p>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <asp:Label ID="lblFiltros" runat="server" style="font-weight: 700" Text="Seleccione los filtros que desee aplicar y presione el botón de actualización"></asp:Label>
-                    <asp:Button ID="btnActualizar" runat="server" Text="Actualizar reporte" />
+                    <asp:Button ID="btnActualizar" runat="server" Text="Actualizar reporte" OnClick="btnActualizar_Click" />
             
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
@@ -98,4 +98,22 @@
     </table>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder5" runat="server">
+    <table style="width:100%;">
+        <tr>
+            <td style="text-align: center">
+                <asp:Button ID="btnPDF" runat="server" OnClick="btnPDF_Click" Text="Exportar PDF" />
+&nbsp;&nbsp;
+                <asp:Button ID="btnExcel" runat="server" OnClick="btnExcel_Click" Text="Exportar Excel" />
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <asp:GridView ID="gridReporte" runat="server" style="text-align: center">
+                </asp:GridView>
+            </td>
+
+        </tr>
+
+    </table>
 </asp:Content>
