@@ -99,6 +99,12 @@ END IF;
 END;
 $$  LANGUAGE plpgsql;
 
+-- Reporte 5
+
+select id_emp, usuario, count(id_poliza) from empleado e inner join poliza p on e.id_emp = p.id_vendedor group by id_emp, usuario
+
+
+
 
 -- Reporte 6
 CREATE OR REPLACE FUNCTION reporte6()
@@ -112,4 +118,8 @@ BEGIN
 	order by p.id_poliza;
 END;
 $$  LANGUAGE plpgsql; 
+
+-- Reporte 14 
+
+select nombre, octet_length(archivo) from archivos
 
