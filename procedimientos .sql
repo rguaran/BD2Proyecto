@@ -75,7 +75,7 @@ END;
 $$ language plpgsql;
 
 CREATE OR REPLACE FUNCTION consultar_cliente()
-  RETURNS TABLE(id int,  nombre varchar,  domicilio varchar, id1 int, id_pais int , id_tc int, tipo varchar, id_pais2 int,
+  RETURNS TABLE(id_cliente int,  nombre varchar,  domicilio varchar, id1 int, id_pais int , id_tc int, tipo varchar, id_pais2 int,
   pais text) AS $$
 BEGIN
 	
