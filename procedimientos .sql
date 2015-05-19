@@ -260,7 +260,7 @@ $$  LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION eliminarCliente(_id integer, _usuario varchar(20))
 RETURNS void AS $$
 BEGIN
-	DELETE FROM Cliente WHERE id = _id;
+	DELETE FROM Cliente WHERE id_cliente = _id;
 	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Eliminar', 'Cliente');
 END;
 $$  LANGUAGE plpgsql;
@@ -269,10 +269,10 @@ $$  LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION modificarCliente(_idCliente integer, _nombre varchar(50), _domicilio varchar(75), _idTipo integer, _idPais integer, _usuario varchar(20))
 RETURNS void AS $$
 BEGIN
-	UPDATE Cliente SET nombre = _nombre WHERE id = _idCliente;
-	UPDATE Cliente SET domicilio = _domicilio WHERE id = _idCliente;
-	UPDATE Cliente SET id1 = _idTipo WHERE id = _idCliente;
-	UPDATE Cliente SET id_pais = _idPais WHERE id = _idCliente;
+	UPDATE Cliente SET nombre = _nombre WHERE id_cliente = _idCliente;
+	UPDATE Cliente SET domicilio = _domicilio WHERE id_cliente = _idCliente;
+	UPDATE Cliente SET id1 = _idTipo WHERE id_cliente = _idCliente;
+	UPDATE Cliente SET id_pais = _idPais WHERE id_cliente = _idCliente;
 	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Modificar', 'Cliente');
 END;
 $$  LANGUAGE plpgsql;
@@ -286,7 +286,7 @@ $$  LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION insertarPoliza(_usuario varchar(20),_idestado int, _idcp int, _fechaIni date, _fechaFin date, _clausulas text, _idcliente int, _idtipoSeguro varchar(5), _polizaVieja varchar, _meses int,_productoDescripcion text, _status varchar(15),_idvendedor int, _idoperador int, _idnegociador int , _codventa text, _cobadicional text,_cargav int,_cargao int, _cargan int)
 RETURNS void AS $$
 BEGIN
-	INSERT INTO Poliza(id_estado, id_cp, fecha_inicio, fecha_fin, clausulas, id, id_ts, poliza_vieja, meses, producto_descripcion, status,
+	INSERT INTO Poliza(id_est, id_condp, fecha_inicio, fecha_fin, clausulas, id_cli, id_ts, poliza_vieja, meses, producto_descripcion, status,
 						id_vendedor, id_operador, id_negociador, cod_venta, coberturas_adicionales, id_cargaV, id_cargaO, id_cargaN) 
 			VALUES   (_idestado, _idcp, _fechaIni, _fechaFin, _clausulas, _idcliente, _idtipoSeguro, _polizaVieja, _meses, _productoDescripcion, _status, _idvendedor,_idoperador,_idnegociador,_codventa,_cobadicional,_cargav,_cargao,_cargan);
 	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insertar', 'Poliza');
@@ -297,8 +297,8 @@ CREATE OR REPLACE FUNCTION regresaIDPoliza(_idestado int, _idcp int, _fechaIni d
 RETURNS INTEGER AS $$
 DECLARE idpoliza INTEGER;
 BEGIN
-	SELECT id_poliza into idpoliza from Poliza where id_estado = _idestado and id_cp=_idcp and fecha_inicio=_fechaIni and fecha_fin =_fechaFin and clausulas = _clausulas and
-						id = _idcliente and id_ts =_idtipoSeguro and poliza_vieja = _polizaVieja and meses =_meses and producto_descripcion=_productoDescripcion and status =_status and
+	SELECT id_poliza into idpoliza from Poliza where id_est = _idestado and id_condp=_idcp and fecha_inicio=_fechaIni and fecha_fin =_fechaFin and clausulas = _clausulas and
+						id_cli = _idcliente and id_ts =_idtipoSeguro and poliza_vieja = _polizaVieja and meses =_meses and producto_descripcion=_productoDescripcion and status =_status and
 						id_vendedor=_idvendedor and id_operador=_idoperador and id_negociador=_idnegociador and cod_venta=_codventa and
 						coberturas_adicionales=_cobadicional and id_cargaV=_cargav and id_cargaO=_cargao and id_cargaN =_cargan;
 	RETURN idpoliza;
