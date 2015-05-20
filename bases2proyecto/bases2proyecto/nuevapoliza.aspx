@@ -7,9 +7,9 @@
         <tr>
             <td>Cliente</td>
             <td>
-                <asp:DropDownList ID="ddlcliente" runat="server" DataSourceID="SqlDataSource4" DataTextField="nombre" DataValueField="id">
+                <asp:DropDownList ID="ddlcliente" runat="server" DataSourceID="SqlDataSource4" DataTextField="nombre" DataValueField="id_cliente">
                 </asp:DropDownList>
-                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="User Id=postgres;Password=admin123;Host=localhost;Database=proyectoBD2;Initial Schema=public" ProviderName="Devart.Data.PostgreSql" SelectCommand="consultar_cliente" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:proyectoBD2ConnectionString %>" ProviderName="<%$ ConnectionStrings:proyectoBD2ConnectionString.ProviderName %>" SelectCommand="consultar_cliente" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -273,6 +273,38 @@
             <td>&nbsp;</td>
         </tr>
         <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+                <tr>
+            <td>Precio</td>
+            <td>
+                <asp:TextBox ID="txtprecio" runat="server"></asp:TextBox>
+                    </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+                <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+                <tr>
+            <td>Valor Seguro</td>
+            <td>
+                <asp:TextBox ID="txtvalorseguro" runat="server"></asp:TextBox>
+                    </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+                <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>

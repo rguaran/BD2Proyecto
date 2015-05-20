@@ -57,9 +57,9 @@
 
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder5" runat="server">
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnRowCommand="GridView1_RowCommand" AllowPaging="true" AllowSorting="true">
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnRowCommand="GridView1_RowCommand" AllowPaging="True" AllowSorting="True">
         <Columns>
-            <asp:BoundField DataField="id" HeaderText="id" ReadOnly="True" SortExpression="id" />
+            <asp:BoundField DataField="id_cliente" HeaderText="id_cliente" ReadOnly="True" SortExpression="id_cliente" />
             <asp:BoundField DataField="nombre" HeaderText="nombre" ReadOnly="True" SortExpression="nombre" />
             <asp:BoundField DataField="domicilio" HeaderText="domicilio" ReadOnly="True" SortExpression="domicilio" />
             <asp:BoundField DataField="id1" HeaderText="id1" ReadOnly="True" SortExpression="id1" Visible="False" />

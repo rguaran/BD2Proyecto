@@ -34,11 +34,12 @@ namespace bases2proyecto
                 string sql = "select insertarPoliza('" + (String)Session["user"] + "',";
                 string sql2 = ddlestado.SelectedValue + "," + ddlcondicionesparticulares.SelectedValue + ",'" + fechainicio.ToString("dd/MM/yyyy") + "','" +
                               fechafin.ToString("dd/MM/yyyy") + "','" + txtclausulas.Text + "'," + ddlcliente.SelectedValue + ",'" + ddltiposeguro.SelectedValue + "','" + ddlpolizavieja.SelectedValue + "'," +
-                              txtmeses.Text + ",'" + txtdescripcion.Text + "','" + ddlstatus.SelectedItem + "'," + ddlvendedor.SelectedItem + "," + ddloperador.SelectedItem + "," + ddlnegociador.SelectedItem + ",'" +
+                              txtmeses.Text + ",'" + txtdescripcion.Text + "','" + ddlstatus.SelectedItem + "'," +txtprecio.Text +"," + txtvalorseguro.Text + "," + ddlvendedor.SelectedItem + "," + ddloperador.SelectedItem + "," + ddlnegociador.SelectedItem + ",'" +
                                   txtcodigoventa.Text + "','" + txtcoveradicionales.Text + "'," + ddlvendedor.SelectedValue + "," + ddloperador.SelectedValue + "," + ddlnegociador.SelectedValue + ")";
                 con.Query(sql + sql2);
 
                 Session["tipoSeguro"] = ddltiposeguro.SelectedValue;
+                Session["ts"] = ddltiposeguro.SelectedItem;
 
                 string idpoliza = con.getIDpoliza(sql2);
 

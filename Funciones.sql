@@ -98,18 +98,8 @@ BEGIN
 	INSERT INTO Empleado (nombre, telefono, Tipo_Empleado_id_te, Oficina_id_oficina, Oficina_Departamento_id_dep) VALUES 
 	(_nombre, _telefono, idTE, idOficina, idDepto);
 END;
-$$  LANGUAGE plpgsql
+$$  LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION insertarPoliza(_estado, _cp, _fechaIni, _fechaFin, _clausulas, _nombreCliente, _pais, _tipoSeguro, _polizaVieja, _meses,
-										  _productoDescripcion, )
-RETURNS void AS $$
-BEGIN
-	INSERT INTO Poliza(id_estado, id_cp, fecha_inicio, fecha_fin, clausulas, id, id_ts, poliza_vieja, meses, producto_descripcion, status,
-						id_vendedor, id_operador, id_negociador, cod_venta, coberturas_adicionales, id_cargaV, id_cargaO, id_cargaN) 
-			VALUES   (getIdEstado(_estado), getIdCondicionParticular(_cp), _fechaIni, _fechaFin, _clausulas, getIdCliente(_nombreCliente, _pais),
-						getIdTS(_tipoSeguro), _polizaVieja, _meses, _productoDescripcion, _estado, r)
-END;
-$$ LANGUAGE plpgsql
 
 CREATE OR REPLACE FUNCTION insertarempleado( _usuario1 text,  _nombre text, _usuario text, _pass text, _telefono text, _id_te int, _id_oficina text, _id_dep int)
   RETURNS void AS
