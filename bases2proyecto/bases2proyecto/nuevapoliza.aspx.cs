@@ -39,7 +39,7 @@ namespace bases2proyecto
                 con.Query(sql + sql2);
 
                 Session["tipoSeguro"] = ddltiposeguro.SelectedValue;
-                Session["ts"] = ddltiposeguro.SelectedItem;
+                //Session["ts"] = ddltiposeguro.SelectedItem;
 
                 string idpoliza = con.getIDpoliza(sql2);
 
