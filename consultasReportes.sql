@@ -1,7 +1,12 @@
 -- Reporte 1
 
-select c.nombre, c.domicilio, c.tipo,pais.pais from 
+CREATE OR REPLACE FUNCTION reporte1()
+  RETURNS TABLE(nombre varchar, domicilio varchar, tipo varchar, pais text) AS $$
+BEGIN
+return query select c.nombre, c.domicilio, c.tipo,pais.pais from 
 (cliente join tipo_cliente on cliente.id1 = tipo_cliente.id) c join pais on c.id_pais = pais.id_pais order by c.nombre;
+END;
+$$  LANGUAGE plpgsql;
 
 -- Reporte 2 *****AUN FALTA 
 
