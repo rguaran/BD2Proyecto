@@ -9,7 +9,7 @@ BEGIN
 	INSERT INTO Pais (pais) VALUES (_nombre);
 	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insert', 'Pais');
 END;
-$$  LANGUAGE plpgsql
+$$  LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION insertartipodecambio( _usuario varchar, _fecha date, _cambio numeric, _moneda_id_moneda integer)
   RETURNS void AS
@@ -25,14 +25,14 @@ RETURNS void AS $$
 BEGIN
 	INSERT INTO Tipo_Cliente (tipo) VALUES (_nombre);
 END;
-$$  LANGUAGE plpgsql
+$$  LANGUAGE plpgsql;
 	
 CREATE OR REPLACE FUNCTION insertarFotografia(_nombre varchar(50))
 RETURNS void AS $$
 BEGIN
 	INSERT INTO Fotografia (nombre) VALUES (_nombre);
 END;
-$$  LANGUAGE plpgsql
+$$  LANGUAGE plpgsql;
 	
 CREATE OR REPLACE FUNCTION insertarMoneda(_usuario varchar(50), _nombre varchar(50))
 RETURNS void AS $$
@@ -40,42 +40,42 @@ BEGIN
 	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Insert','Moneda');
 	INSERT INTO Moneda (moneda) VALUES (_nombre);
 END;
-$$  LANGUAGE plpgsql
+$$  LANGUAGE plpgsql;
 	
 CREATE OR REPLACE FUNCTION insertarTipoEmpleado(_nombre varchar(50))
 RETURNS void AS $$
 BEGIN
 	INSERT INTO Tipo_Empleado (tipo) VALUES (_nombre);
 END;
-$$  LANGUAGE plpgsql
+$$  LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION insertarDepartamento(_nombre varchar(50))
 RETURNS void AS $$
 BEGIN
 	INSERT INTO Departamento (nombre) VALUES (_nombre);
 END;
-$$  LANGUAGE plpgsql
+$$  LANGUAGE plpgsql;
 	
 CREATE OR REPLACE FUNCTION insertarCondiciones(_nombre varchar(50))
 RETURNS void AS $$
 BEGIN
 	INSERT INTO Condiciones (tipo) VALUES (_nombre);
 END;
-$$  LANGUAGE plpgsql
+$$  LANGUAGE plpgsql;
 	
 CREATE OR REPLACE FUNCTION insertarEstadoPoliza(_nombre varchar(50))
 RETURNS void AS $$
 BEGIN
 	INSERT INTO Estado_Poliza (estado) VALUES (_nombre);
 END;
-$$  LANGUAGE plpgsql
+$$  LANGUAGE plpgsql;
 	
 CREATE OR REPLACE FUNCTION insertarCondicionesGenerales(_nombre varchar(50))
 RETURNS void AS $$
 BEGIN
 	INSERT INTO Condiciones_Generales (condicion) VALUES (_nombre);
 END;
-$$  LANGUAGE plpgsql
+$$  LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION insertarOficina(_id varchar(5),_nombre varchar(50), _departamento varchar(50))
 RETURNS void AS $$
@@ -84,7 +84,7 @@ BEGIN
 	SELECT getIdDepartamento(_departamento) INTO idDepto;
 	INSERT INTO Oficina (id_oficina, nombre, Departamento_id_dep) VALUES (_id, _nombre, idDepto);
 END;
-$$  LANGUAGE plpgsql
+$$  LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION insertarEmpleado(_nombre varchar(50), _telefono varchar(20), _tipo varchar(30), _oficina varchar(30), _depto varchar(30))
 RETURNS void AS $$
@@ -323,7 +323,7 @@ END;
 $$  LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION seleccionarmoneda()
-  RETURNS TABLE(id integer, moneda text) AS$$
+  RETURNS TABLE(id integer, moneda text) AS $$
 BEGIN
 	
 	RETURN QUERY SELECT * FROM Moneda;
@@ -567,8 +567,38 @@ RETURNS void AS $$
 BEGIN
 	INSERT INTO Pais (pais) VALUES (_nombre);
 END;
-$$  LANGUAGE plpgsql
+$$  LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION getValorCambio2(_id_moneda int, _prima bigint)
+RETURNS numeric AS 
+$$
+DECLARE 
+valor numeric;
+ultimoCambio numeric;
+BEGIN
+	SELECT cambio INTO ultimoCambio FROM tipo_de_cambio where id_moneda = _id_moneda ORDER BY fecha DESC LIMIT 1;
+
+	valor := _prima * ultimoCambio;
+	
+	RETURN valor;
+END;
+$$  LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION getValorCambio2(_id_moneda int, _prima numeric)
+RETURNS numeric AS 
+$$
+DECLARE 
+valor numeric;
+ultimoCambio numeric;
+BEGIN
+	SELECT cambio INTO ultimoCambio FROM tipo_de_cambio where id_moneda = _id_moneda ORDER BY fecha DESC LIMIT 1;
+
+	valor := _prima * ultimoCambio;
+	
+	RETURN valor;
+END;
+$$  LANGUAGE plpgsql;
 
 
 create or replace function cargar_byte(p_path text, p_result out bytea) 
