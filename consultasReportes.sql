@@ -124,6 +124,41 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql; 
 
+
+-- Reporte 7
+
+CREATE OR REPLACE FUNCTION reporte7(id_moneda int)
+  RETURNS TABLE("Código vendedor" int, "Nombre" varchar, "Total venta" numeric) AS $$
+BEGIN
+	RETURN QUERY select id_vendedor as "id", e.usuario, sum(getValorCambio2(id_moneda,precio)) as "total" from poliza  inner join empleado e on e.id_emp = id_vendedor group by id_vendedor, usuario order by "total" desc ;
+END;
+$$  LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION reporte7(id_moneda int, _id_vendedor int)
+  RETURNS TABLE("Código vendedor" int, "Nombre" varchar, "Total venta" numeric) AS $$
+BEGIN
+	RETURN QUERY select id_vendedor as "id", e.usuario, sum(getValorCambio2(id_moneda,precio)) as "total" from poliza  inner join empleado e on e.id_emp = id_vendedor where id_vendedor = _id_vendedor group by id_vendedor, usuario order by "total" desc ;
+END;
+$$  LANGUAGE plpgsql;
+
+-- Reporte 8
+
+CREATE OR REPLACE FUNCTION reporte8(id_moneda int)
+  RETURNS TABLE("Código agente" int, "Nombre" varchar, "Total venta" numeric) AS $$
+BEGIN
+	RETURN QUERY select id_negociador as "id", e.usuario, sum(getValorCambio2(id_moneda,precio)) as "total" from poliza  inner join empleado e on e.id_emp = id_negociador group by id_negociador, usuario order by "total" desc ;
+END;
+$$  LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION reporte8(id_moneda int, _id_negociador int)
+  RETURNS TABLE("Código agente" int, "Nombre" varchar, "Total venta" numeric) AS $$
+BEGIN
+	RETURN QUERY select id_negociador as "id", e.usuario, sum(getValorCambio2(id_moneda,precio)) as "total" from poliza  inner join empleado e on e.id_emp = id_negociador where id_negociador = _id_negociador group by id_negociador, usuario order by "total" desc ;
+END;
+$$  LANGUAGE plpgsql;
+ 
 -- Reporte 14 
 
 select nombre, octet_length(archivo) from archivos
