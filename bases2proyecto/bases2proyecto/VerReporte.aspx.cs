@@ -145,7 +145,7 @@ namespace bases2proyecto
         }
 
         private void llenarGrid(Boolean page) {
-            string consulta = "Select * from poliza"; //(string)Session["consulta"];
+            string consulta = (string)Session["consulta"];
             gridReporte.AllowPaging = page;
             Ds = con.consulta(consulta);
             DataTable Dt = Ds.Tables[0];
@@ -158,6 +158,12 @@ namespace bases2proyecto
         protected void btnActualizar_Click(object sender, EventArgs e)
         {
             llenarGrid( true);
+        }
+
+        protected void gridReporte_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gridReporte.PageIndex = e.NewPageIndex;
+            llenarGrid(true);
         }
     }
 }

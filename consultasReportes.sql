@@ -30,7 +30,7 @@ $$  LANGUAGE plpgsql;
 
 
 -- Reporte 3
-CREATE OR REPLACE FUNCTION reporte3(param varchar, pvalor int, pvalor2 varchar, _idcargan int)
+CREATE OR REPLACE FUNCTION reporte3(param varchar, pvalor int, pvalor2 varchar)
   RETURNS TABLE(idpoliza int, tipoSeguro text, fecha_inicio date, fecha_fin date, poliza_vieja varchar, meses int,producto text, status varchar, id_vendedor int,
   id_operador int, cod_venta text, coberturas_adicionales text, condicion text, cliente varchar, domicilio varchar, tipo varchar, pais text,
   agenteNegocio text, estadoPoliza varchar) AS $$
@@ -40,67 +40,85 @@ IF param = 'tiposeguro' then
 	RETURN QUERY select p.id_poliza, ts.tipo, p.fecha_inicio, p.fecha_fin, p.poliza_vieja, p.meses,
 	 p.producto_descripcion, p.status, p.id_vendedor, p.id_operador, p.cod_venta, p.coberturas_adicionales, cp.condicion,
 	 c.nombre, c.domicilio, tc.tipo,pa.pais, e.nombre, ep.estado
-	from poliza p join cliente c on p.id = c.id
+	from poliza p join cliente c on p.id_cli = c.id_cliente
 	join tipo_de_seguro ts on p.id_ts = ts.id_ts
 	join empleado e on p.id_negociador = e.id_emp and p.id_cargan = e.id_carga
-	join estado_poliza ep on ep.id_estado = p.id_estado
+	join estado_poliza ep on ep.id_estado = p.id_est
 	join pais pa on pa.id_pais = c.id_pais
 	join tipo_cliente tc on tc.id = c.id1
-	join condiciones_particulares cp on p.id_cp = cp.id_cp
-	where p.id_ts = pvalor2;
+	join condiciones_particulares cp on p.id_condp = cp.id_cp
+	--where p.id_ts = pvalor2;
+	where LOWER(p.id_ts) LIKE LOWER((pvalor2 || '%' ));
 END IF;
 IF param = 'numeropoliza' then
 	RETURN QUERY select p.id_poliza, ts.tipo, p.fecha_inicio, p.fecha_fin, p.poliza_vieja, p.meses,
 	 p.producto_descripcion, p.status, p.id_vendedor, p.id_operador, p.cod_venta, p.coberturas_adicionales, cp.condicion,
 	 c.nombre, c.domicilio, tc.tipo,pa.pais, e.nombre, ep.estado
-	from poliza p join cliente c on p.id = c.id
+	from poliza p join cliente c on p.id_cli = c.id_cliente
 	join tipo_de_seguro ts on p.id_ts = ts.id_ts
 	join empleado e on p.id_negociador = e.id_emp and p.id_cargan = e.id_carga
-	join estado_poliza ep on ep.id_estado = p.id_estado
+	join estado_poliza ep on ep.id_estado = p.id_est
 	join pais pa on pa.id_pais = c.id_pais
 	join tipo_cliente tc on tc.id = c.id1
-	join condiciones_particulares cp on p.id_cp = cp.id_cp
+	join condiciones_particulares cp on p.id_condp = cp.id_cp
 	where p.id_poliza = pvalor;
+	
 END IF;
 IF param = 'cliente' then
 	RETURN QUERY select p.id_poliza, ts.tipo, p.fecha_inicio, p.fecha_fin, p.poliza_vieja, p.meses,
 	 p.producto_descripcion, p.status, p.id_vendedor, p.id_operador, p.cod_venta, p.coberturas_adicionales, cp.condicion,
 	 c.nombre, c.domicilio, tc.tipo,pa.pais, e.nombre, ep.estado
-	from poliza p join cliente c on p.id = c.id
+	from poliza p join cliente c on p.id_cli = c.id_cliente
 	join tipo_de_seguro ts on p.id_ts = ts.id_ts
 	join empleado e on p.id_negociador = e.id_emp and p.id_cargan = e.id_carga
-	join estado_poliza ep on ep.id_estado = p.id_estado
+	join estado_poliza ep on ep.id_estado = p.id_est
 	join pais pa on pa.id_pais = c.id_pais
 	join tipo_cliente tc on tc.id = c.id1
-	join condiciones_particulares cp on p.id_cp = cp.id_cp
-	where p.id = pvalor;
+	join condiciones_particulares cp on p.id_condp = cp.id_cp
+	--where p.id = pvalor;
+	where LOWER(c.nombre) LIKE LOWER((pvalor2 || '%' ));
 END IF;
 IF param = 'agentenegocio' then
 	RETURN QUERY select p.id_poliza, ts.tipo, p.fecha_inicio, p.fecha_fin, p.poliza_vieja, p.meses,
 	 p.producto_descripcion, p.status, p.id_vendedor, p.id_operador, p.cod_venta, p.coberturas_adicionales, cp.condicion,
 	 c.nombre, c.domicilio, tc.tipo,pa.pais, e.nombre, ep.estado
-	from poliza p join cliente c on p.id = c.id
+	from poliza p join cliente c on p.id_cli = c.id_cliente
 	join tipo_de_seguro ts on p.id_ts = ts.id_ts
 	join empleado e on p.id_negociador = e.id_emp and p.id_cargan = e.id_carga
-	join estado_poliza ep on ep.id_estado = p.id_estado
+	join estado_poliza ep on ep.id_estado = p.id_est
 	join pais pa on pa.id_pais = c.id_pais
 	join tipo_cliente tc on tc.id = c.id1
-	join condiciones_particulares cp on p.id_cp = cp.id_cp
-	where p.id_negociador = pvalor and p.id_cargan = _idcargan;
+	join condiciones_particulares cp on p.id_condp = cp.id_cp
+	--where p.id_negociador = pvalor and p.id_cargan = _idcargan;
+	where LOWER(e.nombre) LIKE LOWER((pvalor2 || '%' ));
 END IF;
 IF param = 'polizavieja' then
 	RETURN QUERY select p.id_poliza, ts.tipo, p.fecha_inicio, p.fecha_fin, p.poliza_vieja, p.meses,
 	 p.producto_descripcion, p.status, p.id_vendedor, p.id_operador, p.cod_venta, p.coberturas_adicionales, cp.condicion,
 	 c.nombre, c.domicilio, tc.tipo,pa.pais, e.nombre, ep.estado
-	from poliza p join cliente c on p.id = c.id
+	from poliza p join cliente c on p.id_cli = c.id_cliente
 	join tipo_de_seguro ts on p.id_ts = ts.id_ts
 	join empleado e on p.id_negociador = e.id_emp and p.id_cargan = e.id_carga
-	join estado_poliza ep on ep.id_estado = p.id_estado
+	join estado_poliza ep on ep.id_estado = p.id_est
 	join pais pa on pa.id_pais = c.id_pais
 	join tipo_cliente tc on tc.id = c.id1
-	join condiciones_particulares cp on p.id_cp = cp.id_cp
-	where p.poliza_vieja = pvalor2;
+	join condiciones_particulares cp on p.id_condp = cp.id_cp
+	--where p.poliza_vieja = pvalor2;
+	where LOWER(p.poliza_vieja) LIKE LOWER((pvalor2 || '%' ));
 END IF;
+END;
+$$  LANGUAGE plpgsql;
+
+--reporte 4
+
+CREATE OR REPLACE FUNCTION reporte4(_moneda int)
+  RETURNS TABLE(total_precio float, total_valor_seguro float,total_pagado float, total_deuda float) AS $$
+BEGIN
+return query select sum(getValorCambio3(_moneda,p.precio)),sum(getValorCambio3(_moneda,p.valor_seguro)), 
+sum(getValorCambio3(_moneda, (pp.numero_cuotas - pp.numero_cuotas_atrasadas) * (p.precio/pp.numero_cuotas))), 
+sum(getValorCambio3(_moneda, pp.numero_cuotas_atrasadas * (p.precio/pp.numero_cuotas)))
+from poliza p join plan_de_pagos pp on p.id_poliza = pp.id_poliza and p.id_ts = pp.id_ts
+;
 END;
 $$  LANGUAGE plpgsql;
 

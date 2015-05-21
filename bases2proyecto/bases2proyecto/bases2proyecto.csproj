@@ -83,7 +83,6 @@
     <Content Include="editar.aspx" />
     <Content Include="eliminar.aspx" />
     <Content Include="empleado.aspx" />
-    <Content Include="frmreporte1.aspx" />
     <Content Include="index.aspx" />
     <Content Include="mantenimiento.aspx" />
     <Content Include="modificar.aspx" />
@@ -167,13 +166,6 @@
     <Compile Include="empleado.aspx.designer.cs">
       <DependentUpon>empleado.aspx</DependentUpon>
     </Compile>
-    <Compile Include="frmreporte1.aspx.cs">
-      <DependentUpon>frmreporte1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="frmreporte1.aspx.designer.cs">
-      <DependentUpon>frmreporte1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -209,7 +201,6 @@
     <Compile Include="modificarpoliza.aspx.designer.cs">
       <DependentUpon>modificarpoliza.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Mydataset.cs" />
     <Compile Include="nuevapoliza.aspx.cs">
       <DependentUpon>nuevapoliza.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -266,17 +257,6 @@
     </Compile>
     <Compile Include="poliza.aspx.designer.cs">
       <DependentUpon>poliza.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="reporte1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>reporte1.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reporte1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reporte1.xsd</DependentUpon>
     </Compile>
     <Compile Include="Reportes.aspx.cs">
       <DependentUpon>Reportes.aspx</DependentUpon>
@@ -337,29 +317,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />
-    <Content Include="Reporte1.xsc">
-      <DependentUpon>Reporte1.xsd</DependentUpon>
-    </Content>
-    <None Include="Reporte1.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Reporte1.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="Reporte1.xss">
-      <DependentUpon>Reporte1.xsd</DependentUpon>
-    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="reporte1.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>reporte1.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

@@ -109,7 +109,7 @@
         </tr>
         <tr>
             <td>
-                <asp:GridView ID="gridReporte" runat="server" style="text-align: center">
+                <asp:GridView ID="gridReporte" OnPageIndexChanging="gridReporte_PageIndexChanging" runat="server" style="text-align: center">
                 </asp:GridView>
             </td>
 

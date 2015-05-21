@@ -16,7 +16,8 @@ namespace bases2proyecto
 
         protected void btnreporte1_Click(object sender, EventArgs e)
         {
-            Response.Redirect("frmreporte1.aspx", true);
+            Session["consulta"] = "Select * from reporte1()";
+            Response.Redirect("VerReporte.aspx", true);
         }
     }
 }

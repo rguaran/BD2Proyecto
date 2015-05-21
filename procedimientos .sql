@@ -401,3 +401,24 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql; 
 
+CREATE OR REPLACE FUNCTION verifica_usuario(usr varchar, pass varchar)
+RETURNS integer SECURITY DEFINER AS
+$$
+SELECT CASE WHEN pass = $2 THEN 1 ELSE 0 END
+FROM empleado WHERE usuario=$1;
+$$ LANGUAGE SQL;
+
+CREATE OR REPLACE FUNCTION getValorCambio3(_id_moneda int, _valor float)
+RETURNS float AS 
+$$
+DECLARE 
+valor float;
+ultimoCambio numeric;
+BEGIN
+	SELECT cambio INTO ultimoCambio FROM tipo_de_cambio where id_moneda = _id_moneda ORDER BY fecha DESC LIMIT 1;
+
+	valor := _valor * ultimoCambio;
+	
+	RETURN valor;
+END;
+$$  LANGUAGE plpgsql;

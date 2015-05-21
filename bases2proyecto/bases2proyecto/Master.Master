@@ -27,7 +27,7 @@
         <div class="nav">
             <div class="nav-in">
               <ul>
-                <li class="last"><a href="index.aspx">Home</a></li>
+                <li class="last"><a ID="home" href="index.aspx">Home</a></li>
                 <li><a ID= "poliza" runat="server" href="poliza.aspx">Poliza</a></li>
                 <li><a ID= "A2" runat="server" href="empleados.aspx">Empleados</a></li>
                <li><a ID= "A5" runat="server" href="clientesmantenimiento.aspx">Clientes</a></li>

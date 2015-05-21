@@ -9,7 +9,7 @@
         <tr>
             <td>User</td>
             <td>
-                <asp:TextBox ID="TextBox1" runat="server" Width="150px"></asp:TextBox>
+                <asp:TextBox ID="txtuser" runat="server" Width="150px"></asp:TextBox>
             </td>
             <td>&nbsp;</td>
         </tr>
@@ -21,7 +21,7 @@
         <tr>
             <td>Password</td>
             <td>
-                <asp:TextBox ID="TextBox2" runat="server" TextMode="Password" Width="148px"></asp:TextBox>
+                <asp:TextBox ID="txtpass" runat="server" TextMode="Password" Width="148px"></asp:TextBox>
             </td>
             <td>&nbsp;</td>
         </tr>
@@ -40,6 +40,7 @@
     </table>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
+    <asp:Button ID="btnsalir" runat="server" OnClick="btnsalir_Click" Text="Salir" />
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder4" runat="server">
 </asp:Content>
