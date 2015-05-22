@@ -377,3 +377,18 @@ CREATE OR REPLACE FUNCTION reporte14()
 	RETURN QUERY select nombre, cast(octet_length(archivo) as numeric) from archivos;
 END;
 $$  LANGUAGE plpgsql;
+
+-- Reporte 15
+CREATE OR REPLACE FUNCTION reporte15()
+  RETURNS TABLE("Nombre de Usuario" varchar, "Nombre" text, "No. de Telefono" text, "Tipo de Empleado" text, "Nombre de Oficina" varchar,
+  "Nombre de Departamento" varchar) AS $$
+  BEGIN
+	RETURN QUERY select e.usuario, e.nombre, e.telefono, te.tipo, o.nombre, dep.nombre
+	from empleado e join tipo_empleado te on e.id_te = te.id_te 
+	join oficina o on e.id_oficina = o.id_oficina
+	join departamento dep on e.id_dep = dep.id_dep
+	group by e.usuario,e.id_emp,e.nombre, e.telefono, te.tipo, o.nombre, dep.nombre
+	order by e.id_emp;
+END;
+$$  LANGUAGE plpgsql;
+
