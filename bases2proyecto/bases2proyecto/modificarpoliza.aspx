@@ -1,24 +1,68 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="modificarpoliza.aspx.cs" Inherits="bases2proyecto.modificarpoliza" %>
+<%@ PreviousPageType VirtualPath="~/poliza.aspx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Modificar Poliza</h1>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <table style="width: 100%">
         <tr>
+            <td>&nbsp;</td>
+            <td>No. Poliza</td>
+            <td>
+                <asp:TextBox ID="txtnopoliza" runat="server"></asp:TextBox>
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>Tipo de Seguro</td>
+            <td>
+                <asp:DropDownList ID="ddltiposeguro" runat="server" DataSourceID="SqlDataSource1" DataTextField="tipo" DataValueField="id_ts">
+                </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:proyectoBD2ConnectionString %>" ProviderName="<%$ ConnectionStrings:proyectoBD2ConnectionString.ProviderName %>" SelectCommand="consultar_tipo_de_seguro" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+       <tr>
+            <td>Cliente</td>
+            <td>
+                <asp:DropDownList ID="ddlcliente" runat="server" DataSourceID="SqlDataSource4" DataTextField="nombre" DataValueField="id_cliente">
+                </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:proyectoBD2ConnectionString %>" ProviderName="<%$ ConnectionStrings:proyectoBD2ConnectionString.ProviderName %>" SelectCommand="consultar_cliente" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
             <td>Fecha Inicio</td>
             <td>
                 <asp:TextBox ID="txtfechainicio" runat="server" TextMode="Date"></asp:TextBox>
             </td>
             <td>
-                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td>
-                <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-            </td>
+                &nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -41,10 +85,9 @@
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td>Meses</td>
+            <td>&nbsp;</td>
             <td>
-                <asp:TextBox ID="txtmeses" runat="server"></asp:TextBox>
-            </td>
+                &nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -73,11 +116,9 @@
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td>Tipo</td>
+            <td>&nbsp;</td>
             <td>
-                <asp:DropDownList ID="cmbtiposeguro" runat="server">
-                </asp:DropDownList>
-            </td>
+                &nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -92,8 +133,9 @@
         <tr>
             <td>Estado</td>
             <td>
-                <asp:DropDownList ID="cmbestado" runat="server">
+                <asp:DropDownList ID="ddlestado" runat="server" DataSourceID="SqlDataSource2" DataTextField="estado" DataValueField="id_estado">
                 </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:proyectoBD2ConnectionString %>" ProviderName="<%$ ConnectionStrings:proyectoBD2ConnectionString.ProviderName %>" SelectCommand="consultar_estado_poliza" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -109,8 +151,9 @@
         <tr>
             <td>Poliza vieja</td>
             <td>
-                <asp:DropDownList ID="DropDownList1" runat="server">
+                <asp:DropDownList ID="ddlpolizavieja" runat="server" DataSourceID="SqlDataSource3" DataTextField="poliza_vieja" DataValueField="poliza_vieja">
                 </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:proyectoBD2ConnectionString %>" ProviderName="<%$ ConnectionStrings:proyectoBD2ConnectionString.ProviderName %>" SelectCommand="select poliza_vieja from poliza group by poliza_vieja"></asp:SqlDataSource>
             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -126,7 +169,9 @@
          <tr>
             <td>Aprobada</td>
             <td>
-                <asp:DropDownList ID="DropDownList2" runat="server">
+                <asp:DropDownList ID="ddlstatus" runat="server">
+                    <asp:ListItem>Status 1</asp:ListItem>
+                    <asp:ListItem>Status 2</asp:ListItem>
                 </asp:DropDownList>
              </td>
             <td>&nbsp;</td>
@@ -134,6 +179,22 @@
             <td>&nbsp;</td>
         </tr>
          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>clausulas</td>
+            <td>
+                <asp:TextBox ID="txtclausulas" runat="server" Height="31px" TextMode="MultiLine" Width="172px"></asp:TextBox>
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -143,24 +204,23 @@
          <tr>
             <td>Codigo de Venta</td>
             <td>
-                <asp:DropDownList ID="DropDownList3" runat="server">
-                </asp:DropDownList>
+                <asp:TextBox ID="txtcodigoventa" runat="server"></asp:TextBox>
              </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
          <tr>
-            <td style="height: 20px"></td>
-            <td style="height: 20px"></td>
-            <td style="height: 20px"></td>
-            <td style="height: 20px"></td>
-            <td style="height: 20px"></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
         </tr>
          <tr>
             <td>Coberturas Adicionales</td>
             <td>
-                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtcoveradicionales" runat="server" TextMode="MultiLine"></asp:TextBox>
              </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -174,42 +234,67 @@
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td>Archivo</td>
+            <td>condiciones particulares</td>
             <td>
-                <asp:FileUpload ID="FileUpload1" runat="server" />
+                <asp:DropDownList ID="ddlcondicionesparticulares" runat="server" DataSourceID="SqlDataSource5" DataTextField="condicion" DataValueField="id_cp">
+                </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSource5" runat="server" ConnectionString="<%$ ConnectionStrings:proyectoBD2ConnectionString %>" ProviderName="<%$ ConnectionStrings:proyectoBD2ConnectionString.ProviderName %>" SelectCommand="consultar_condiciones_particulares" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
             </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>Vendedor</td>
             <td>
-                <asp:Button ID="btncargar" runat="server" Text="Cargar" />
+                <asp:DropDownList ID="ddlvendedor" runat="server" DataSourceID="SqlDataSource6" DataTextField="id_emp" DataValueField="id_carga">
+                </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString="<%$ ConnectionStrings:proyectoBD2ConnectionString %>" ProviderName="<%$ ConnectionStrings:proyectoBD2ConnectionString.ProviderName %>" SelectCommand="select * from empleado"></asp:SqlDataSource>
             </td>
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td style="height: 20px"></td>
-            <td style="height: 20px">
-                <asp:ListBox ID="ListBox1" runat="server"></asp:ListBox>
-            </td>
-            <td style="height: 20px">
-                <asp:Button ID="btnborrar" runat="server" Text="Borrar" />
-            </td>
-            <td style="height: 20px"></td>
-            <td style="height: 20px"></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
         </tr>
         <tr>
-            <td>Beneficiario</td>
+            <td>Operador</td>
             <td>
-                <asp:TextBox ID="txtbeneficiario" runat="server" Width="278px"></asp:TextBox>
+                <asp:DropDownList ID="ddloperador" runat="server" DataSourceID="SqlDataSource6" DataTextField="id_emp" DataValueField="id_carga">
+                </asp:DropDownList>
             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td style="height: 20px"></td>
-            <td style="height: 20px"></td>
-            <td style="height: 20px"></td>
-            <td style="height: 20px"></td>
-            <td style="height: 20px"></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>Negociador</td>
+            <td>
+                <asp:DropDownList ID="ddlnegociador" runat="server" DataSourceID="SqlDataSource6" DataTextField="id_emp" DataValueField="id_carga">
+                </asp:DropDownList>
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
         </tr>
         <tr>
             <td>&nbsp;</td>
@@ -218,10 +303,52 @@
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
+                <tr>
+            <td>Precio</td>
+            <td>
+                <asp:TextBox ID="txtprecio" runat="server"></asp:TextBox>
+                    </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+                <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+                <tr>
+            <td>Valor Seguro</td>
+            <td>
+                <asp:TextBox ID="txtvalorseguro" runat="server"></asp:TextBox>
+                    </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+                <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" />
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
         <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>
+                &nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>

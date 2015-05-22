@@ -86,8 +86,8 @@ namespace bases2proyecto
                 GridView1.DataBind();
 
             }
-            else if (e.CommandName == "modificar") { 
-                            
+            else if (e.CommandName == "modificar") {
+               
             }
         }
 
