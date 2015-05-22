@@ -188,7 +188,6 @@ END IF;
 END;
 $$  LANGUAGE plpgsql;
 
-
 --reporte 4
 
 CREATE OR REPLACE FUNCTION reporte4(_moneda int)
@@ -222,14 +221,14 @@ $$  LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION reporte5(_id_poliza int)
   RETURNS TABLE("ID empleado" int, "Empleado" text, "Total Polizas" bigint) AS $$
 BEGIN
-RETURN QUERY select id_emp, nombre, count(id_poliza) from empleado e inner join poliza p on e.id_emp = p.id_vendedor where id_ts = _id_ts and id_poliza = _id_poliza group by id_emp, nombre;
+RETURN QUERY select id_emp, nombre, count(id_poliza) from empleado e inner join poliza p on e.id_emp = p.id_vendedor where id_poliza = _id_poliza group by id_emp, nombre;
 END;
 $$  LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION reporte5(_nombre varchar, _id_poliza int)
   RETURNS TABLE("ID empleado" int, "Empleado" text, "Total Polizas" bigint) AS $$
 BEGIN
-RETURN QUERY select id_emp, nombre, count(id_poliza) from empleado e inner join poliza p on e.id_emp = p.id_vendedor where nombre like _nombre or id_ts = _id_ts and id_poliza = _id_poliza group by id_emp, nombre;
+RETURN QUERY select id_emp, nombre, count(id_poliza) from empleado e inner join poliza p on e.id_emp = p.id_vendedor where nombre like _nombre or id_poliza = _id_poliza group by id_emp, nombre;
 END;
 $$  LANGUAGE plpgsql;
 
@@ -250,17 +249,17 @@ $$  LANGUAGE plpgsql;
 -- Reporte 7
 
 CREATE OR REPLACE FUNCTION reporte7(id_moneda int)
-  RETURNS TABLE("Código vendedor" int, "Nombre" varchar, "Total venta" numeric) AS $$
+  RETURNS TABLE("Código vendedor" int, "Nombre" text, "Total venta" numeric) AS $$
 BEGIN
-	RETURN QUERY select id_vendedor as "id", e.usuario, sum(getValorCambio2(id_moneda,precio)) as "total" from poliza  inner join empleado e on e.id_emp = id_vendedor group by id_vendedor, usuario order by "total" desc ;
+	RETURN QUERY select id_vendedor as "id", e.nombre, sum(getValorCambio2(id_moneda,precio)) as "total" from poliza  inner join empleado e on e.id_emp = id_vendedor group by id_vendedor, nombre order by "total" desc ;
 END;
 $$  LANGUAGE plpgsql;
 
 
 CREATE OR REPLACE FUNCTION reporte7(id_moneda int, _id_vendedor varchar)
-  RETURNS TABLE("Código vendedor" int, "Nombre" varchar, "Total venta" numeric) AS $$
+  RETURNS TABLE("Código vendedor" int, "Nombre" text, "Total venta" numeric) AS $$
 BEGIN
-	RETURN QUERY select id_vendedor as "id", e.usuario, sum(getValorCambio2(id_moneda,precio)) as "total" from poliza  inner join empleado e on e.id_emp = id_vendedor where cast(id_vendedor as varchar) like _id_vendedor group by id_vendedor, usuario order by "total" desc ;
+	RETURN QUERY select id_vendedor as "id", e.nombre, sum(getValorCambio2(id_moneda,precio)) as "total" from poliza  inner join empleado e on e.id_emp = id_vendedor where cast(id_vendedor as varchar) like _id_vendedor group by id_vendedor, nombre order by "total" desc ;
 END;
 $$  LANGUAGE plpgsql;
 
@@ -361,7 +360,6 @@ BEGIN
 	where b.fecha between $2 and $3; 
 END;
 $$  LANGUAGE plpgsql;
-
 
 -- Reporte 14 
 CREATE OR REPLACE FUNCTION reporte14()
