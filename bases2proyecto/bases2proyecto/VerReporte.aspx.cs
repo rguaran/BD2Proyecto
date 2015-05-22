@@ -65,7 +65,8 @@ namespace bases2proyecto
                 case 9: lblTop.Visible = true; chkTop.Visible = true; 
                         lblMoneda.Visible = true; cmbMoneda.Visible = true; break;
 
-                case 11: lblFecha.Visible = true; txtFecha.Visible = true;
+                case 11: lblFechaInicio.Visible = true; txtFechaInicio.Visible = true;
+                    lblFechaFinal.Visible = true; txtFechaFinal.Visible = true;
                     lblAccion.Visible = true; cmbAccion.Visible = true;
                     lblPoliza.Visible = true; txtPoliza.Visible = true;
                     lblUsuario.Visible = true; txtUsuario.Visible = true; break;
@@ -105,8 +106,10 @@ namespace bases2proyecto
             txtVendedor.Visible = false;
             lblTop.Visible = false;
             chkTop.Visible = false;
-            lblFecha.Visible = false;
-            txtFecha.Visible = false;
+            lblFechaInicio.Visible = false; 
+            txtFechaInicio.Visible = false;
+            lblFechaFinal.Visible = false;
+            txtFechaFinal.Visible = false;
             lblAccion.Visible = false;
             cmbAccion.Visible = false;
             lblPolizaVieja.Visible = false;
@@ -167,12 +170,12 @@ namespace bases2proyecto
             switch (reporte)
             {
                 case 3:
-                    
-                    if (txtPoliza.Text.Length > 0) { devolver += "'numeropoliza'," + txtPoliza.Text + ",''"; }
-                    if (txtCliente.Text.Length > 0) { devolver += "'cliente'," + 0 + ",'"+txtCliente.Text+"'"; }
-                    if (txtAgente.Text.Length > 0) { devolver += "'agentenegocio'," + 0 + ",'" + txtAgente.Text + "'"; }
-                    if (cmbTipoSeguro.SelectedIndex == -1) { devolver += "'tiposeguro'," + 0 + ",'" + cmbTipoSeguro.SelectedValue + "'"; }
-                    if (cmbPolizaVieja.SelectedIndex == -1) { devolver += "'polizavieja'," + 0 + ",'" + cmbPolizaVieja.SelectedValue + "'"; }
+
+                    if (txtPoliza.Text.Length > 0) { devolver += "'numeropoliza'," + txtPoliza.Text; break; } 
+                    if (txtCliente.Text.Length > 0) { devolver += "'cliente','" + txtCliente.Text+"'"; }
+                    if (txtAgente.Text.Length > 0) { devolver += "'agentenegocio','" + txtAgente.Text + "'"; }
+                    if (cmbTipoSeguro.SelectedIndex == -1) { devolver += "'tiposeguro','" + cmbTipoSeguro.SelectedValue + "'"; }
+                    if (cmbPolizaVieja.SelectedIndex == -1) { devolver += "'polizavieja','" +  cmbPolizaVieja.SelectedValue + "'"; }
                     break;
                 case 4:
                     devolver += cmbMoneda.SelectedValue;
@@ -210,6 +213,10 @@ namespace bases2proyecto
                         devolver += ",2";
                     }
                     
+                    break;
+                case 11:
+                    if (txtUsuario.Text.Length > 0 && cmbAccion.SelectedIndex > -1) { devolver += "'%"+txtUsuario.Text+"%','%"+cmbAccion.SelectedValue+"%'"; }
+                    if (txtFechaInicio.Text.Length > 0 && txtFechaFinal.Text.Length > 0) { devolver += "'" + txtFechaInicio.Text + "','" + txtFechaFinal.Text + "'"; }
                     break;
                 default: break;
             }

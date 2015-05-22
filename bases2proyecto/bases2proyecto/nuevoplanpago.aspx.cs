@@ -35,13 +35,12 @@ namespace bases2proyecto
 
             float pagoCuota = (prima * (recargo / 100 + 1) / noCuotas);
             txtDeducible.Text = deducible.ToString();
-            txtPagoCuota.Text = pagoCuota.ToString();
-
+            
             ConexionBD con = new ConexionBD();
 
             string query = "SELECT insertarplandepagos('" + Session["usuario"] + "',";
-            query += prima + "," + noCuotas + "," + recargo + "," + pagoCuota + "," + DropDownList1.SelectedValue + ",";
-            query += 0 + ",'" + tipo_seguro + "'," + no_poliza + "," + pcnDeducible + "," + deducible + "," + DropDownList2.SelectedValue;
+            query += prima + "," + noCuotas + "," + recargo + "," + DropDownList1.SelectedValue + ",";
+            query += 0 + ",'" + tipo_seguro + "'," + no_poliza + "," + pcnDeducible + "," + deducible + "," + txtTipoCuota.Text + "," + DropDownList2.SelectedValue;
             query += ")";
             con.Query(query);
             Label1.Text = "Plan de pagos guardado exitosamente";

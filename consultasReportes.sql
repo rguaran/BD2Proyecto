@@ -342,12 +342,12 @@ BEGIN
 	IF $1 = 'accion' THEN
 	RETURN QUERY select b.usuario, b.fecha, b.accion, b.modulo
 	from bitacora b
-	where b.accion = $2;
+	where lower(b.accion) like lower($2);
 	END IF;
 	IF $1 = 'usuario' THEN
 	RETURN QUERY select b.usuario, b.fecha, b.accion, b.modulo
 	from bitacora b
-	where b.usuario = $2;
+	where lower(b.usuario) like lower( $2);
 	END IF;
 END;
 $$  LANGUAGE plpgsql; 
@@ -358,6 +358,15 @@ BEGIN
 	RETURN QUERY select b.usuario, b.fecha, b.accion, b.modulo
 	from bitacora b
 	where b.fecha between $2 and $3; 
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION reporte11()
+  RETURNS TABLE("Usuario" varchar, "Fecha" timestamp, "Accion" varchar, "Modulo" varchar) AS $$
+BEGIN
+	RETURN QUERY select b.usuario, b.fecha, b.accion, b.modulo
+	from bitacora b;
+	
 END;
 $$  LANGUAGE plpgsql;
 

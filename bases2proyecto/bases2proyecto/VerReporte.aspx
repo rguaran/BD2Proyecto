@@ -82,8 +82,14 @@
             </td>
             <td>
 
-                <asp:Label ID="lblFecha" runat="server" Text="Fecha"></asp:Label>
-                <asp:TextBox ID="txtFecha" runat="server" TextMode="Date"></asp:TextBox>
+                <asp:Label ID="lblFechaInicio" runat="server" Text="Fecha Inicio"></asp:Label>
+                <asp:TextBox ID="txtFechaInicio" runat="server" TextMode="Date"></asp:TextBox>
+
+            </td>
+            <td>
+
+                <asp:Label ID="lblFechaFinal" runat="server" Text="Fecha final"></asp:Label>
+                <asp:TextBox ID="txtFechaFinal" runat="server" TextMode="Date"></asp:TextBox>
 
             </td>
             <td>

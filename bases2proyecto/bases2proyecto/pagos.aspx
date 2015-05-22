@@ -27,17 +27,16 @@
             <asp:BoundField DataField="prima" HeaderText="prima" ReadOnly="True" SortExpression="prima" />
             <asp:BoundField DataField="numero_cuotas" HeaderText="numero_cuotas" SortExpression="numero_cuotas" ReadOnly="True" />
             <asp:BoundField DataField="recargo" HeaderText="recargo" SortExpression="recargo" ReadOnly="True" />
-            <asp:BoundField DataField="pago_cuota" HeaderText="pago_cuota" SortExpression="pago_cuota" ReadOnly="True" />
             <asp:BoundField DataField="numero_cuotas_atrasadas" HeaderText="numero_cuotas_atrasadas" SortExpression="numero_cuotas_atrasadas" ReadOnly="True" />
             <asp:BoundField DataField="porcentaje_deducible" HeaderText="porcentaje_deducible" SortExpression="porcentaje_deducible" ReadOnly="True" />
             <asp:BoundField DataField="deducible" HeaderText="deducible" SortExpression="deducible" ReadOnly="True" />
-            <asp:BoundField DataField="id_poliza" HeaderText="id_poliza" ReadOnly="True" SortExpression="id_poliza" />
+            <asp:BoundField DataField="id_poliza" HeaderText="id_poliza" SortExpression="id_poliza" ReadOnly="True" />
             <asp:BoundField DataField="id_ts" HeaderText="id_ts" ReadOnly="True" SortExpression="id_ts" />
             <asp:BoundField DataField="tipo" HeaderText="tipo" ReadOnly="True" SortExpression="tipo" />
             <asp:BoundField DataField="moneda" HeaderText="moneda" ReadOnly="True" SortExpression="moneda" />
         </Columns>
     </asp:GridView>
-    <asp:SqlDataSource ID="dsPlanPagos" runat="server" ConnectionString="<%$ ConnectionStrings:proyectoBD2ConnectionString %>" ProviderName="<%$ ConnectionStrings:proyectoBD2ConnectionString.ProviderName %>" SelectCommand="SELECT plan_de_pagos.prima, plan_de_pagos.numero_cuotas, plan_de_pagos.recargo, plan_de_pagos.pago_cuota, plan_de_pagos.numero_cuotas_atrasadas, plan_de_pagos.porcentaje_deducible, plan_de_pagos.deducible, poliza.id_poliza, poliza.id_ts, tipo_de_pago.tipo, moneda.moneda FROM plan_de_pagos INNER JOIN poliza ON plan_de_pagos.id_poliza = poliza.id_poliza INNER JOIN tipo_de_pago ON plan_de_pagos.id_tp = tipo_de_pago.id_tp INNER JOIN moneda ON plan_de_pagos.id_moneda = moneda.id_moneda"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="dsPlanPagos" runat="server" ConnectionString="<%$ ConnectionStrings:proyectoBD2ConnectionString %>" ProviderName="<%$ ConnectionStrings:proyectoBD2ConnectionString.ProviderName %>" SelectCommand="SELECT plan_de_pagos.prima, plan_de_pagos.numero_cuotas, plan_de_pagos.recargo, plan_de_pagos.numero_cuotas_atrasadas, plan_de_pagos.porcentaje_deducible, plan_de_pagos.deducible, poliza.id_poliza, poliza.id_ts, tipo_de_pago.tipo, moneda.moneda FROM plan_de_pagos INNER JOIN poliza ON plan_de_pagos.id_poliza = poliza.id_poliza INNER JOIN tipo_de_pago ON plan_de_pagos.id_tp = tipo_de_pago.id_tp INNER JOIN moneda ON plan_de_pagos.id_moneda = moneda.id_moneda"></asp:SqlDataSource>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder5" runat="server">
     <p style="text-align: center">

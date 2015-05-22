@@ -229,22 +229,40 @@ namespace bases2proyecto {
         protected global::System.Web.UI.WebControls.CheckBoxList chkTop;
         
         /// <summary>
-        /// lblFecha control.
+        /// lblFechaInicio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFecha;
+        protected global::System.Web.UI.WebControls.Label lblFechaInicio;
         
         /// <summary>
-        /// txtFecha control.
+        /// txtFechaInicio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFecha;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaInicio;
+        
+        /// <summary>
+        /// lblFechaFinal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFechaFinal;
+        
+        /// <summary>
+        /// txtFechaFinal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaFinal;
         
         /// <summary>
         /// lblAccion control.

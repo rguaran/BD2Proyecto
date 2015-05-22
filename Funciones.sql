@@ -148,15 +148,15 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION insertarplandepagos( _usuario varchar, _prima int,  _numero_cuotas int, _recargo int, _pago_cuota int , _id_moneda int, _numero_cuotas_atrasadas int, _id_ts varchar,
-  _id_poliza integer, _porcentaje_deducible numeric, _deducible numeric, _id_tp integer)
+CREATE OR REPLACE FUNCTION insertarplandepagos( _usuario varchar, _prima int,  _numero_cuotas int, _recargo int , _id_moneda int, _numero_cuotas_atrasadas int, _id_ts varchar,
+  _id_poliza integer, _porcentaje_deducible numeric, _deducible numeric, _tipo_cuota varchar,  _id_tp integer)
   RETURNS void AS
 $$
 BEGIN
 	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Insert','Plan de pago');
-	INSERT INTO plan_de_pagos ( prima ,  numero_cuotas , recargo , pago_cuota  , id_moneda , numero_cuotas_atrasadas , id_ts ,
-  id_poliza , porcentaje_deducible , deducible , id_tp ) VALUES( _prima ,  _numero_cuotas , _recargo , _pago_cuota  , _id_moneda , _numero_cuotas_atrasadas , _id_ts ,
-  _id_poliza , _porcentaje_deducible , _deducible , _id_tp );
+	INSERT INTO plan_de_pagos ( prima ,  numero_cuotas , recargo  , id_moneda , numero_cuotas_atrasadas , id_ts ,
+  id_poliza , porcentaje_deducible , deducible , tipo_cuota, id_tp ) VALUES( _prima ,  _numero_cuotas , _recargo , _pago_cuota  , _id_moneda , _numero_cuotas_atrasadas , _id_ts ,
+  _id_poliza , _porcentaje_deducible , _deducible , _tipo_cuota, _id_tp );
 END;
 $$  LANGUAGE plpgsql;
 
@@ -445,8 +445,8 @@ END;
 $$  LANGUAGE plpgsql;
 
 CREATE OR REPLACE FUNCTION seleccionarplandepagos()
-  RETURNS TABLE(id_plan int,  prima bigint,  numero_cuotas int, recargo bigint, pago_cuota bigint , id_moneda int, numero_cuotas_atrasadas int, id_ts varchar,
-  id_poliza integer, porcentaje_deducible numeric, deducible numeric, id_tp integer) AS $$
+  RETURNS TABLE(id_plan int,  prima bigint,  numero_cuotas int, recargo bigint , id_moneda int, numero_cuotas_atrasadas int, id_ts varchar,
+  id_poliza integer, porcentaje_deducible numeric, deducible numeric, tipo_cuota varchar, id_tp integer) AS $$
 BEGIN
 	
 	RETURN QUERY SELECT * FROM plan_de_pagos;
@@ -538,14 +538,14 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION actualizarplandepagos( _usuario varchar, _id_plan int, _prima int,  _numero_cuotas int, _recargo int, _pago_cuota int , _id_moneda int, _numero_cuotas_atrasadas int, _id_ts varchar,
-  _id_poliza integer, _porcentaje_deducible numeric, _deducible numeric, _id_tp integer)
+CREATE OR REPLACE FUNCTION actualizarplandepagos( _usuario varchar, _id_plan int, _prima int,  _numero_cuotas int, _recargo int, _id_moneda int, _numero_cuotas_atrasadas int, _id_ts varchar,
+  _id_poliza integer, _porcentaje_deducible numeric, _deducible numeric, _tipo_cuota varchar , _id_tp integer)
   RETURNS void AS
 $$
 BEGIN
 	INSERT INTO BITACORA(usuario, fecha, accion, modulo) VALUES (_usuario,now(),'Update','Plan de pago');
-	UPDATE plan_de_pagos SET prima = _prima,  numero_cuotas = _numero_cuotas, recargo = _recargo, pago_cuota  = _pago_cuota, id_moneda = _id_moneda, 
-	numero_cuotas_atrasadas = _numero_cuotas_atrasadas , id_ts = _id_ts ,  id_poliza = _id_poliza, porcentaje_deducible = _porcentaje_deducible, deducible = _deducible, id_tp = _id_tp 
+	UPDATE plan_de_pagos SET prima = _prima,  numero_cuotas = _numero_cuotas, recargo = _recargo,  id_moneda = _id_moneda, 
+	numero_cuotas_atrasadas = _numero_cuotas_atrasadas , id_ts = _id_ts ,  id_poliza = _id_poliza, porcentaje_deducible = _porcentaje_deducible, deducible = _deducible, tipo_cuota  = _tipo_cuota, id_tp = _id_tp 
 	WHERE id_plan = _id_plan; 
 END;
 $$  LANGUAGE plpgsql;

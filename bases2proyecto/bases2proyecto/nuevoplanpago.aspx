@@ -49,13 +49,7 @@
                 </asp:RegularExpressionValidator>
             </td>
         </tr>
-        <tr>
-            <td style="text-align: center; font-weight: 700">Pago por cuota</td>
-            <td style="text-align: left">
-                <asp:TextBox ID="txtPagoCuota" runat="server" ReadOnly="True" Width="190px"></asp:TextBox>
-                
-            </td>
-        </tr>
+
         <tr>
             <td style="text-align: center; font-weight: 700">Deducible (%)</td>
             <td style="text-align: left">
@@ -81,6 +75,13 @@
                 </asp:DropDownList>
                 <asp:SqlDataSource ID="dsMoneda" runat="server" ConnectionString="<%$ ConnectionStrings:proyectoBD2ConnectionString %>" ProviderName="<%$ ConnectionStrings:proyectoBD2ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM MONEDA;"></asp:SqlDataSource>
 
+            </td>
+        </tr>
+                <tr>
+            <td style="text-align: center; font-weight: 700">Tipo de cuota</td>
+            <td style="text-align: left">
+                <asp:TextBox ID="txtTipoCuota" runat="server" ReadOnly="True" Width="190px"></asp:TextBox>
+                
             </td>
         </tr>
         <tr>
