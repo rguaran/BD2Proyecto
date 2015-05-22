@@ -374,7 +374,7 @@ $$  LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION reporte14()
   RETURNS TABLE("Nombre del archivo" text, "Total Bytes" numeric) AS $$
   BEGIN
-	RETURN QUERY select nombre, cast(octet_length(archivo) as numeric) from archivos;
+	RETURN QUERY select nombre, cast(octet_length(archivo) as numeric) conteo from archivos order by conteo asc;
 END;
 $$  LANGUAGE plpgsql;
 

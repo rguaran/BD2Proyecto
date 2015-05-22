@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="archivos.aspx.cs" Inherits="bases2proyecto.archivos" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p style="font-size: xx-large">
         Archivos</p>
@@ -27,23 +28,26 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
 
     <p>
-        <strong>Archivo adjunto:
-        <asp:FileUpload ID="FileUpload1" runat="server" Width="245px" />
+        <strong>Archivos adjuntos (seleccione varios):
+        <asp:FileUpload ID="FileUpload1" AllowMultiple="true"   runat="server" Width="245px" />
         </strong>
     </p>
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder4" runat="server">
     <p> 
-        <asp:Button ID="btnGuardar" runat="server" Text="Guardar archivo" OnClick="btnGuardar_Click" />&nbsp;<asp:Button ID="btnConsultar" runat="server" Text="Consultar archivos" OnClick="btnConsultar_Click" />
+        <asp:Button ID="btnGuardar" runat="server" Text="Guardar archivos" OnClick="btnGuardar_Click" />&nbsp;<asp:Button ID="btnConsultar" runat="server" Text="Consultar archivos" OnClick="btnConsultar_Click" />
     &nbsp;<asp:Button ID="btnContinuar" runat="server" OnClick="btnContinuar_Click" Text="Continuar" />
     </p>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentPlaceHolder5" runat="server">
     <p>
-
-        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" Visible="False"></asp:LinkButton>
-        <asp:Label ID="lblFilename" runat="server" Visible="False"></asp:Label>
-
+        <script type="text/javascript">
+            function CallMe() {  __doPostBack('LinkButton1_Click', ''); }
+    </script>
+        <asp:Table ID="Table1" runat="server"></asp:Table>
+        <!-- <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click"  Visible="False"></asp:LinkButton>
+        <asp:Label ID="lblFilename" runat="server" Visible="False"></asp:Label> -->
+        <asp:Button ID="btnDescargarTodos" runat="server" Text="Descargar todos como ZIp" OnClick="btnDescargarTodos_Click" />
     </p>
 </asp:Content>
