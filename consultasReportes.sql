@@ -259,37 +259,6 @@ BEGIN
 	RETURN QUERY select id_negociador as "id", e.usuario, sum(getValorCambio2(id_moneda,precio)) as "total" from poliza  inner join empleado e on e.id_emp = id_negociador where id_negociador = _id_negociador group by id_negociador, usuario order by "total" desc ;
 END;
 $$  LANGUAGE plpgsql;
-<<<<<<< HEAD
- 
- -- Reporte 11
-CREATE OR REPLACE FUNCTION reporte11(param varchar, valor varchar)
-  RETURNS TABLE("Usuario" varchar, "Fecha" timestamp, "Accion" varchar, "Modulo" varchar) AS $$
-BEGIN
-	IF $1 = 'accion' THEN
-	RETURN QUERY select b.usuario, b.fecha, b.accion, b.modulo
-	from bitacora b
-	where b.accion = $2;
-	END IF;
-	IF $1 = 'usuario' THEN
-	RETURN QUERY select b.usuario, b.fecha, b.accion, b.modulo
-	from bitacora b
-	where b.usuario = $2;
-	END IF;
-END;
-$$  LANGUAGE plpgsql; 
-
-CREATE OR REPLACE FUNCTION reporte11(param varchar,fechainicio date, fechafin date)
-  RETURNS TABLE("Usuario" varchar, "Fecha" timestamp, "Accion" varchar, "Modulo" varchar) AS $$
-BEGIN
-	RETURN QUERY select b.usuario, b.fecha, b.accion, b.modulo
-	from bitacora b
-	where b.fecha between $2 and $3; 
-END;
-$$  LANGUAGE plpgsql;
-
--- Reporte 14 
-=======
->>>>>>> origin/master
 
 -- Reporte 9
 
@@ -345,6 +314,33 @@ CREATE OR REPLACE FUNCTION reporte10()
 	RETURN QUERY select i.id_inspeccion, i.fecha, b.nombre, i.aprobado, i.id_emp from inspeccion i inner join bien b on i.id_bien = b.id_bien order by i.id_bien desc , i.fecha asc;
 END;
 $$  LANGUAGE plpgsql;
+
+ -- Reporte 11
+CREATE OR REPLACE FUNCTION reporte11(param varchar, valor varchar)
+  RETURNS TABLE("Usuario" varchar, "Fecha" timestamp, "Accion" varchar, "Modulo" varchar) AS $$
+BEGIN
+	IF $1 = 'accion' THEN
+	RETURN QUERY select b.usuario, b.fecha, b.accion, b.modulo
+	from bitacora b
+	where b.accion = $2;
+	END IF;
+	IF $1 = 'usuario' THEN
+	RETURN QUERY select b.usuario, b.fecha, b.accion, b.modulo
+	from bitacora b
+	where b.usuario = $2;
+	END IF;
+END;
+$$  LANGUAGE plpgsql; 
+
+CREATE OR REPLACE FUNCTION reporte11(param varchar,fechainicio date, fechafin date)
+  RETURNS TABLE("Usuario" varchar, "Fecha" timestamp, "Accion" varchar, "Modulo" varchar) AS $$
+BEGIN
+	RETURN QUERY select b.usuario, b.fecha, b.accion, b.modulo
+	from bitacora b
+	where b.fecha between $2 and $3; 
+END;
+$$  LANGUAGE plpgsql;
+
 
 -- Reporte 14 
 CREATE OR REPLACE FUNCTION reporte14()
