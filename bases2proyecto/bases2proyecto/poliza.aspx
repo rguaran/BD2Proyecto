@@ -8,7 +8,7 @@
         <tr>
             <td><asp:Button ID="Button1" runat="server" Text="Nueva" OnClick="Button1_Click" /></td>
             <td>&nbsp;</td>
-            <td><asp:Button ID="Button2" runat="server" Text="Modificar" OnClick="Button2_Click" /></td>
+            <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td><asp:Button ID="Button3" runat="server" Text="Eliminar" /></td>
         </tr>
@@ -23,7 +23,7 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
-    <asp:GridView ID="GridView1" runat="server" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+    <asp:GridView ID="GridView1" runat="server" AllowSorting="True" AllowPaging="True" OnRowCommand="GridView1_RowCommand" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
         <Columns>
             <asp:BoundField DataField="id_poliza" HeaderText="id_poliza" ReadOnly="True" SortExpression="id_poliza" />
             <asp:BoundField DataField="id_est" HeaderText="id_est" ReadOnly="True" SortExpression="id_est" />
@@ -47,6 +47,7 @@
             <asp:BoundField DataField="id_cargav" HeaderText="id_cargav" ReadOnly="True" SortExpression="id_cargav" />
             <asp:BoundField DataField="id_cargao" HeaderText="id_cargao" ReadOnly="True" SortExpression="id_cargao" />
             <asp:BoundField DataField="id_cargan" HeaderText="id_cargan" ReadOnly="True" SortExpression="id_cargan" />
+            <asp:ButtonField Text="modificar" CommandName="modificar" />
         </Columns>
     </asp:GridView>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:proyectoBD2ConnectionString %>" ProviderName="<%$ ConnectionStrings:proyectoBD2ConnectionString.ProviderName %>" SelectCommand="consultar_poliza" SelectCommandType="StoredProcedure"></asp:SqlDataSource>

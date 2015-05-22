@@ -106,7 +106,7 @@ RETURNS void AS
 $$
 BEGIN
  Insert into tipo_cliente(tipo) values(p_tipo);
- INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insertar', 'tipo_cliente');
+ INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insert', 'tipo_cliente');
 END;
 $$ language plpgsql;
 
@@ -117,7 +117,7 @@ RETURNS void AS
 $$
 BEGIN
  Insert into tipo_de_seguro values(p_idts,p_tipo);
- INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insertar', 'tipo_de_seguro');
+ INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insert', 'tipo_de_seguro');
 END;
 $$ language plpgsql;
 -- select insertarTipoSeguro('ID','TIPO')
@@ -127,7 +127,7 @@ RETURNS void AS
 $$
 BEGIN
  Insert into pais(pais) values(p_pais);
- INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insertar', 'pais');
+ INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insert', 'pais');
 END;
 $$ language plpgsql;
 
@@ -136,7 +136,7 @@ RETURNS void AS
 $$
 BEGIN
  Insert into condiciones_particulares(condicion) values(p_condicion);
- INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insertar', 'condiciones_particulares');
+ INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insert', 'condiciones_particulares');
 END;
 $$ language plpgsql;
 
@@ -145,7 +145,7 @@ RETURNS void AS
 $$
 BEGIN
  Insert into estado_poliza(estado) values(p_estado);
- INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insertar', 'estado_poliza');
+ INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insert', 'estado_poliza');
 END;
 $$ language plpgsql;
 
@@ -156,7 +156,7 @@ RETURNS void AS
 $$
 BEGIN
 	update tipo_de_seguro set tipo = p_tipo where id_ts = p_idts;
-	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Actualizar', 'tipo_de_seguro');
+	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Update', 'tipo_de_seguro');
 END;
 $$ language plpgsql;
 
@@ -167,7 +167,7 @@ RETURNS void AS
 $$
 BEGIN
 	update tipo_cliente set tipo = p_tipo where id = p_idts;
-	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Actualizar', 'tipo_cliente');
+	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Update', 'tipo_cliente');
 END;
 $$ language plpgsql;
 
@@ -176,7 +176,7 @@ RETURNS void AS
 $$
 BEGIN
 	update pais set pais = p_tipo where id_pais = p_idts;
-	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Actualizar', 'pais');
+	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Update', 'pais');
 END;
 $$ language plpgsql;
 
@@ -185,7 +185,7 @@ RETURNS void AS
 $$
 BEGIN
 	update condiciones_particulares set condicion = p_tipo where id_cp = p_idts;
-	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Actualizar', 'condiciones_particulares');
+	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Update', 'condiciones_particulares');
 END;
 $$ language plpgsql;
 
@@ -194,7 +194,7 @@ RETURNS void AS
 $$
 BEGIN
 	update estado_poliza set estado = p_tipo where id_estado = p_idts;
-	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Actualizar', 'estado_poliza');
+	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Update', 'estado_poliza');
 END;
 $$ language plpgsql;
 
@@ -204,7 +204,7 @@ RETURNS void AS
 $$
 BEGIN
 	delete from tipo_de_seguro where id_ts = p_idts;
-	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Eliminar', 'tipo_de_seguro');
+	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Delete', 'tipo_de_seguro');
 END;
 $$ language plpgsql;
 
@@ -213,7 +213,7 @@ RETURNS void AS
 $$
 BEGIN
 	delete from tipo_cliente where id = p_idts;
-	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Eliminar', 'tipo_cliente');
+	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Delete', 'tipo_cliente');
 END;
 $$ language plpgsql;
 
@@ -223,7 +223,7 @@ RETURNS void AS
 $$
 BEGIN
 	delete from pais where id_pais = p_idts;
-	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Eliminar', 'pais');
+	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Delete', 'pais');
 END;
 $$ language plpgsql;
 
@@ -232,7 +232,7 @@ RETURNS void AS
 $$
 BEGIN
 	delete from condiciones_particulares where id_cp = p_idts;
-	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Eliminar', 'condiciones_particulares');
+	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Delete', 'condiciones_particulares');
 END;
 $$ language plpgsql;
 
@@ -241,7 +241,7 @@ RETURNS void AS
 $$
 BEGIN
 	delete from estado_poliza where id_estado = p_idts;
-	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Eliminar', 'estado_poliza');
+	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Delete', 'estado_poliza');
 END;
 $$ language plpgsql;
 
@@ -251,7 +251,7 @@ CREATE OR REPLACE FUNCTION insertarCliente(_nombre varchar(50), _domicilio varch
 RETURNS void AS $$
 BEGIN
 	INSERT INTO Cliente (nombre, domicilio, id1, id_pais) VALUES (_nombre, _domicilio, _idTipo, _idPais);
-	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insertar', 'Cliente');
+	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insert', 'Cliente');
 END;
 $$  LANGUAGE plpgsql;
 
@@ -261,7 +261,7 @@ CREATE OR REPLACE FUNCTION eliminarCliente(_id integer, _usuario varchar(20))
 RETURNS void AS $$
 BEGIN
 	DELETE FROM Cliente WHERE id_cliente = _id;
-	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Eliminar', 'Cliente');
+	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Delete', 'Cliente');
 END;
 $$  LANGUAGE plpgsql;
 
@@ -273,7 +273,7 @@ BEGIN
 	UPDATE Cliente SET domicilio = _domicilio WHERE id_cliente = _idCliente;
 	UPDATE Cliente SET id1 = _idTipo WHERE id_cliente = _idCliente;
 	UPDATE Cliente SET id_pais = _idPais WHERE id_cliente = _idCliente;
-	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Modificar', 'Cliente');
+	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Update', 'Cliente');
 END;
 $$  LANGUAGE plpgsql;
 
@@ -290,7 +290,7 @@ BEGIN
 						precio,valor_seguro,id_vendedor, id_operador, id_negociador, cod_venta, coberturas_adicionales, id_cargaV, id_cargaO, id_cargaN) 
 			VALUES   (_idestado, _idcp, _fechaIni, _fechaFin, _clausulas, _idcliente, _idtipoSeguro, _polizaVieja, _meses, _productoDescripcion, _status,
 						_precio,_valorseguro, _idvendedor,_idoperador,_idnegociador,_codventa,_cobadicional,_cargav,_cargao,_cargan);
-	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insertar', 'Poliza');
+	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insert', 'Poliza');
 END;
 $$ LANGUAGE plpgsql;
 
@@ -397,7 +397,7 @@ CREATE OR REPLACE FUNCTION insertarBeneficiario(_nombre text, _telefono text, _i
 RETURNS void AS $$
 BEGIN
 	INSERT INTO Beneficiario (nombre, telefono,id_ts,id_poliza) VALUES (_nombre, _telefono,_id_ts,_id_poliza);
-	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insertar', 'Beneficiario');
+	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Insert', 'Beneficiario');
 END;
 $$  LANGUAGE plpgsql; 
 
@@ -422,3 +422,24 @@ BEGIN
 	RETURN valor;
 END;
 $$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION getPoliza(_id_poliza int, _id_ts varchar)
+RETURNS setof poliza AS 
+$$
+BEGIN
+	return query select * from poliza where id_poliza = $1 and id_ts = $2;
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION modificarPoliza(_usuario varchar,_id_poliza int,_idestado int, _idcp int, _fechaIni date, _fechaFin date, _clausulas text, _idcliente int, _idtipoSeguro varchar(5), _polizaVieja varchar,_productoDescripcion text, _status varchar(15), _precio float, _valorseguro float,_idvendedor int, _idoperador int, _idnegociador int , _codventa text, _cobadicional text,_cargav int,_cargao int, _cargan int)
+RETURNS void AS $$
+BEGIN
+	UPDATE Poliza SET id_est = _idestado , id_condp=_idcp , fecha_inicio=_fechaIni , fecha_fin =_fechaFin , clausulas = _clausulas ,
+	id_cli = _idcliente  , poliza_vieja = _polizaVieja , producto_descripcion=_productoDescripcion , status =_status ,
+	precio = _precio , valor_seguro = _valorseguro , id_vendedor=_idvendedor , id_operador=_idoperador , id_negociador=_idnegociador , cod_venta=_codventa ,
+	coberturas_adicionales=_cobadicional , id_cargaV=_cargav , id_cargaO=_cargao , id_cargaN =_cargan 
+	where id_poliza = _id_poliza and id_ts=_idtipoSeguro;
+	INSERT INTO Bitacora(usuario, fecha, accion, modulo) VALUES (_usuario, current_timestamp, 'Update', 'Poliza');
+END;
+$$ LANGUAGE plpgsql;
+
