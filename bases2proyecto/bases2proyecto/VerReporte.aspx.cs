@@ -30,11 +30,9 @@ namespace bases2proyecto
         {
             ocultarFiltros();
 
-            Session["noReporte"] = 3;
-            Session["titulo"] = "Ejemplo";
             int reporte = (int)Session["noReporte"];
 
-            if (reporte == 2 || reporte == 3 || reporte == 5 || reporte == 7 || reporte == 9 || reporte == 11 || reporte == 13)
+            if (!(reporte == 1 || reporte == 10 || reporte == 14 ))
             {
                 lblFiltros.Visible = true;
                 btnActualizar.Visible = true;
@@ -51,23 +49,40 @@ namespace bases2proyecto
                     lblAgente.Visible = true; txtAgente.Visible = true; lblAgente.Text = "Agente";
                     lblPolizaVieja.Visible = true; cmbPolizaVieja.Visible = true; break;
 
+                case 4: lblMoneda.Visible = true; cmbMoneda.Visible = true; break;
+
                 case 5: lblAgente.Visible = true; txtAgente.Visible = true; lblAgente.Text = "Empleado";
-                    lblPoliza.Visible = true; txtPoliza.Visible = true; break;
+                        lblPoliza.Visible = true; txtPoliza.Visible = true; break;
 
-                case 7: lblVendedor.Visible = true; txtVendedor.Visible = true; break;
+                case 6: lblMoneda.Visible = true; cmbMoneda.Visible = true; break;
 
-                case 9: lblTop.Visible = true; chkTop.Visible = true; break;
+                case 7: lblVendedor.Visible = true; txtVendedor.Visible = true; lblVendedor.Text = "Código vendedor";
+                        lblMoneda.Visible = true; cmbMoneda.Visible = true; break;
+
+                case 8: lblMoneda.Visible = true; cmbMoneda.Visible = true;
+                        lblAgente.Visible = true; txtAgente.Visible = true; break;
+
+                case 9: lblTop.Visible = true; chkTop.Visible = true; 
+                        lblMoneda.Visible = true; cmbMoneda.Visible = true; break;
 
                 case 11: lblFecha.Visible = true; txtFecha.Visible = true;
                     lblAccion.Visible = true; cmbAccion.Visible = true;
                     lblPoliza.Visible = true; txtPoliza.Visible = true;
                     lblUsuario.Visible = true; txtUsuario.Visible = true; break;
 
+                case 12: lblMoneda.Visible = true; cmbMoneda.Visible = true; break;
+
+
+
             }
 
             lblTitulo.Text = (string)Session["titulo"];
             con = new ConexionBD();
-            
+
+            if (reporte == 1 || reporte == 5 || reporte == 10 || reporte == 14)
+            {
+                llenarGrid(true);
+            }
         }
 
         private void ocultarFiltros()
@@ -144,8 +159,67 @@ namespace bases2proyecto
             llenarGrid(true);
         }
 
+        private string obtenerParametros()
+        {
+            string devolver = "";
+            int reporte = (int)Session["noReporte"];
+
+            switch (reporte)
+            {
+                case 3:
+                    
+                    if (txtPoliza.Text.Length > 0) { devolver += "'numeropoliza'," + txtPoliza.Text + ",''"; }
+                    if (txtCliente.Text.Length > 0) { devolver += "'cliente'," + 0 + ",'"+txtCliente.Text+"'"; }
+                    if (txtAgente.Text.Length > 0) { devolver += "'agentenegocio'," + 0 + ",'" + txtAgente.Text + "'"; }
+                    if (cmbTipoSeguro.SelectedIndex == -1) { devolver += "'tiposeguro'," + 0 + ",'" + cmbTipoSeguro.SelectedValue + "'"; }
+                    if (cmbPolizaVieja.SelectedIndex == -1) { devolver += "'polizavieja'," + 0 + ",'" + cmbPolizaVieja.SelectedValue + "'"; }
+                    break;
+                case 4:
+                    devolver += cmbMoneda.SelectedValue;
+                    break;
+                case 5:
+                    if (txtAgente.Text.Length > 0) {devolver += "'%" + txtAgente.Text + "%'";}
+                    if (txtPoliza.Text.Length > 0) { if (txtAgente.Text.Length > 0) { devolver += ","; } devolver +=  txtPoliza.Text ; }
+                    
+                    break;
+                case 6:
+                    devolver += cmbMoneda.SelectedValue;
+                    break;
+
+                case 7:
+                    devolver += cmbMoneda.SelectedValue;
+                    devolver += ", '%" + txtVendedor.Text + "%'";
+
+                    break;
+                case 8:
+                    devolver += cmbMoneda.SelectedValue;
+                    if (txtAgente.Text.Length > 0) { devolver += ",'%" + txtAgente.Text + "%'"; }
+                    break;
+                case 9:
+                    devolver += cmbMoneda.SelectedValue;
+                    if (chkTop.Items[0].Selected)
+                    {
+                        devolver += ",0";
+                    }
+                    if (chkTop.Items[1].Selected)
+                    {
+                        devolver += ",1";
+                    }
+                    if (chkTop.Items[2].Selected)
+                    {
+                        devolver += ",2";
+                    }
+                    
+                    break;
+                default: break;
+            }
+
+            return devolver;
+        }
+
         private void llenarGrid(Boolean page) {
             string consulta = (string)Session["consulta"];
+            consulta += obtenerParametros() + ")";
             gridReporte.AllowPaging = page;
             Ds = con.consulta(consulta);
             DataTable Dt = Ds.Tables[0];

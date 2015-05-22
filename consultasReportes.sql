@@ -123,20 +123,41 @@ END;
 $$  LANGUAGE plpgsql;
 
 -- Reporte 5
+
 CREATE OR REPLACE FUNCTION reporte5()
-  RETURNS TABLE("ID empleado" int, "Empleado" varchar, "Total Polizas" bigint) AS $$
+  RETURNS TABLE("ID empleado" int, "Empleado" text, "Total Polizas" bigint) AS $$
 BEGIN
-RETURN QUERY select id_emp, usuario, count(id_poliza) from empleado e inner join poliza p on e.id_emp = p.id_vendedor group by id_emp, usuario;
+RETURN QUERY select id_emp, nombre, count(id_poliza) from empleado e inner join poliza p on e.id_emp = p.id_vendedor  group by id_emp, nombre;
 END;
 $$  LANGUAGE plpgsql;
 
 
+CREATE OR REPLACE FUNCTION reporte5(_nombre varchar)
+  RETURNS TABLE("ID empleado" int, "Empleado" text, "Total Polizas" bigint) AS $$
+BEGIN
+RETURN QUERY select id_emp, nombre, count(id_poliza) from empleado e inner join poliza p on e.id_emp = p.id_vendedor where nombre like _nombre group by id_emp, nombre;
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION reporte5(_id_poliza int)
+  RETURNS TABLE("ID empleado" int, "Empleado" text, "Total Polizas" bigint) AS $$
+BEGIN
+RETURN QUERY select id_emp, nombre, count(id_poliza) from empleado e inner join poliza p on e.id_emp = p.id_vendedor where id_ts = _id_ts and id_poliza = _id_poliza group by id_emp, nombre;
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION reporte5(_nombre varchar, _id_poliza int)
+  RETURNS TABLE("ID empleado" int, "Empleado" text, "Total Polizas" bigint) AS $$
+BEGIN
+RETURN QUERY select id_emp, nombre, count(id_poliza) from empleado e inner join poliza p on e.id_emp = p.id_vendedor where nombre like _nombre or id_ts = _id_ts and id_poliza = _id_poliza group by id_emp, nombre;
+END;
+$$  LANGUAGE plpgsql;
 
 -- Reporte 6
-CREATE OR REPLACE FUNCTION reporte6()
+CREATE OR REPLACE FUNCTION reporte6(_id_moneda int)
   RETURNS TABLE(idpoliza int, tipoSeguro varchar, moneda text, totalcoberturas numeric) AS $$
 BEGIN
-	RETURN QUERY select p.id_poliza, p.id_ts, m.moneda , sum(co.monto) 
+	RETURN QUERY select p.id_poliza, p.id_ts, m.moneda , sum(getValorCambio2(_id_moneda,co.monto)) 
 	from poliza p join cobertura co on co.id_poliza = p.id_poliza and co.id_ts= p.id_ts
 	join plan_de_pagos pp on pp.id_poliza = p.id_poliza  and pp.id_ts= p.id_ts
 	join moneda m on pp.id_moneda = m.id_moneda 
@@ -156,10 +177,10 @@ END;
 $$  LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE FUNCTION reporte7(id_moneda int, _id_vendedor int)
+CREATE OR REPLACE FUNCTION reporte7(id_moneda int, _id_vendedor varchar)
   RETURNS TABLE("Código vendedor" int, "Nombre" varchar, "Total venta" numeric) AS $$
 BEGIN
-	RETURN QUERY select id_vendedor as "id", e.usuario, sum(getValorCambio2(id_moneda,precio)) as "total" from poliza  inner join empleado e on e.id_emp = id_vendedor where id_vendedor = _id_vendedor group by id_vendedor, usuario order by "total" desc ;
+	RETURN QUERY select id_vendedor as "id", e.usuario, sum(getValorCambio2(id_moneda,precio)) as "total" from poliza  inner join empleado e on e.id_emp = id_vendedor where cast(id_vendedor as varchar) like _id_vendedor group by id_vendedor, usuario order by "total" desc ;
 END;
 $$  LANGUAGE plpgsql;
 
@@ -173,10 +194,10 @@ END;
 $$  LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE FUNCTION reporte8(id_moneda int, _id_negociador int)
-  RETURNS TABLE("Código agente" int, "Nombre" varchar, "Total venta" numeric) AS $$
+CREATE OR REPLACE FUNCTION reporte8(id_moneda int, _negociador varchar)
+  RETURNS TABLE("Código agente" int, "Nombre" text, "Total venta" numeric) AS $$
 BEGIN
-	RETURN QUERY select id_negociador as "id", e.usuario, sum(getValorCambio2(id_moneda,precio)) as "total" from poliza  inner join empleado e on e.id_emp = id_negociador where id_negociador = _id_negociador group by id_negociador, usuario order by "total" desc ;
+	RETURN QUERY select id_negociador as "id", e.nombre, sum(getValorCambio2(id_moneda,precio)) as "total" from poliza  inner join empleado e on e.id_emp = id_negociador where lower(nombre) like lower(_negociador) group by id_negociador, nombre order by "total" desc ;
 END;
 $$  LANGUAGE plpgsql;
 
