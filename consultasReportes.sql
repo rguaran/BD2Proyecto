@@ -8,23 +8,31 @@ return query select c.nombre, c.domicilio, c.tipo,pais.pais from
 END;
 $$  LANGUAGE plpgsql;
 
--- Reporte 2 *****AUN FALTA 
+-- Reporte 2 *****No estoy segura si eso es lo que piden
 
-CREATE OR REPLACE FUNCTION reporte2(_fecha date)
-  RETURNS TABLE(total numeric, id_ts varchar, moneda text, pais text) AS $$
+CREATE OR REPLACE FUNCTION reporte2(param varchar, _moneda int)
+  RETURNS TABLE("Filtro" text, "Total precio de polizas" float, "Total valor seguro" float) AS $$
 BEGIN
-create temporary table planpagos_temp as select * from conversionMoneda(_fecha);
-
-RETURN QUERY select sum(pp.prima), p.id_ts, m.moneda, pa.pais 
---select *
-from poliza p join planpagos_temp pp 
-on p.id_ts = pp.id_ts and p.id_poliza = pp.id_poliza
-join moneda m on pp.id_moneda = m.id_moneda
-join cliente c on p.id = c.id
-join pais pa on pa.id_pais = c.id_pais
-group by p.id_ts, m.moneda, pa.pais 
-;
-DROP TABLE planpagos_temp;
+	IF param = 'tiposeguro' THEN
+		RETURN QUERY select ts.tipo,sum(getValorCambio3(_moneda,p.precio)) as total_precio, sum(getValorCambio3(_moneda,p.valor_seguro)) as total_valor_seguro
+		from poliza p right join tipo_de_seguro ts on p.id_ts = ts.id_ts
+		group by ts.id_ts,ts.tipo
+		order by ts.id_ts;
+	END IF;
+	IF param = 'moneda' THEN
+		RETURN QUERY select m.moneda,sum(getValorCambio3(_moneda,p.precio)) as total_precio, sum(getValorCambio3(_moneda,p.valor_seguro)) as total_valor_seguro
+		from poliza p join plan_de_pagos pp on p.id_ts = pp.id_ts and p.id_poliza = pp.id_poliza
+		join moneda m on pp.id_moneda = m.id_moneda
+		group by m.moneda
+		order by m.moneda;
+	END IF;
+	IF param = 'pais' THEN
+		RETURN QUERY select pa.pais,sum(getValorCambio3(_moneda,p.precio)) as total_precio, sum(getValorCambio3(_moneda,p.valor_seguro)) as total_valor_seguro
+		from poliza p join cliente c on p.id_cli = c.id_cliente
+		right join pais pa on pa.id_pais = c.id_pais
+		group by pa.pais
+		order by pa.pais;
+	END IF;
 END;
 $$  LANGUAGE plpgsql;
 
