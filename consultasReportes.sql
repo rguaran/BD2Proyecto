@@ -30,7 +30,7 @@ $$  LANGUAGE plpgsql;
 
 
 -- Reporte 3
-CREATE OR REPLACE FUNCTION reporte3(param varchar, pvalor int, pvalor2 varchar)
+CREATE OR REPLACE FUNCTION reporte3(param varchar, pvalor int)
   RETURNS TABLE(idpoliza int, tipoSeguro text, fecha_inicio date, fecha_fin date, poliza_vieja varchar, meses int,producto text, status varchar, id_vendedor int,
   id_operador int, cod_venta text, coberturas_adicionales text, condicion text, cliente varchar, domicilio varchar, tipo varchar, pais text,
   agenteNegocio text, estadoPoliza varchar) AS $$
@@ -108,6 +108,86 @@ IF param = 'polizavieja' then
 END IF;
 END;
 $$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION reporte3(param varchar, pvalor2 varchar)
+  RETURNS TABLE(idpoliza int, tipoSeguro text, fecha_inicio date, fecha_fin date, poliza_vieja varchar, meses int,producto text, status varchar, id_vendedor int,
+  id_operador int, cod_venta text, coberturas_adicionales text, condicion text, cliente varchar, domicilio varchar, tipo varchar, pais text,
+  agenteNegocio text, estadoPoliza varchar) AS $$
+BEGIN
+
+IF param = 'tiposeguro' then
+	RETURN QUERY select p.id_poliza, ts.tipo, p.fecha_inicio, p.fecha_fin, p.poliza_vieja, p.meses,
+	 p.producto_descripcion, p.status, p.id_vendedor, p.id_operador, p.cod_venta, p.coberturas_adicionales, cp.condicion,
+	 c.nombre, c.domicilio, tc.tipo,pa.pais, e.nombre, ep.estado
+	from poliza p join cliente c on p.id_cli = c.id_cliente
+	join tipo_de_seguro ts on p.id_ts = ts.id_ts
+	join empleado e on p.id_negociador = e.id_emp and p.id_cargan = e.id_carga
+	join estado_poliza ep on ep.id_estado = p.id_est
+	join pais pa on pa.id_pais = c.id_pais
+	join tipo_cliente tc on tc.id = c.id1
+	join condiciones_particulares cp on p.id_condp = cp.id_cp
+	--where p.id_ts = pvalor2;
+	where LOWER(p.id_ts) LIKE LOWER((pvalor2 || '%' ));
+END IF;
+IF param = 'numeropoliza' then
+	RETURN QUERY select p.id_poliza, ts.tipo, p.fecha_inicio, p.fecha_fin, p.poliza_vieja, p.meses,
+	 p.producto_descripcion, p.status, p.id_vendedor, p.id_operador, p.cod_venta, p.coberturas_adicionales, cp.condicion,
+	 c.nombre, c.domicilio, tc.tipo,pa.pais, e.nombre, ep.estado
+	from poliza p join cliente c on p.id_cli = c.id_cliente
+	join tipo_de_seguro ts on p.id_ts = ts.id_ts
+	join empleado e on p.id_negociador = e.id_emp and p.id_cargan = e.id_carga
+	join estado_poliza ep on ep.id_estado = p.id_est
+	join pais pa on pa.id_pais = c.id_pais
+	join tipo_cliente tc on tc.id = c.id1
+	join condiciones_particulares cp on p.id_condp = cp.id_cp
+	where p.id_poliza = pvalor;
+	
+END IF;
+IF param = 'cliente' then
+	RETURN QUERY select p.id_poliza, ts.tipo, p.fecha_inicio, p.fecha_fin, p.poliza_vieja, p.meses,
+	 p.producto_descripcion, p.status, p.id_vendedor, p.id_operador, p.cod_venta, p.coberturas_adicionales, cp.condicion,
+	 c.nombre, c.domicilio, tc.tipo,pa.pais, e.nombre, ep.estado
+	from poliza p join cliente c on p.id_cli = c.id_cliente
+	join tipo_de_seguro ts on p.id_ts = ts.id_ts
+	join empleado e on p.id_negociador = e.id_emp and p.id_cargan = e.id_carga
+	join estado_poliza ep on ep.id_estado = p.id_est
+	join pais pa on pa.id_pais = c.id_pais
+	join tipo_cliente tc on tc.id = c.id1
+	join condiciones_particulares cp on p.id_condp = cp.id_cp
+	--where p.id = pvalor;
+	where LOWER(c.nombre) LIKE LOWER((pvalor2 || '%' ));
+END IF;
+IF param = 'agentenegocio' then
+	RETURN QUERY select p.id_poliza, ts.tipo, p.fecha_inicio, p.fecha_fin, p.poliza_vieja, p.meses,
+	 p.producto_descripcion, p.status, p.id_vendedor, p.id_operador, p.cod_venta, p.coberturas_adicionales, cp.condicion,
+	 c.nombre, c.domicilio, tc.tipo,pa.pais, e.nombre, ep.estado
+	from poliza p join cliente c on p.id_cli = c.id_cliente
+	join tipo_de_seguro ts on p.id_ts = ts.id_ts
+	join empleado e on p.id_negociador = e.id_emp and p.id_cargan = e.id_carga
+	join estado_poliza ep on ep.id_estado = p.id_est
+	join pais pa on pa.id_pais = c.id_pais
+	join tipo_cliente tc on tc.id = c.id1
+	join condiciones_particulares cp on p.id_condp = cp.id_cp
+	--where p.id_negociador = pvalor and p.id_cargan = _idcargan;
+	where LOWER(e.nombre) LIKE LOWER((pvalor2 || '%' ));
+END IF;
+IF param = 'polizavieja' then
+	RETURN QUERY select p.id_poliza, ts.tipo, p.fecha_inicio, p.fecha_fin, p.poliza_vieja, p.meses,
+	 p.producto_descripcion, p.status, p.id_vendedor, p.id_operador, p.cod_venta, p.coberturas_adicionales, cp.condicion,
+	 c.nombre, c.domicilio, tc.tipo,pa.pais, e.nombre, ep.estado
+	from poliza p join cliente c on p.id_cli = c.id_cliente
+	join tipo_de_seguro ts on p.id_ts = ts.id_ts
+	join empleado e on p.id_negociador = e.id_emp and p.id_cargan = e.id_carga
+	join estado_poliza ep on ep.id_estado = p.id_est
+	join pais pa on pa.id_pais = c.id_pais
+	join tipo_cliente tc on tc.id = c.id1
+	join condiciones_particulares cp on p.id_condp = cp.id_cp
+	--where p.poliza_vieja = pvalor2;
+	where LOWER(p.poliza_vieja) LIKE LOWER((pvalor2 || '%' ));
+END IF;
+END;
+$$  LANGUAGE plpgsql;
+
 
 --reporte 4
 
@@ -255,6 +335,33 @@ CREATE OR REPLACE FUNCTION reporte10()
 	RETURN QUERY select i.id_inspeccion, i.fecha, b.nombre, i.aprobado, i.id_emp from inspeccion i inner join bien b on i.id_bien = b.id_bien order by i.id_bien desc , i.fecha asc;
 END;
 $$  LANGUAGE plpgsql;
+
+ -- Reporte 11
+CREATE OR REPLACE FUNCTION reporte11(param varchar, valor varchar)
+  RETURNS TABLE("Usuario" varchar, "Fecha" timestamp, "Accion" varchar, "Modulo" varchar) AS $$
+BEGIN
+	IF $1 = 'accion' THEN
+	RETURN QUERY select b.usuario, b.fecha, b.accion, b.modulo
+	from bitacora b
+	where b.accion = $2;
+	END IF;
+	IF $1 = 'usuario' THEN
+	RETURN QUERY select b.usuario, b.fecha, b.accion, b.modulo
+	from bitacora b
+	where b.usuario = $2;
+	END IF;
+END;
+$$  LANGUAGE plpgsql; 
+
+CREATE OR REPLACE FUNCTION reporte11(param varchar,fechainicio date, fechafin date)
+  RETURNS TABLE("Usuario" varchar, "Fecha" timestamp, "Accion" varchar, "Modulo" varchar) AS $$
+BEGIN
+	RETURN QUERY select b.usuario, b.fecha, b.accion, b.modulo
+	from bitacora b
+	where b.fecha between $2 and $3; 
+END;
+$$  LANGUAGE plpgsql;
+
 
 -- Reporte 14 
 CREATE OR REPLACE FUNCTION reporte14()
