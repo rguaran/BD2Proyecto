@@ -227,6 +227,14 @@ CREATE OR REPLACE FUNCTION reporte9(id_moneda int, _pos int, _pos2 int, _pos3 in
 END;
 $$  LANGUAGE plpgsql;
 
+-- Reporte 10
+CREATE OR REPLACE FUNCTION reporte10()
+  RETURNS TABLE("ID Inspeccion" int , "Fecha revision" date, "Nombre bien" text, "Aprobacion" varchar,  "ID Empleado" int) AS $$
+  BEGIN
+	RETURN QUERY select i.id_inspeccion, i.fecha, b.nombre, i.aprobado, i.id_emp from inspeccion i inner join bien b on i.id_bien = b.id_bien order by i.id_bien desc , i.fecha asc;
+END;
+$$  LANGUAGE plpgsql;
+
 -- Reporte 14 
 CREATE OR REPLACE FUNCTION reporte14()
   RETURNS TABLE("Nombre del archivo" text, "Total Bytes" numeric) AS $$
