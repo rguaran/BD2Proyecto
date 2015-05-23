@@ -41,7 +41,8 @@ namespace bases2proyecto
             switch (reporte)
             {
                 case 2: lblTipoSeguro.Visible = true; cmbTipoSeguro.Visible = true; 
-                        lblMoneda.Visible = true; cmbMoneda.Visible = true; break;
+                        //lblMoneda.Visible = true; cmbMoneda.Visible = true; 
+                        break;
 
                 case 3: lblTipoSeguro.Visible = true; cmbTipoSeguro.Visible = true;  
                     lblPoliza.Visible = true; txtPoliza.Visible = true; 
@@ -73,6 +74,8 @@ namespace bases2proyecto
 
                 case 12: lblMoneda.Visible = true; cmbMoneda.Visible = true; break;
 
+                case 13: lblMoneda.Visible = true; cmbMoneda.Visible = true;
+                    lblTipoCliente.Visible = true; txtCliente.Visible = true; break;
 
 
             }
@@ -169,6 +172,9 @@ namespace bases2proyecto
 
             switch (reporte)
             {
+                case 2:
+                    devolver += "'" + cmbTipoSeguro.SelectedValue + "'";
+                    break;
                 case 3:
 
                     if (txtPoliza.Text.Length > 0) { devolver += "'numeropoliza'," + txtPoliza.Text; break; } 
@@ -217,6 +223,10 @@ namespace bases2proyecto
                 case 11:
                     if (txtUsuario.Text.Length > 0 && cmbAccion.SelectedIndex > -1) { devolver += "'%"+txtUsuario.Text+"%','%"+cmbAccion.SelectedValue+"%'"; }
                     if (txtFechaInicio.Text.Length > 0 && txtFechaFinal.Text.Length > 0) { devolver += "'" + txtFechaInicio.Text + "','" + txtFechaFinal.Text + "'"; }
+                    break;
+                case 13:
+                    devolver += cmbMoneda.SelectedValue;
+                    if (txtCliente.Text.Length > 0) { devolver += ",'%"+txtCliente.Text+"%'";}
                     break;
                 default: break;
             }
