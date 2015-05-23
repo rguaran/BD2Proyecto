@@ -389,3 +389,13 @@ v--al2 numeric;
 --$$  LANGUAGE plpgsql;
 
 
+--********-----------------------AYUDA PARA VER MEJOR EL REPORTE 12
+--select pp.id_moneda, c.nombre, p.id_poliza, p.id_ts, p.precio , pp.numero_cuotas, pp.numero_cuotas_atrasadas,
+--p.precio/pp.numero_cuotas as valorcuota, pp.numero_cuotas_atrasadas * (p.precio/pp.numero_cuotas) as deuda, conversor3(1,pp.id_moneda,p.precio)
+--from poliza p right join plan_de_pagos pp on p.id_poliza = pp.id_poliza and p.id_ts=pp.id_ts
+--join cliente c on p.id_cli = c.id_cliente
+--where c.id_cliente = 1
+--group by c.nombre,p.id_poliza, p.id_ts, p.precio , pp.numero_cuotas, pp.numero_cuotas_atrasadas,pp.id_moneda
+--order by p.id_poliza, p.id_ts
+--********-----------------------AYUDA PARA VER MEJOR EL REPORTE 12
+
