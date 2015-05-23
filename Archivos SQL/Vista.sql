@@ -61,4 +61,4 @@ JOIN Cobertura AS CO ON CO.id_poliza = P.id_poliza;
 
 SELECT * FROM datos_totales;
 
-COPY (SELECT * FROM datos_totales6) TO 'C:\DatosBD2\desnormalizados.csv' WITH DELIMITER AS '|' CSV HEADER; 
+COPY (SELECT * FROM datos_totales) TO 'C:\DatosBD2\desnormalizados.csv' WITH DELIMITER AS '|' CSV HEADER; 
