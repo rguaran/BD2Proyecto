@@ -217,9 +217,9 @@ $$  LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION reporte4(_moneda int)
   RETURNS TABLE(total_precio float, total_valor_seguro float,total_pagado float, total_deuda float) AS $$
 BEGIN
-return query select sum(getValorCambio3(_moneda,p.precio)),sum(getValorCambio3(_moneda,p.valor_seguro)), 
-sum(getValorCambio3(_moneda, (pp.numero_cuotas - pp.numero_cuotas_atrasadas) * (p.precio/pp.numero_cuotas))), 
-sum(getValorCambio3(_moneda, pp.numero_cuotas_atrasadas * (p.precio/pp.numero_cuotas)))
+return query select sum(conversor3(_moneda,pp.id_moneda,p.precio)),sum(conversor3(_moneda,pp.id_moneda,p.valor_seguro)), 
+sum(conversor3(_moneda,pp.id_moneda, (pp.numero_cuotas - pp.numero_cuotas_atrasadas) * (p.precio/pp.numero_cuotas))), 
+sum(conversor3(_moneda, pp.id_moneda, pp.numero_cuotas_atrasadas * (p.precio/pp.numero_cuotas)))
 from poliza p join plan_de_pagos pp on p.id_poliza = pp.id_poliza and p.id_ts = pp.id_ts
 ;
 END;
@@ -260,93 +260,126 @@ $$  LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION reporte6(_id_moneda int)
   RETURNS TABLE(idpoliza int, tipoSeguro varchar, moneda text, totalcoberturas numeric) AS $$
 BEGIN
-	RETURN QUERY select p.id_poliza, p.id_ts, m.moneda , sum(getValorCambio2(_id_moneda,co.monto)) 
+	RETURN QUERY select p.id_poliza, p.id_ts, m.moneda , sum(conversor2(_id_moneda,pp.id_moneda,co.monto)) 
 	from poliza p join cobertura co on co.id_poliza = p.id_poliza and co.id_ts= p.id_ts
 	join plan_de_pagos pp on pp.id_poliza = p.id_poliza  and pp.id_ts= p.id_ts
 	join moneda m on pp.id_moneda = m.id_moneda 
 	group by p.id_poliza,p.id_ts, m.moneda 
 	order by p.id_poliza;
 END;
-$$  LANGUAGE plpgsql; 
+$$  LANGUAGE plpgsql;
 
 
 -- Reporte 7
 
-CREATE OR REPLACE FUNCTION reporte7(id_moneda int)
-  RETURNS TABLE("Código vendedor" int, "Nombre" text, "Total venta" numeric) AS $$
+CREATE OR REPLACE FUNCTION reporte7(_id_moneda int)
+  RETURNS TABLE("Código vendedor" int, "Nombre" text, "Total venta" float) AS $$
 BEGIN
-	RETURN QUERY select id_vendedor as "id", e.nombre, sum(getValorCambio2(id_moneda,precio)) as "total" from poliza  inner join empleado e on e.id_emp = id_vendedor group by id_vendedor, nombre order by "total" desc ;
+	RETURN QUERY select p.id_vendedor as "id", e.nombre, sum(conversor3(_id_moneda,pp.id_moneda,p.precio)) as "total" 
+	from poliza p inner join empleado e on e.id_emp = id_vendedor
+	join plan_de_pagos pp on pp.id_poliza = p.id_poliza  and pp.id_ts= p.id_ts
+	group by p.id_vendedor, e.nombre order by "total" desc ;
 END;
-$$  LANGUAGE plpgsql;
+$$  LANGUAGE plpgsql; 
 
 
-CREATE OR REPLACE FUNCTION reporte7(id_moneda int, _id_vendedor varchar)
-  RETURNS TABLE("Código vendedor" int, "Nombre" text, "Total venta" numeric) AS $$
+CREATE OR REPLACE FUNCTION reporte7(_id_moneda int, _id_vendedor varchar)
+  RETURNS TABLE("Código vendedor" int, "Nombre" text, "Total venta" float) AS $$
 BEGIN
-	RETURN QUERY select id_vendedor as "id", e.nombre, sum(getValorCambio2(id_moneda,precio)) as "total" from poliza  inner join empleado e on e.id_emp = id_vendedor where cast(id_vendedor as varchar) like _id_vendedor group by id_vendedor, nombre order by "total" desc ;
+	RETURN QUERY select p.id_vendedor as "id", e.nombre, sum(conversor3(_id_moneda,pp.id_moneda,p.precio)) as "total" 
+	from poliza p inner join empleado e on e.id_emp = p.id_vendedor 
+	join plan_de_pagos pp on pp.id_poliza = p.id_poliza  and pp.id_ts= p.id_ts
+	where cast(p.id_vendedor as varchar) like _id_vendedor 
+	group by p.id_vendedor, e.nombre order by "total" desc ;
 END;
 $$  LANGUAGE plpgsql;
 
 -- Reporte 8
 
-CREATE OR REPLACE FUNCTION reporte8(id_moneda int)
-  RETURNS TABLE("Código agente" int, "Nombre" varchar, "Total venta" numeric) AS $$
+CREATE OR REPLACE FUNCTION reporte8(_id_moneda int)
+  RETURNS TABLE("Código agente" int, "Nombre" varchar, "Total venta" float) AS $$
 BEGIN
-	RETURN QUERY select id_negociador as "id", e.usuario, sum(getValorCambio2(id_moneda,precio)) as "total" from poliza  inner join empleado e on e.id_emp = id_negociador group by id_negociador, usuario order by "total" desc ;
+	RETURN QUERY select p.id_negociador as "id", e.usuario, sum(conversor3(_id_moneda,pp.id_moneda,p.precio)) as "total" 
+	from poliza p inner join empleado e on e.id_emp = p.id_negociador
+	join plan_de_pagos pp on pp.id_poliza = p.id_poliza  and pp.id_ts= p.id_ts
+	group by p.id_negociador, e,usuario order by "total" desc ;
 END;
 $$  LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE FUNCTION reporte8(id_moneda int, _negociador varchar)
-  RETURNS TABLE("Código agente" int, "Nombre" text, "Total venta" numeric) AS $$
+CREATE OR REPLACE FUNCTION reporte8(_id_moneda int, _negociador varchar)
+  RETURNS TABLE("Código agente" int, "Nombre" text, "Total venta" float) AS $$
 BEGIN
-	RETURN QUERY select id_negociador as "id", e.nombre, sum(getValorCambio2(id_moneda,precio)) as "total" from poliza  inner join empleado e on e.id_emp = id_negociador where lower(nombre) like lower(_negociador) group by id_negociador, nombre order by "total" desc ;
+	RETURN QUERY select p.id_negociador as "id", e.nombre, sum(conversor3(_id_moneda,pp.id_moneda,p.precio)) as "total" 
+	from poliza p inner join empleado e on e.id_emp = p.id_negociador
+	join plan_de_pagos pp on pp.id_poliza = p.id_poliza  and pp.id_ts= p.id_ts
+	where lower(e.nombre) like lower(('%' || _negociador || '%')) 
+	group by p.id_negociador, e.nombre order by "total" desc ;
+
 END;
 $$  LANGUAGE plpgsql;
+
 
 -- Reporte 9
 
-CREATE OR REPLACE FUNCTION reporte9(id_moneda int, _pos int)
-  RETURNS TABLE("Cliente" varchar, "Total" numeric) AS $$
+CREATE OR REPLACE FUNCTION reporte9(_id_moneda int, _pos int)
+  RETURNS TABLE("Cliente" varchar, "Total" float) AS $$
   BEGIN
   IF _pos = 0 THEN
-	RETURN QUERY Select c.nombre, cast(count(id_poliza) as numeric) conteo from cliente c inner join poliza p on c.id_cliente = p.id_cli group by c.nombre order by conteo desc limit 10;
+	RETURN QUERY Select c.nombre, cast(count(id_poliza) as float) conteo 
+	from cliente c inner join poliza p on c.id_cliente = p.id_cli group by c.nombre order by conteo desc limit 10;
   END IF;
   IF _pos = 1 THEN
-	RETURN QUERY Select c.nombre, sum(getValorCambio2(id_moneda,p.precio)) conteo from cliente c inner join poliza p on c.id_cliente = p.id_cli group by c.nombre order by conteo desc limit 10;
+	RETURN QUERY Select c.nombre, sum(conversor3(_id_moneda,pp.id_moneda,p.precio)) conteo 
+	from cliente c inner join poliza p on c.id_cliente = p.id_cli 
+	join plan_de_pagos pp on pp.id_poliza = p.id_poliza and pp.id_ts= p.id_ts
+	group by c.nombre order by conteo desc limit 10;
   END IF;
   IF _pos = 2 THEN
-	RETURN QUERY Select c.nombre, sum(getValorCambio2(id_moneda,p.valor_seguro)) conteo from cliente c inner join poliza p on c.id_cliente = p.id_cli group by c.nombre order by conteo desc limit 10 ;
+	RETURN QUERY Select c.nombre, sum(conversor3(_id_moneda,pp.id_moneda, p.valor_seguro)) conteo 
+	from cliente c inner join poliza p on c.id_cliente = p.id_cli
+	join plan_de_pagos pp on pp.id_poliza = p.id_poliza and pp.id_ts= p.id_ts
+	group by c.nombre order by conteo desc limit 10 ;
   END IF;
 
 END;
 $$  LANGUAGE plpgsql;
 
 
-CREATE OR REPLACE FUNCTION reporte9(id_moneda int, _pos int, _pos2 int)
-  RETURNS TABLE("Cliente" varchar, "Total" numeric, "Total " numeric) AS $$
+CREATE OR REPLACE FUNCTION reporte9(_id_moneda int, _pos int, _pos2 int)
+  RETURNS TABLE("Cliente" varchar, "Total" float, "Total " float) AS $$
   BEGIN
   IF _pos = 0 THEN
 	IF _pos2 = 1 THEN
-	RETURN QUERY select * from (Select c.nombre, sum(getValorCambio2(id_moneda,p.precio)) pagar, cast(count(id_poliza) as numeric) conteo from cliente c inner join poliza p on c.id_cliente = p.id_cli group by c.nombre) a order by pagar desc, conteo desc  limit 10;
+	RETURN QUERY select * from (Select c.nombre, sum(conversor3(_id_moneda,pp.id_moneda,p.precio)) pagar, cast(count(p.id_poliza) as float) conteo 
+	from cliente c inner join poliza p on c.id_cliente = p.id_cli
+	join plan_de_pagos pp on pp.id_poliza = p.id_poliza and pp.id_ts= p.id_ts
+	group by c.nombre) a order by pagar desc, conteo desc  limit 10;
 	END IF;
 	IF _pos2 = 2 THEN
-	RETURN QUERY select * from (Select c.nombre, sum(getValorCambio2(id_moneda,p.valor_seguro)) asegurada, cast(count(id_poliza) as numeric) conteo from cliente c inner join poliza p on c.id_cliente = p.id_cli group by c.nombre) a order by asegurada desc, conteo desc  limit 10;
+	RETURN QUERY select * from (Select c.nombre, sum(conversor3(_id_moneda,pp.id_moneda,p.valor_seguro)) asegurada, cast(count(p.id_poliza) as float) conteo 
+	from cliente c inner join poliza p on c.id_cliente = p.id_cli 
+	join plan_de_pagos pp on pp.id_poliza = p.id_poliza and pp.id_ts= p.id_ts
+	group by c.nombre) a order by asegurada desc, conteo desc  limit 10;
 	END IF;
   END IF;
   IF _pos = 1 THEN
-	RETURN QUERY select * from (Select c.nombre, sum(getValorCambio2(id_moneda,p.valor_seguro)) asegurada, sum(getValorCambio2(id_moneda,p.precio)) pagar from cliente c inner join poliza p on c.id_cliente = p.id_cli group by c.nombre) a order by asegurada desc, pagar desc  limit 10;
+	RETURN QUERY select * from (Select c.nombre, sum(conversor3(_id_moneda,pp.id_moneda,p.valor_seguro)) asegurada, sum(conversor3(_id_moneda,pp.id_moneda,p.precio)) pagar 
+	from cliente c inner join poliza p on c.id_cliente = p.id_cli
+	join plan_de_pagos pp on pp.id_poliza = p.id_poliza and pp.id_ts= p.id_ts
+	group by c.nombre) a order by asegurada desc, pagar desc  limit 10;
   END IF;
-  
-
 END;
 $$  LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION reporte9(id_moneda int, _pos int, _pos2 int, _pos3 int)
-  RETURNS TABLE("Cliente" varchar, "Total asegurado" numeric, "Total pagado" numeric, "Total polizas" numeric) AS $$
+CREATE OR REPLACE FUNCTION reporte9(_id_moneda int, _pos int, _pos2 int, _pos3 int)
+  RETURNS TABLE("Cliente" varchar, "Total asegurado" float, "Total pagado" float, "Total polizas" float) AS $$
   BEGIN
   
-	RETURN QUERY select * from (Select c.nombre, sum(getValorCambio2(id_moneda,p.valor_seguro)) asegurada, sum(getValorCambio2(id_moneda,p.precio)) pagar, cast(count(id_poliza) as numeric) conteo  from cliente c inner join poliza p on c.id_cliente = p.id_cli group by c.nombre) a order by asegurada desc, pagar desc, conteo desc  limit 10;
+	RETURN QUERY select * from (Select c.nombre, sum(conversor3(_id_moneda,pp.id_moneda,p.valor_seguro)) asegurada, sum(conversor3(_id_moneda,pp.id_moneda,p.precio)) pagar, cast(count(p.id_poliza) as float) conteo  
+	from cliente c inner join poliza p on c.id_cliente = p.id_cli
+	join plan_de_pagos pp on pp.id_poliza = p.id_poliza and pp.id_ts= p.id_ts
+	group by c.nombre) a order by asegurada desc, pagar desc, conteo desc  limit 10;
   
 END;
 $$  LANGUAGE plpgsql;
@@ -360,18 +393,19 @@ END;
 $$  LANGUAGE plpgsql;
 
  -- Reporte 11
+
 CREATE OR REPLACE FUNCTION reporte11(param varchar, valor varchar)
   RETURNS TABLE("Usuario" varchar, "Fecha" timestamp, "Accion" varchar, "Modulo" varchar) AS $$
 BEGIN
 	IF $1 = 'accion' THEN
 	RETURN QUERY select b.usuario, b.fecha, b.accion, b.modulo
 	from bitacora b
-	where lower(b.accion) like lower($2);
+	where lower(b.accion) like lower(('%'|| $2 || '%' ));
 	END IF;
 	IF $1 = 'usuario' THEN
 	RETURN QUERY select b.usuario, b.fecha, b.accion, b.modulo
 	from bitacora b
-	where lower(b.usuario) like lower( $2);
+	where lower(b.usuario) like lower(('%'|| $2 || '%' ));
 	END IF;
 END;
 $$  LANGUAGE plpgsql; 
