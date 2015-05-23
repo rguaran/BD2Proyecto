@@ -12,3 +12,10 @@ C:\Users\Chaz\Documents\Visual Studio 2012\Projects\BD2Proyecto\bases2proyecto\b
 C:\Users\Chaz\Documents\Visual Studio 2012\Projects\BD2Proyecto\bases2proyecto\bases2proyecto\bin\bases2proyecto.pdb
 C:\Users\Chaz\Documents\Visual Studio 2012\Projects\BD2Proyecto\bases2proyecto\bases2proyecto\bin\Mono.Security.dll
 C:\Users\Chaz\Documents\Visual Studio 2012\Projects\BD2Proyecto\bases2proyecto\bases2proyecto\bin\Npgsql.dll
+C:\Users\Mario Rodas\Documents\GitHub\BD2Proyecto\bases2proyecto\bases2proyecto\bin\bases2proyecto.dll
+C:\Users\Mario Rodas\Documents\GitHub\BD2Proyecto\bases2proyecto\bases2proyecto\bin\bases2proyecto.pdb
+C:\Users\Mario Rodas\Documents\GitHub\BD2Proyecto\bases2proyecto\bases2proyecto\bin\Mono.Security.dll
+C:\Users\Mario Rodas\Documents\GitHub\BD2Proyecto\bases2proyecto\bases2proyecto\bin\Npgsql.dll
+C:\Users\Mario Rodas\Documents\GitHub\BD2Proyecto\bases2proyecto\bases2proyecto\obj\Debug\bases2proyecto.csprojResolveAssemblyReference.cache
+C:\Users\Mario Rodas\Documents\GitHub\BD2Proyecto\bases2proyecto\bases2proyecto\obj\Debug\bases2proyecto.dll
+C:\Users\Mario Rodas\Documents\GitHub\BD2Proyecto\bases2proyecto\bases2proyecto\obj\Debug\bases2proyecto.pdb

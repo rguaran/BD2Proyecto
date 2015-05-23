@@ -307,9 +307,9 @@ BEGIN
 	SELECT fecha INTO lastTime FROM TareaProgramada WHERE tabla = 'Estado Poliza' ORDER BY id_tarea DESC LIMIT 1 ;
 	
 	-- Estado Poliza --
-	SELECT COUNT(*) INTO ins FROM Bitacora WHERE modulo = 'Estado Poliza' AND accion='insert' AND fecha BETWEEN lastTime AND actual;
-	SELECT COUNT(*) INTO upd FROM Bitacora WHERE modulo = 'Estado Poliza' AND accion='update' AND fecha BETWEEN lastTime AND actual;
-	SELECT COUNT(*) INTO del FROM Bitacora WHERE modulo = 'Estado Poliza' AND accion='delete' AND fecha BETWEEN lastTime AND actual;
+	SELECT COUNT(*) INTO ins FROM Bitacora WHERE modulo = 'estado_poliza' AND accion='insert' AND fecha BETWEEN lastTime AND actual;
+	SELECT COUNT(*) INTO upd FROM Bitacora WHERE modulo = 'estado_poliza' AND accion='update' AND fecha BETWEEN lastTime AND actual;
+	SELECT COUNT(*) INTO del FROM Bitacora WHERE modulo = 'estado_poliza' AND accion='delete' AND fecha BETWEEN lastTime AND actual;
 	INSERT INTO TareaProgramada (fecha, tabla, inserciones, modificaciones, eliminaciones) VALUES (NOW(), 'Estado Poliza', ins, upd, del);
 	
 	-- Poliza Condicion--
@@ -325,21 +325,21 @@ BEGIN
 	INSERT INTO TareaProgramada (fecha, tabla, inserciones, modificaciones, eliminaciones) VALUES (NOW(), 'Condiciones Generales', ins, upd, del);
 	
 	-- Condiciones Particulares --
-	SELECT COUNT(*) INTO ins FROM Bitacora WHERE modulo = 'Condiciones Particulares' AND accion='insert' AND fecha BETWEEN lastTime AND actual;
-	SELECT COUNT(*) INTO upd FROM Bitacora WHERE modulo = 'Condiciones Particulares' AND accion='update' AND fecha BETWEEN lastTime AND actual;
-	SELECT COUNT(*) INTO del FROM Bitacora WHERE modulo = 'Condiciones Particulares' AND accion='delete' AND fecha BETWEEN lastTime AND actual;
+	SELECT COUNT(*) INTO ins FROM Bitacora WHERE modulo = 'condiciones_particulares' AND accion='insert' AND fecha BETWEEN lastTime AND actual;
+	SELECT COUNT(*) INTO upd FROM Bitacora WHERE modulo = 'condiciones_particulares' AND accion='update' AND fecha BETWEEN lastTime AND actual;
+	SELECT COUNT(*) INTO del FROM Bitacora WHERE modulo = 'condiciones_particulares' AND accion='delete' AND fecha BETWEEN lastTime AND actual;
 	INSERT INTO TareaProgramada (fecha, tabla, inserciones, modificaciones, eliminaciones) VALUES (NOW(), 'Condiciones Particulares', ins, upd, del);
 	
 	-- Tipo Cliente --
-	SELECT COUNT(*) INTO ins FROM Bitacora WHERE modulo = 'Tipo Cliente' AND accion='insert' AND fecha BETWEEN lastTime AND actual;
-	SELECT COUNT(*) INTO upd FROM Bitacora WHERE modulo = 'Tipo Cliente' AND accion='update' AND fecha BETWEEN lastTime AND actual;
-	SELECT COUNT(*) INTO del FROM Bitacora WHERE modulo = 'Tipo Cliente' AND accion='delete' AND fecha BETWEEN lastTime AND actual;
+	SELECT COUNT(*) INTO ins FROM Bitacora WHERE modulo = 'tipo_cliente' AND accion='insert' AND fecha BETWEEN lastTime AND actual;
+	SELECT COUNT(*) INTO upd FROM Bitacora WHERE modulo = 'tipo_cliente' AND accion='update' AND fecha BETWEEN lastTime AND actual;
+	SELECT COUNT(*) INTO del FROM Bitacora WHERE modulo = 'tipo_cliente' AND accion='delete' AND fecha BETWEEN lastTime AND actual;
 	INSERT INTO TareaProgramada (fecha, tabla, inserciones, modificaciones, eliminaciones) VALUES (NOW(), 'Tipo Cliente', ins, upd, del);
 	
 	-- Pais --
-	SELECT COUNT(*) INTO ins FROM Bitacora WHERE modulo = 'Pais' AND accion='insert' AND fecha BETWEEN lastTime AND actual;
-	SELECT COUNT(*) INTO upd FROM Bitacora WHERE modulo = 'Pais' AND accion='update' AND fecha BETWEEN lastTime AND actual;
-	SELECT COUNT(*) INTO del FROM Bitacora WHERE modulo = 'Pais' AND accion='delete' AND fecha BETWEEN lastTime AND actual;
+	SELECT COUNT(*) INTO ins FROM Bitacora WHERE modulo = 'pais' AND accion='insert' AND fecha BETWEEN lastTime AND actual;
+	SELECT COUNT(*) INTO upd FROM Bitacora WHERE modulo = 'pais' AND accion='update' AND fecha BETWEEN lastTime AND actual;
+	SELECT COUNT(*) INTO del FROM Bitacora WHERE modulo = 'pais' AND accion='delete' AND fecha BETWEEN lastTime AND actual;
 	INSERT INTO TareaProgramada (fecha, tabla, inserciones, modificaciones, eliminaciones) VALUES (NOW(), 'Pais', ins, upd, del);
 	
 	-- Cliente --
@@ -439,10 +439,10 @@ BEGIN
 	INSERT INTO TareaProgramada (fecha, tabla, inserciones, modificaciones, eliminaciones) VALUES (NOW(), 'Condiciones', ins, upd, del);
 	
 	-- Tipo De Seguro --
-	SELECT COUNT(*) INTO ins FROM Bitacora WHERE modulo = 'Tipo De Seguro' AND accion='insert' AND fecha BETWEEN lastTime AND actual;
-	SELECT COUNT(*) INTO upd FROM Bitacora WHERE modulo = 'Tipo De Seguro' AND accion='update' AND fecha BETWEEN lastTime AND actual;
-	SELECT COUNT(*) INTO del FROM Bitacora WHERE modulo = 'Tipo De Seguro' AND accion='delete' AND fecha BETWEEN lastTime AND actual;
-	INSERT INTO TareaProgramada (fecha, tabla, inserciones, modificaciones, eliminaciones) VALUES (NOW(), 'Tipo De Seguro', ins, upd, del);
+	SELECT COUNT(*) INTO ins FROM Bitacora WHERE modulo = 'tipo_de_seguro' AND accion='insert' AND fecha BETWEEN lastTime AND actual;
+	SELECT COUNT(*) INTO upd FROM Bitacora WHERE modulo = 'tipo_de_seguro' AND accion='update' AND fecha BETWEEN lastTime AND actual;
+	SELECT COUNT(*) INTO del FROM Bitacora WHERE modulo = 'tipo_de_seguro' AND accion='delete' AND fecha BETWEEN lastTime AND actual;
+	INSERT INTO TareaProgramada (fecha, tabla, inserciones, modificaciones, eliminaciones) VALUES (NOW(), 'Tipo de Seguro', ins, upd, del);
 	
 	-- Beneficiario --
 	SELECT COUNT(*) INTO ins FROM Bitacora WHERE modulo = 'Beneficiario' AND accion='insert' AND fecha BETWEEN lastTime AND actual;
