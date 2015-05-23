@@ -443,3 +443,30 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION conversor3(mondestino int, monorigen int, valor float)
+  RETURNS float AS $$
+DECLARE ret float;
+val1 float;
+val2 float;
+BEGIN
+	select * into val1 from getValorCambio3(monorigen,1);
+	select  * into val2 from getValorCambio3(mondestino,1);
+	ret := (valor * val1) / val2;
+	return ret;
+END;
+$$  LANGUAGE plpgsql;
+
+--CREATE OR REPLACE FUNCTION conversor2(mondestino int, monorigen int, valor numeric)
+--  RETURNS numeric AS $$
+--DECLARE ret numeric;
+v--al1 numeric;
+v--al2 numeric;
+--BEGIN
+--	select * into val1 from getValorCambio2(monorigen,1);
+--	select  * into val2 from getValorCambio2(mondestino,1);
+--	ret := (valor * val1) / val2;
+--	return ret;
+--END;
+--$$  LANGUAGE plpgsql;
+
+
