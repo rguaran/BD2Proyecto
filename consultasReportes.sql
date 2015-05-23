@@ -394,6 +394,22 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
+-- Reporte 13
+CREATE OR REPLACE FUNCTION reporte13(_id_moneda int)
+  RETURNS TABLE("Cliente" varchar, "Tipo de seguro" varchar, "Total cobertura" numeric) AS $$
+  BEGIN
+	RETURN QUERY select cl.nombre, a.id_ts, a.sum from (select p.id_cli, c.id_ts, sum(getValorCambio2(_id_moneda,c.monto)) from cobertura c inner join poliza p on c.id_poliza = p.id_poliza and p.id_ts = c.id_ts group by p.id_cli, c.id_ts order by sum desc) a inner join cliente cl on a.id_cli = cl.id_cliente ;
+END;
+$$  LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION reporte13(_id_moneda int, _nombre varchar)
+  RETURNS TABLE("Cliente" varchar, "Tipo de seguro" varchar, "Total cobertura" numeric) AS $$
+  BEGIN
+	RETURN QUERY select cl.nombre, a.id_ts, a.sum from (select p.id_cli, c.id_ts, sum(getValorCambio2(_id_moneda,c.monto)) from cobertura c inner join poliza p on c.id_poliza = p.id_poliza and p.id_ts = c.id_ts group by p.id_cli, c.id_ts order by sum desc) a inner join cliente cl on a.id_cli = cl.id_cliente where lower(nombre) like lower(_nombre) ;
+END;
+$$  LANGUAGE plpgsql;
+
+
 -- Reporte 14 
 CREATE OR REPLACE FUNCTION reporte14()
   RETURNS TABLE("Nombre del archivo" text, "Total Bytes" numeric) AS $$
