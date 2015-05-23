@@ -428,6 +428,18 @@ BEGIN
 END;
 $$  LANGUAGE plpgsql;
 
+-- Reporte 12
+CREATE OR REPLACE FUNCTION reporte12(_id_moneda int, _idcliente int)
+  RETURNS TABLE("Nombre Cliente" varchar, "Total a Pagar" float, "Total Deuda" float) AS $$
+  BEGIN
+	RETURN QUERY select c.nombre, sum(conversor3(_id_moneda,pp.id_moneda,p.precio)) as totalapagar, sum(conversor3(_id_moneda,pp.id_moneda,pp.numero_cuotas_atrasadas * (p.precio/pp.numero_cuotas))) as totaldeuda
+	from poliza p join plan_de_pagos pp on p.id_poliza = pp.id_poliza and p.id_ts=pp.id_ts
+	join cliente c on p.id_cli = c.id_cliente
+	where c.id_cliente = _idcliente
+	group by c.nombre;
+END;
+$$  LANGUAGE plpgsql;
+
 -- Reporte 13
 CREATE OR REPLACE FUNCTION reporte13(_id_moneda int)
   RETURNS TABLE("Cliente" varchar, "Tipo de seguro" varchar, "Total cobertura" numeric) AS $$
