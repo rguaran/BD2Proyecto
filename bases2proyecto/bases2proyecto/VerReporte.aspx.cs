@@ -72,7 +72,8 @@ namespace bases2proyecto
                     lblPoliza.Visible = true; txtPoliza.Visible = true;
                     lblUsuario.Visible = true; txtUsuario.Visible = true; break;
 
-                case 12: lblMoneda.Visible = true; cmbMoneda.Visible = true; break;
+                case 12: lblMoneda.Visible = true; cmbMoneda.Visible = true;
+                       lblTipoCliente.Visible = true; txtCliente.Visible = true; break;
 
                 case 13: lblMoneda.Visible = true; cmbMoneda.Visible = true;
                     lblTipoCliente.Visible = true; txtCliente.Visible = true; break;
@@ -223,6 +224,10 @@ namespace bases2proyecto
                 case 11:
                     if (txtUsuario.Text.Length > 0 && cmbAccion.SelectedIndex > -1) { devolver += "'%"+txtUsuario.Text+"%','%"+cmbAccion.SelectedValue+"%'"; }
                     if (txtFechaInicio.Text.Length > 0 && txtFechaFinal.Text.Length > 0) { devolver += "'" + txtFechaInicio.Text + "','" + txtFechaFinal.Text + "'"; }
+                    break;
+                case 12:
+                    devolver += cmbMoneda.SelectedValue;
+                    devolver += "," + txtCliente.Text;
                     break;
                 case 13:
                     devolver += cmbMoneda.SelectedValue;
